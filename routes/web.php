@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Demo\DemoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::controller(DemoController::class)->group(function () {
+    route::get('/about', 'AboutPage')->name('about.page')->middleware('check');
+    route::get('/contact', 'ContactPage')->name('contact.page');
 });
