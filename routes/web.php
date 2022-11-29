@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Demo\DemoController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,5 +33,11 @@ Route::controller(DemoController::class)->group(function () {
     route::get('/about', 'AboutPage')->name('about.page')->middleware('check');
     route::get('/contact', 'ContactPage')->name('contact.page');
 });
+
+// Admin all routes
+Route::controller(AdminController::class)->group(function () {
+    route::get('/admin/logout', 'destroy')->name('admin.logout');
+});
+
 
 require __DIR__.'/auth.php';
