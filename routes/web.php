@@ -17,7 +17,7 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome.page');
 
 Route::get('/dashboard', function () {
     return view('admin.index');
@@ -37,6 +37,9 @@ Route::controller(DemoController::class)->group(function () {
 // Admin all routes
 Route::controller(AdminController::class)->group(function () {
     route::get('/admin/logout', 'destroy')->name('admin.logout');
+    route::get('/admin/profile', 'Profile')->name('admin.profile');
+    route::get('/edit/profile', 'EditProfile')->name('edit.profile');
+    route::post('/store/profile', 'StoreProfile')->name('store.profile');
 });
 
 
