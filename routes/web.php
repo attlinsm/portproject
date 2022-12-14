@@ -16,7 +16,7 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 })->name('welcome.page');
 
 Route::get('/dashboard', function () {
@@ -36,14 +36,16 @@ Route::controller(DemoController::class)->group(function () {
 
 // Admin all routes
 Route::controller(AdminController::class)->group(function () {
+
     route::get('/admin/logout', 'destroy')->name('admin.logout');
     route::get('/admin/profile', 'Profile')->name('admin.profile');
+
     route::get('/edit/profile', 'EditProfile')->name('edit.profile');
     route::post('/store/profile', 'StoreProfile')->name('store.profile');
+
     route::get('/change/password', 'ChangePassword')->name('change.password');
     route::post('/update/password', 'UpdatePassword')->name('update.password');
 
 });
-
 
 require __DIR__.'/auth.php';

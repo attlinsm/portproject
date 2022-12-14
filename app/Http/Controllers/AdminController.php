@@ -28,6 +28,7 @@ class AdminController extends Controller
 
         return redirect('/login')->with($notification);
     }
+
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -76,7 +77,6 @@ class AdminController extends Controller
         return redirect()->route('admin.profile')->with($notification);
     }
 
-
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -87,6 +87,7 @@ class AdminController extends Controller
 
     /**
      * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function UpdatePassword(Request $request)
     {
@@ -109,7 +110,5 @@ class AdminController extends Controller
             session()->flash('message', 'Old password is not match');
             return redirect()->back();
         }
-
-
     }
 }
