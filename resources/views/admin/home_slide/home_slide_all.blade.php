@@ -12,9 +12,12 @@
 
                             <p class="card-title font-size-18">Home slide</p><br>
 
-                            <form method="POST" action="{{ route('store.profile') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('update.slide') }}" enctype="multipart/form-data">
                                 @csrf
                                 {{--Поля--}}
+
+                                <input type="hidden" name="id" value="{{ $homeSlider->id }}">
+
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
                                     <div class="col-sm-10">
@@ -47,7 +50,7 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
-                                        <img id="showImage" class="rounded avatar-lg" src="{{ (!empty($homeSlider->home_slide)) ? url('/upload/home_slide/' . $homeSlider->home_slide) : url('upload/no_image.jpg') }}" alt="Card image cap">
+                                        <img id="showImage" class="rounded avatar-lg" src="{{ (!empty($homeSlider->home_slide)) ? url($homeSlider->home_slide) : url('upload/no_image.jpg') }}" alt="Card image cap">
                                     </div>
                                 </div>
                                 <input type="submit" class="btn btn-info waves-effect waves-light" value="Update slide">
