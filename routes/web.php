@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Demo\DemoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\HomeSliderController;
+use App\Http\Controllers\Home\AboutController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,11 +50,20 @@ Route::controller(AdminController::class)->group(function () {
 
 });
 
-// Home slider routes
+// Home slider all routes
 Route::controller(HomeSliderController::class)->group(function () {
 
     route::get('/home/slide', 'HomeSlider')->name('home.slide');
     route::post('/update/slide', 'UpdateSlider')->name('update.slide');
 
 });
+
+// About page all routes
+Route::controller(AboutController::class)->group(function () {
+
+    route::get('/about/page', 'AboutPage')->name('about.page');
+    route::post('/update/about', 'UpdateAbout')->name('update.about');
+
+});
+
 require __DIR__.'/auth.php';
