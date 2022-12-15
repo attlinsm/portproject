@@ -62,4 +62,10 @@ class AboutController extends Controller
         }
 
     }
+
+    public function HomeAbout()
+    {
+        $aboutPage = About::query()->find(1);
+        return view('frontend.about', compact('aboutPage'));
+    }
 }
