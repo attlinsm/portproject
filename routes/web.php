@@ -58,7 +58,20 @@ Route::controller(AboutController::class)->group(function () {
 
     route::get('/about/page', 'AboutPage')->name('about.page');
     route::post('/update/about', 'UpdateAbout')->name('update.about');
+
     route::get('/about', 'HomeAbout')->name('home.about');
+
+    route::get('/about/multi/image', 'AboutMultiImage')->name('about.multi.image');
+    route::post('/store/multi/image', 'StoreMultiImage')->name('store.multi.image');
+
+    route::get('/all/multi/image', 'AllMultiImage')->name('all.multi.image');
+
+    route::get('/edit/multi/image/{id}', 'EditMultiImage')->name('edit.multi.image');
+    route::post('/update/multi/image', 'UpdateMultiImage')->name('update.multi.image');
+
+    route::get('/delete/multi/image/{id}', 'DeleteMultiImage')->name('delete.multi.image');
+
+
 });
 
 require __DIR__.'/auth.php';
