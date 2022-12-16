@@ -33,6 +33,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('about.page') }}">General settings</a></li>
                         <li><a href="{{ route('about.multi.image') }}">Add multi image</a></li>
+                        <li><a href="{{ route('all.multi.image') }}">All multi image</a></li>
                     </ul>
                 </li>
 
