@@ -66,6 +66,10 @@ Route::controller(AboutController::class)->group(function () {
 
     route::get('/all/multi/image', 'AllMultiImage')->name('all.multi.image');
 
+    route::get('/edit/multi/image/{id}', 'EditMultiImage')->name('edit.multi.image');
+    route::post('/update/multi/image', 'UpdateMultiImage')->name('update.multi.image');
+
+
 });
 
 require __DIR__.'/auth.php';

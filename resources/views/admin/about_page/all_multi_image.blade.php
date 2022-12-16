@@ -38,7 +38,7 @@
                                 <td>{{ $i++ }}</td>
                                 <td><img src="{{ asset($item->multi_image) }}" alt="" style="width: 85px; height: 85px"></td>
                                 <td>
-                                    <a class="btn btn-info sm" href="" title="Edit"><i class="fas fa-edit"></i></a>
+                                    <a class="btn btn-info sm" href="{{ route('edit.multi.image', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
                                     <a class="btn btn-danger sm" href="" title="Delete"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
