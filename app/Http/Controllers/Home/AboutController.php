@@ -125,16 +125,28 @@ class AboutController extends Controller
 
             MultiImage::query()->findOrFail($image_id)->update([
                 'multi_image' => $save_url,
-                'updated_at' => Carbon::now(),
             ]);
 
             $notification = [
                 'message' => 'Image updated successfully',
                 'alert-type' => 'success'
             ];
-
-            return redirect()->route('all.multi.image')->with($notification);
-
         }
+        return redirect()->route('all.multi.image')->with($notification);
+    }
+
+    public function DeleteMultiImage($id)
+    {
+        $multiImage = MultiImage::query()->findOrFail($id);
+        $img = $multiImage->multi_image;
+        unlink($img);
+
+        MultiImage::query()->findOrFail($id)->delete();
+
+        $notification = [
+            'message' => 'Image deleted successfully',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
     }
 }
