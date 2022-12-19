@@ -26,8 +26,8 @@ $portfolios = \App\Models\Portfolio::query()->latest()->get();
                                     </div>
                                     <div class="portfolio__overlay__content">
                                         <span>{{ $item->portfolio_name }}</span>
-                                        <h4 class="title"><a href="portfolio-details.html">{{ $item->portfolio_title }}</a></h4>
-                                        <a href="portfolio-details.html" class="link">More details</a>
+                                        <h4 class="title"><a href="{{ route('portfolio.details', $item->id) }}">{{ $item->portfolio_title }}</a></h4>
+                                        <a href="{{ route('portfolio.details', $item->id) }}" class="link">More details</a>
                                     </div>
                                 </div>
                             @endforeach

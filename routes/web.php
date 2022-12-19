@@ -88,6 +88,8 @@ Route::controller(PortfolioController::class)->group(function () {
 
     route::get('/delete/portfolio/{id}', 'DeletePortfolio')->name('delete.portfolio');
 
+    route::get('/portfolio/details/{id}', 'PortfolioDetails')->name('portfolio.details');
+
 });
 
 require __DIR__.'/auth.php';
