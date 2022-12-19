@@ -6,6 +6,8 @@ use App\Http\Controllers\Demo\DemoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Home\AboutController;
+use App\Http\Controllers\Home\PortfolioController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,6 +73,22 @@ Route::controller(AboutController::class)->group(function () {
 
     route::get('/delete/multi/image/{id}', 'DeleteMultiImage')->name('delete.multi.image');
 
+});
+
+// Portfolio all routes
+Route::controller(PortfolioController::class)->group(function () {
+
+    route::get('/all/portfolio', 'AllPortfolio')->name('all.portfolio');
+    route::get('/add/portfolio', 'AddPortfolio')->name('add.portfolio');
+
+    route::post('/store/portfolio', 'StorePortfolio')->name('store.portfolio');
+
+    route::get('/edit/portfolio/{id}', 'EditPortfolio')->name('edit.portfolio');
+    route::post('/update/portfolio', 'UpdatePortfolio')->name('update.portfolio');
+
+    route::get('/delete/portfolio/{id}', 'DeletePortfolio')->name('delete.portfolio');
+
+    route::get('/portfolio/details/{id}', 'PortfolioDetails')->name('portfolio.details');
 
 });
 
