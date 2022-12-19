@@ -52,4 +52,46 @@ class PortfolioController extends Controller
 
         return redirect()->route('all.portfolio')->with($notification);
     }
+
+    public function EditPortfolio($id)
+    {
+        $portfolio = Portfolio::query()->findOrFail($id);
+        return view('admin.portfolio.portfolio_edit', compact('portfolio'));
+    }
+
+    public function UpdatePortfolio(Request $request)
+    {
+        $portfolio_id = $request->id;
+
+        if ($request->file('portfolio_image')) {
+
+            $image = $request->file('portfolio_image');
+            $name_generate = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension(); // 34534.png
+            Image::make($image)->resize(1020, 519)->save('upload/portfolio_images/' . $name_generate);
+            $save_url = 'upload/portfolio_images/' . $name_generate;
+
+            Portfolio::query()->findOrFail($portfolio_id)->update([
+                'portfolio_name' => $request->portfolio_name,
+                'portfolio_title' => $request->portfolio_title,
+                'portfolio_description' => $request->portfolio_description,
+                'portfolio_image' => $save_url,
+            ]);
+
+        } else {
+
+            Portfolio::query()->findOrFail($portfolio_id)->update([
+                'portfolio_name' => $request->portfolio_name,
+                'portfolio_title' => $request->portfolio_title,
+                'portfolio_description' => $request->portfolio_description,
+            ]);
+
+        }
+
+        $notification = [
+            'message' => 'Portfolio updated successfully',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->route('all.portfolio')->with($notification);
+    }
 }
