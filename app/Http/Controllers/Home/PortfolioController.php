@@ -28,8 +28,9 @@ class PortfolioController extends Controller
             'portfolio_title' => 'required',
             'portfolio_image' => 'required',
         ], [
-            'portfolio_name.required' => 'Portfolio name is required',
-            'portfolio_title.required' => 'Portfolio title is required',
+            'portfolio_name.required' => 'Name is required',
+            'portfolio_title.required' => 'Title is required',
+            'portfolio_image.required' => 'Image is required',
         ]);
 
         $image = $request->file('portfolio_image');
@@ -93,5 +94,20 @@ class PortfolioController extends Controller
         ];
 
         return redirect()->route('all.portfolio')->with($notification);
+    }
+
+    public function DeletePortfolio($id)
+    {
+        $portfolio = Portfolio::query()->findOrFail($id);
+        $portfolio_image = $portfolio->portfolio_image;
+        unlink($portfolio_image);
+
+        Portfolio::query()->findOrFail($id)->delete();
+
+        $notification = [
+            'message' => 'Portfolio deleted successfully',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
     }
 }

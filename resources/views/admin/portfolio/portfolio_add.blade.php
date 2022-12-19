@@ -49,6 +49,9 @@
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Portfolio image</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" type="file" name="portfolio_image" id="image">
+                                        @error('portfolio_image')
+                                        <span class="text-danger"> {{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
 
