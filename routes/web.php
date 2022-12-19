@@ -79,6 +79,8 @@ Route::controller(AboutController::class)->group(function () {
 Route::controller(PortfolioController::class)->group(function () {
 
     route::get('/all/portfolio', 'AllPortfolio')->name('all.portfolio');
+    route::get('/add/portfolio', 'AddPortfolio')->name('add.portfolio');
+    route::post('/store/portfolio', 'StorePortfolio')->name('store.portfolio');
 
 });
 
