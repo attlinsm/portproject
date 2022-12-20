@@ -68,7 +68,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('all.blog') }}">All blogs</a></li>
-                        <li><a href="pages-timeline.html">Add blog</a></li>
+                        <li><a href="{{ route('add.blog') }}">Add blog</a></li>
                     </ul>
                 </li>
 
