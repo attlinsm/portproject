@@ -65,4 +65,55 @@ class BlogController extends Controller
         $categories = BlogCategory::query()->orderBy('blog_category', 'ASC')->get();
         return view('admin.blogs.blogs_edit', compact('blogs', 'categories'));
     }
+
+    public function UpdateBlog(Request $request, $id)
+    {
+        if ($request->file('blog_image')) {
+
+            $image = $request->file('blog_image');
+            $name_generate = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension(); // 34534.png
+            Image::make($image)->resize(430, 327)->save('upload/blog_images/' . $name_generate);
+            $save_url = 'upload/blog_images/' . $name_generate;
+
+            Blog::query()->findOrFail($id)->update([
+                'blog_category_id' => $request->blog_category_id,
+                'blog_title' => $request->blog_title,
+                'blog_description' => $request->blog_description,
+                'blog_tags' => $request->blog_tags,
+                'blog_image' => $save_url,
+            ]);
+
+        } else {
+
+            Blog::query()->findOrFail($id)->update([
+                'blog_category_id' => $request->blog_category_id,
+                'blog_title' => $request->blog_title,
+                'blog_description' => $request->blog_description,
+                'blog_tags' => $request->blog_tags,
+            ]);
+
+        }
+
+        $notification = [
+            'message' => 'Blog updated successfully',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->route('all.blog')->with($notification);
+    }
+
+    public function DeleteBlog($id)
+    {
+        $blog = Blog::query()->findOrFail($id);
+        $blog_image = $blog->blog_image;
+        unlink($blog_image);
+
+        Blog::query()->findOrFail($id)->delete();
+
+        $notification = [
+            'message' => 'Blog deleted successfully',
+            'alert-type' => 'success'
+        ];
+        return redirect()->back()->with($notification);
+    }
 }

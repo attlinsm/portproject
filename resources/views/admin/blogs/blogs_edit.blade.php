@@ -72,9 +72,6 @@
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Blog image</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" type="file" name="blog_image" id="image">
-                                        @error('blog_image')
-                                        <span class="text-danger"> {{ $message }}</span>
-                                        @enderror
                                     </div>
                                 </div>
 
