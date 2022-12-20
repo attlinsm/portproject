@@ -18,7 +18,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <p class="card-title font-size-18">Blog page</p><br>
+                            <p class="card-title font-size-18">Add blog page</p><br>
 
                             <form method="POST" action="{{ route('store.blog') }}" enctype="multipart/form-data">
                                 @csrf
@@ -29,11 +29,12 @@
                                     <div class="col-sm-10">
                                         <select name="blog_category_id" class="form-select" aria-label="Default select example">
                                             <option selected="">Choose the category</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            @foreach($categories as $item)
+                                            <option value="{{ $item->id }}">{{ $item->blog_category }}</option>
+                                            @endforeach
+
                                         </select>
-                                        @error('blog_name')
+                                        @error('blog_category_id')
                                         <span class="text-danger"> {{ $message }}</span>
                                         @enderror
                                     </div>
@@ -53,6 +54,9 @@
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Description</label>
                                     <div class="col-sm-10">
                                         <textarea id="elm1" name="blog_description"></textarea>
+                                        @error('blog_description')
+                                        <span class="text-danger"> {{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
 
