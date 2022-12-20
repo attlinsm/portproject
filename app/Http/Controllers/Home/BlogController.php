@@ -116,4 +116,21 @@ class BlogController extends Controller
         ];
         return redirect()->back()->with($notification);
     }
+
+    public function BlogDetails($id)
+    {
+        $categories = BlogCategory::query()->orderBy('blog_category', 'ASC')->get();
+        $all_blogs = Blog::query()->latest()->limit(5)->get();
+        $blog = Blog::query()->findOrFail($id);
+        return view('frontend.blog_details', compact('blog', 'all_blogs', 'categories'));
+    }
+
+    public function CategoryBlog($id)
+    {
+        $blog_post = Blog::query()->where('blog_category_id', $id)->orderBy('id', 'DESC')->get();
+        $all_blogs = Blog::query()->latest()->limit(5)->get();
+        $categories = BlogCategory::query()->orderBy('blog_category', 'ASC')->get();
+        $category_name = BlogCategory::query()->findOrFail($id);
+        return view('frontend.category_blog_details', compact('blog_post', 'all_blogs', 'categories', 'category_name'));
+    }
 }

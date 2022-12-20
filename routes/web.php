@@ -122,6 +122,10 @@ Route::controller(BlogController::class)->group(function () {
 
     route::get('/delete/blog/{id}', 'DeleteBlog')->name('delete.blog');
 
+    route::get('/blog/details/{id}', 'BlogDetails')->name('blog.details');
+
+    route::get('/category/blog/{id}', 'CategoryBlog')->name('category.blog');
+
 });
 
 require __DIR__.'/auth.php';
