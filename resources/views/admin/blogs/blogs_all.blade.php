@@ -44,7 +44,7 @@
                                         <td>{{ $item->blog_tags }}</td>
                                         <td><img src="{{ asset($item->blog_image) }}" alt="" style="width: 85px; height: 85px"></td>
                                         <td>
-                                            <a class="btn btn-info sm" href="{{ route('edit.portfolio', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
+                                            <a class="btn btn-info sm" href="{{ route('edit.blog', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
                                             <a class="btn btn-danger sm" href="{{ route('delete.portfolio', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>

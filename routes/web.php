@@ -117,6 +117,8 @@ Route::controller(BlogController::class)->group(function () {
 
     route::post('/store/blog', 'StoreBlog')->name('store.blog');
 
+    route::get('/edit/blog/{id}', 'EditBlog')->name('edit.blog');
+
 });
 
 require __DIR__.'/auth.php';
