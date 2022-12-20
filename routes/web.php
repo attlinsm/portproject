@@ -101,6 +101,11 @@ Route::controller(BlogCategoryController::class)->group(function () {
 
     route::post('/store/blog/category', 'StoreBlogCategory')->name('store.blog.category');
 
+    route::get('/edit/blog/category/{id}', 'EditBlogCategory')->name('edit.blog.category');
+    route::post('/update/blog/category/{id}', 'UpdateBlogCategory')->name('update.blog.category');
+
+    route::get('/delete/blog/category/{id}', 'DeleteBlogCategory')->name('delete.blog.category');
+
 });
 
 require __DIR__.'/auth.php';
