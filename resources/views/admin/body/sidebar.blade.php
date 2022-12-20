@@ -57,7 +57,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('all.blog.category') }}">All blog category</a></li>
-                        <li><a href="">Add blog category</a></li>
+                        <li><a href="{{ route('add.blog.category') }}">Add blog category</a></li>
                     </ul>
                 </li>
 
