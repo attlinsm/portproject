@@ -72,6 +72,16 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-profile-line"></i>
+                        <span>Footer</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('footer.setup') }}">Footer setup</a></li>
+                        <li><a href="{{ route('add.blog') }}">Add blog</a></li>
+                    </ul>
+                </li>
 
             </ul>
         </div>
