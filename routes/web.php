@@ -126,6 +126,8 @@ Route::controller(BlogController::class)->group(function () {
 
     route::get('/category/blog/{id}', 'CategoryBlog')->name('category.blog');
 
+    route::get('/blog', 'HomeBlog')->name('home.blog');
+
 });
 
 require __DIR__.'/auth.php';

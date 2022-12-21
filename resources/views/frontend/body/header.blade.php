@@ -7,8 +7,8 @@
                     <div class="menu__wrap">
                         <nav class="menu__nav">
                             <div class="logo">
-                                <a href="index.html" class="logo__black"><img src="{{ asset('frontend/assets/img/logo/logo_black.png') }}" alt=""></a>
-                                <a href="index.html" class="logo__white"><img src="{{ asset('frontend/assets/img/logo/logo_white.png') }}" alt=""></a>
+                                <a href="{{ route('welcome.page') }}" class="logo__black"><img src="{{ asset('frontend/assets/img/logo/logo_black.png') }}" alt=""></a>
+                                <a href="{{  route('welcome.page') }}" class="logo__white"><img src="{{ asset('frontend/assets/img/logo/logo_white.png') }}" alt=""></a>
                             </div>
                             <div class="navbar__wrap main__menu d-none d-xl-flex">
                                 <ul class="navigation">
@@ -18,16 +18,12 @@
                                     <li class="menu-item-has-children"><a href="#">Portfolio</a>
                                         <ul class="sub-menu">
                                             <li><a href="portfolio.html">Portfolio</a></li>
-                                            <li><a href="portfolio-details.html">Portfolio Details</a></li>
+                                            <li><a href="portfolio-details.html">Portfolio details</a></li>
                                         </ul>
                                     </li>
-                                    <li class="menu-item-has-children"><a href="#">Our Blog</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog.html">Our News</a></li>
-                                            <li><a href="blog-details.html">News Details</a></li>
-                                        </ul>
+                                    <li class="menu-item-has-children"><a href="{{ route('home.blog') }}">Our blog</a>
                                     </li>
-                                    <li><a href="contact.html">contact me</a></li>
+                                    <li><a href="contact.html">Contact me</a></li>
                                 </ul>
                             </div>
                             <div class="header__btn d-none d-md-block">
