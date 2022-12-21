@@ -30,11 +30,13 @@ class BlogController extends Controller
             'blog_title' => 'required',
             'blog_description' => 'required',
             'blog_image' => 'required',
+            'blog_short_description' => 'required',
         ], [
             'blog_category_id.required' => 'Name is required',
             'blog_title.required' => 'Title is required',
             'blog_description.required' => 'Description is required',
             'blog_image.required' => 'Image is required',
+            'blog_short_description' => 'Short description is required',
         ]);
 
         $image = $request->file('blog_image');
@@ -42,12 +44,19 @@ class BlogController extends Controller
         Image::make($image)->resize(430, 327)->save('upload/blog_images/' . $name_generate);
         $save_url = 'upload/blog_images/' . $name_generate;
 
+        $image_blog_details = $request->file('blog_image');
+        $name_generate = hexdec(uniqid()) . '.' . $image_blog_details->getClientOriginalExtension(); // 34534.png
+        Image::make($image_blog_details)->resize(850, 430)->save('upload/blog_images/blog_details/' . $name_generate);
+        $save_url_blog_details = 'upload/blog_images/blog_details/' . $name_generate;
+
         Blog::query()->insert([
             'blog_category_id' => $request->blog_category_id,
             'blog_title' => $request->blog_title,
+            'blog_short_description' => $request->blog_short_description,
             'blog_description' => $request->blog_description,
             'blog_tags' => $request->blog_tags,
             'blog_image' => $save_url,
+            'blog_image_details' => $save_url_blog_details,
             'created_at' => Carbon::now(),
         ]);
 
@@ -75,12 +84,19 @@ class BlogController extends Controller
             Image::make($image)->resize(430, 327)->save('upload/blog_images/' . $name_generate);
             $save_url = 'upload/blog_images/' . $name_generate;
 
+            $image_blog_details = $request->file('blog_image');
+            $name_generate = hexdec(uniqid()) . '.' . $image_blog_details->getClientOriginalExtension(); // 34534.png
+            Image::make($image_blog_details)->resize(850, 430)->save('upload/blog_images/blog_details/' . $name_generate);
+            $save_url_blog_details = 'upload/blog_images/blog_details/' . $name_generate;
+
             Blog::query()->findOrFail($id)->update([
                 'blog_category_id' => $request->blog_category_id,
                 'blog_title' => $request->blog_title,
+                'blog_short_description' => $request->blog_short_description,
                 'blog_description' => $request->blog_description,
                 'blog_tags' => $request->blog_tags,
                 'blog_image' => $save_url,
+                'blog_image_details' => $save_url_blog_details,
             ]);
 
         } else {
@@ -88,6 +104,7 @@ class BlogController extends Controller
             Blog::query()->findOrFail($id)->update([
                 'blog_category_id' => $request->blog_category_id,
                 'blog_title' => $request->blog_title,
+                'blog_short_description' => $request->blog_short_description,
                 'blog_description' => $request->blog_description,
                 'blog_tags' => $request->blog_tags,
             ]);
@@ -106,7 +123,9 @@ class BlogController extends Controller
     {
         $blog = Blog::query()->findOrFail($id);
         $blog_image = $blog->blog_image;
+        $blog_image_details = $blog->blog_image_details;
         unlink($blog_image);
+        unlink($blog_image_details);
 
         Blog::query()->findOrFail($id)->delete();
 

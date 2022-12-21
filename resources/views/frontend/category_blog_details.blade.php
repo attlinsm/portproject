@@ -19,12 +19,12 @@
     </div>
     <div class="breadcrumb__wrap__icon">
         <ul>
-            <li><img src="assets/img/icons/breadcrumb_icon01.png" alt=""></li>
-            <li><img src="assets/img/icons/breadcrumb_icon02.png" alt=""></li>
-            <li><img src="assets/img/icons/breadcrumb_icon03.png" alt=""></li>
-            <li><img src="assets/img/icons/breadcrumb_icon04.png" alt=""></li>
-            <li><img src="assets/img/icons/breadcrumb_icon05.png" alt=""></li>
-            <li><img src="assets/img/icons/breadcrumb_icon06.png" alt=""></li>
+            <li><img src="{{asset('frontend/assets/img/icons/breadcrumb_icon01.png')}}" alt=""></li>
+            <li><img src="{{asset('frontend/assets/img/icons/breadcrumb_icon02.png')}}" alt=""></li>
+            <li><img src="{{asset('frontend/assets/img/icons/breadcrumb_icon03.png')}}" alt=""></li>
+            <li><img src="{{asset('frontend/assets/img/icons/breadcrumb_icon04.png')}}" alt=""></li>
+            <li><img src="{{asset('frontend/assets/img/icons/breadcrumb_icon05.png')}}" alt=""></li>
+            <li><img src="{{asset('frontend/assets/img/icons/breadcrumb_icon06.png')}}" alt=""></li>
         </ul>
     </div>
 </section>
@@ -39,7 +39,7 @@
                 @foreach($blog_post as $item)
                 <div class="standard__blog__post">
                     <div class="standard__blog__thumb">
-                        <a href="{{ route('blog.details', $item->id) }}"><img src="{{ asset($item->blog_image) }}" alt=""></a>
+                        <a href="{{ route('blog.details', $item->id) }}"><img src="{{ asset($item->blog_image_details) }}" alt=""></a>
                         <a href="{{ route('blog.details', $item->id) }}" class="blog__link"><i class="far fa-long-arrow-right"></i></a>
                     </div>
                     <div class="standard__blog__content">
@@ -48,7 +48,7 @@
                             <span class="post__by">By : <a href="#">Halina Spond</a></span>
                         </div>
                         <h2 class="title"><a href="{{ route('blog.details', $item->id) }}">{{ $item->blog_title }}</a></h2>
-                        <p>{!! Str::limit($item->blog_description, 200) !!}</p>
+                        <p>{{ $item->blog_short_description }}</p>
                         <ul class="blog__post__meta">
                             <li><i class="fal fa-calendar-alt"></i>{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</li>
                             <li><i class="fal fa-comments-alt"></i> <a href="#">Comment (08)</a></li>

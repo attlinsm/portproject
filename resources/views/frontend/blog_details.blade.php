@@ -38,7 +38,7 @@
             <div class="col-lg-8">
                 <div class="standard__blog__post">
                     <div class="standard__blog__thumb">
-                        <img src="{{ asset($blog->blog_image) }}" alt="">
+                        <img src="{{ asset($blog->blog_image_details) }}" alt="">
                     </div>
                     <div class="blog__details__content services__details__content">
                         <ul class="blog__post__meta">
@@ -73,7 +73,7 @@
                                     <h4 class="title">Previous Post</h4>
                                     <div class="blog__next__prev__post">
                                         <div class="blog__next__prev__thumb">
-                                            <a href="blog-details.html"><img src="assets/img/blog/blog_prev.jpg" alt=""></a>
+                                            <a href="blog-details.html"><img src="{{ asset('frontend/assets/img/blog/blog_prev.jpg') }}" alt=""></a>
                                         </div>
                                         <div class="blog__next__prev__content">
                                             <h5 class="title"><a href="blog-details.html">Digital Marketing Agency Pricing Guide.</a></h5>
@@ -86,7 +86,7 @@
                                     <h4 class="title">Next Post</h4>
                                     <div class="blog__next__prev__post">
                                         <div class="blog__next__prev__thumb">
-                                            <a href="blog-details.html"><img src="assets/img/blog/blog_next.jpg" alt=""></a>
+                                            <a href="blog-details.html"><img src="{{ asset('frontend/assets/img/blog/blog_next.jpg') }}" alt=""></a>
                                         </div>
                                         <div class="blog__next__prev__content">
                                             <h5 class="title"><a href="blog-details.html">App Prototyping
@@ -104,7 +104,7 @@
                         <ul class="comment__list">
                             <li class="comment__item">
                                 <div class="comment__thumb">
-                                    <img src="assets/img/blog/comment_thumb01.png" alt="">
+                                    <img src="{{ asset('frontend/assets/img/blog/comment_thumb01.png') }}" alt="">
                                 </div>
                                 <div class="comment__content">
                                     <div class="comment__avatar__info">
@@ -119,7 +119,7 @@
                             </li>
                             <li class="comment__item children">
                                 <div class="comment__thumb">
-                                    <img src="assets/img/blog/comment_thumb02.png" alt="">
+                                    <img src="{{ asset('frontend/assets/img/blog/comment_thumb02.png') }}" alt="">
                                 </div>
                                 <div class="comment__content">
                                     <div class="comment__avatar__info">
@@ -134,7 +134,7 @@
                             </li>
                             <li class="comment__item">
                                 <div class="comment__thumb">
-                                    <img src="assets/img/blog/comment_thumb03.png" alt="">
+                                    <img src="{{ asset('frontend/assets/img/blog/comment_thumb03.png') }}" alt="">
                                 </div>
                                 <div class="comment__content">
                                     <div class="comment__avatar__info">
@@ -149,7 +149,7 @@
                             </li>
                             <li class="comment__item children">
                                 <div class="comment__thumb">
-                                    <img src="assets/img/blog/comment_thumb04.png" alt="">
+                                    <img src="{{ asset('frontend/assets/img/blog/comment_thumb04.png') }}" alt="">
                                 </div>
                                 <div class="comment__content">
                                     <div class="comment__avatar__info">

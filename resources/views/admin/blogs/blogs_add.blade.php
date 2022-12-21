@@ -51,6 +51,16 @@
                                 </div>
 
                                 <div class="row mb-3">
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">Short description</label>
+                                    <div class="col-sm-10">
+                                        <textarea required="" class="form-control" rows="5" name="blog_short_description"></textarea>
+                                        @error('blog_short_description')
+                                        <span class="text-danger"> {{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Description</label>
                                     <div class="col-sm-10">
                                         <textarea id="elm1" name="blog_description"></textarea>
