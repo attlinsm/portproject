@@ -10,6 +10,7 @@ use App\Http\Controllers\Home\PortfolioController;
 use App\Http\Controllers\Home\BlogCategoryController;
 use App\Http\Controllers\Home\BlogController;
 use App\Http\Controllers\Home\FooterController;
+use App\Http\Controllers\Home\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -139,4 +140,16 @@ Route::controller(FooterController::class)->group(function () {
 
 });
 
+// Contact all routes
+Route::controller(ContactController::class)->group(function () {
+
+    route::get('/contact', 'Contact')->name('contact.me');
+    route::post('/store/message', 'StoreMessage')->name('store.message');
+
+    route::get('/contact/message', 'ContactMessage')->name('contact.message');
+
+    route::get('/delete/message/{id}', 'DeleteMessage')->name('delete.message');
+
+
+});
 require __DIR__.'/auth.php';
