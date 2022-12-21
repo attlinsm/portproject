@@ -23,11 +23,11 @@
                                     </li>
                                     <li class="menu-item-has-children"><a href="{{ route('home.blog') }}">Our blog</a>
                                     </li>
-                                    <li><a href="contact.html">Contact me</a></li>
+                                    <li><a href="{{ route('contact.me') }}">Contact me</a></li>
                                 </ul>
                             </div>
                             <div class="header__btn d-none d-md-block">
-                                <a href="contact.html" class="btn">Contact me</a>
+                                <a href="{{ route('contact.me') }}" class="btn">Contact me</a>
                             </div>
                         </nav>
                     </div>
