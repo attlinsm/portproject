@@ -7,6 +7,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\PortfolioController;
+use App\Http\Controllers\Home\BlogCategoryController;
+use App\Http\Controllers\Home\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +91,42 @@ Route::controller(PortfolioController::class)->group(function () {
     route::get('/delete/portfolio/{id}', 'DeletePortfolio')->name('delete.portfolio');
 
     route::get('/portfolio/details/{id}', 'PortfolioDetails')->name('portfolio.details');
+
+});
+
+// Blog category all routes
+Route::controller(BlogCategoryController::class)->group(function () {
+
+    route::get('/all/blog/category', 'AllBlogCategory')->name('all.blog.category');
+    route::get('/add/blog/category', 'AddBlogCategory')->name('add.blog.category');
+
+    route::post('/store/blog/category', 'StoreBlogCategory')->name('store.blog.category');
+
+    route::get('/edit/blog/category/{id}', 'EditBlogCategory')->name('edit.blog.category');
+    route::post('/update/blog/category/{id}', 'UpdateBlogCategory')->name('update.blog.category');
+
+    route::get('/delete/blog/category/{id}', 'DeleteBlogCategory')->name('delete.blog.category');
+
+});
+
+// Blog all routes
+Route::controller(BlogController::class)->group(function () {
+
+    route::get('/all/blog', 'AllBlog')->name('all.blog');
+    route::get('/add/blog', 'AddBlog')->name('add.blog');
+
+    route::post('/store/blog', 'StoreBlog')->name('store.blog');
+
+    route::get('/edit/blog/{id}', 'EditBlog')->name('edit.blog');
+    route::post('/update/blog/{id}', 'UpdateBlog')->name('update.blog');
+
+    route::get('/delete/blog/{id}', 'DeleteBlog')->name('delete.blog');
+
+    route::get('/blog/details/{id}', 'BlogDetails')->name('blog.details');
+
+    route::get('/category/blog/{id}', 'CategoryBlog')->name('category.blog');
+
+    route::get('/blog', 'HomeBlog')->name('home.blog');
 
 });
 
