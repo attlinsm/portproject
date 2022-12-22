@@ -94,6 +94,8 @@ Route::controller(PortfolioController::class)->group(function () {
 
     route::get('/portfolio/details/{id}', 'PortfolioDetails')->name('portfolio.details');
 
+    route::get('/portfolio', 'HomePortfolio')->name('home.portfolio');
+
 });
 
 // Blog category all routes
@@ -149,7 +151,6 @@ Route::controller(ContactController::class)->group(function () {
     route::get('/contact/message', 'ContactMessage')->name('contact.message');
 
     route::get('/delete/message/{id}', 'DeleteMessage')->name('delete.message');
-
 
 });
 require __DIR__.'/auth.php';
