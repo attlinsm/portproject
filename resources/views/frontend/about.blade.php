@@ -1,4 +1,6 @@
 @extends('frontend.main_master')
+
+@section('title', 'About | Laravel 9 project')
 @section('main')
 
 @php
