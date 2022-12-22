@@ -31,11 +31,11 @@
                                 </thead>
 
                                 <tbody>
-                                @php($i = 1)
-                                @foreach($blogCategory as $item)
+
+                                @foreach($blogCategory as $id => $item)
 
                                     <tr>
-                                        <td>{{ $i++ }}</td>
+                                        <td>{{ $id + 1 }}</td>
                                         <td>{{ $item->blog_category }}</td>
                                         <td>
                                             <a class="btn btn-info sm" href="{{ route('edit.blog.category', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>

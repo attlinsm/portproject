@@ -31,11 +31,11 @@
                             </thead>
 
                             <tbody>
-                            @php($i = 1)
-                            @foreach($all_multi_image as $item)
+
+                            @foreach($all_multi_image as $id => $item)
 
                             <tr>
-                                <td>{{ $i++ }}</td>
+                                <td>{{ $id + 1 }}</td>
                                 <td><img src="{{ asset($item->multi_image) }}" alt="" style="width: 85px; height: 85px"></td>
                                 <td>
                                     <a class="btn btn-info sm" href="{{ route('edit.multi.image', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
