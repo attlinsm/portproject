@@ -105,10 +105,11 @@ class AdminController extends Controller
             $users->save();
 
             session()->flash('message', 'Password updated successfully');
-            return redirect()->back();
+
         } else {
             session()->flash('message', 'Old password is not match');
-            return redirect()->back();
         }
+
+        return redirect()->back();
     }
 }

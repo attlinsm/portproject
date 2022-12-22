@@ -38,17 +38,19 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin all routes
-Route::controller(AdminController::class)->group(function () {
+Route::middleware(['auth'])->group(function () {
+    Route::controller(AdminController::class)->group(function () {
 
-    route::get('/admin/logout', 'destroy')->name('admin.logout');
-    route::get('/admin/profile', 'Profile')->name('admin.profile');
+        route::get('/admin/logout', 'destroy')->name('admin.logout');
+        route::get('/admin/profile', 'Profile')->name('admin.profile');
 
-    route::get('/edit/profile', 'EditProfile')->name('edit.profile');
-    route::post('/store/profile', 'StoreProfile')->name('store.profile');
+        route::get('/edit/profile', 'EditProfile')->name('edit.profile');
+        route::post('/store/profile', 'StoreProfile')->name('store.profile');
 
-    route::get('/change/password', 'ChangePassword')->name('change.password');
-    route::post('/update/password', 'UpdatePassword')->name('update.password');
+        route::get('/change/password', 'ChangePassword')->name('change.password');
+        route::post('/update/password', 'UpdatePassword')->name('update.password');
 
+    });
 });
 
 // Home slider all routes
@@ -93,6 +95,8 @@ Route::controller(PortfolioController::class)->group(function () {
     route::get('/delete/portfolio/{id}', 'DeletePortfolio')->name('delete.portfolio');
 
     route::get('/portfolio/details/{id}', 'PortfolioDetails')->name('portfolio.details');
+
+    route::get('/portfolio', 'HomePortfolio')->name('home.portfolio');
 
 });
 
@@ -149,7 +153,6 @@ Route::controller(ContactController::class)->group(function () {
     route::get('/contact/message', 'ContactMessage')->name('contact.message');
 
     route::get('/delete/message/{id}', 'DeleteMessage')->name('delete.message');
-
 
 });
 require __DIR__.'/auth.php';

@@ -35,11 +35,11 @@
                                 </thead>
 
                                 <tbody>
-                                @php($i = 1)
-                                @foreach($contact as $item)
+
+                                @foreach($contact as $id => $item)
 
                                     <tr>
-                                        <td>{{ $i++ }}</td>
+                                        <td>{{ $id + 1 }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->subject }}</td>

@@ -34,11 +34,11 @@
                                 </thead>
 
                                 <tbody>
-                                @php($i = 1)
-                                @foreach($blogs as $item)
+
+                                @foreach($blogs as $id => $item)
 
                                     <tr>
-                                        <td>{{ $i++ }}</td>
+                                        <td>{{ $id + 1 }}</td>
                                         <td>{{ $item['Category']['blog_category'] }}</td>
                                         <td>{{ $item->blog_title }}</td>
                                         <td>{{ $item->blog_tags }}</td>

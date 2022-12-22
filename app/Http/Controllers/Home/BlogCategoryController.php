@@ -23,8 +23,6 @@ class BlogCategoryController extends Controller
     {
         $request->validate([
             'blog_category' => 'required'
-        ],[
-            'blog_category.required' => 'Name is required'
         ]);
 
         BlogCategory::query()->insert([
@@ -49,8 +47,6 @@ class BlogCategoryController extends Controller
     {
         $request->validate([
             'blog_category' => 'required'
-        ], [
-            'blog_category.required' => 'Name is required'
         ]);
 
         BlogCategory::query()->findOrFail($id)->update([

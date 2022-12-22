@@ -1,3 +1,8 @@
+@php
+
+$activeRoute = Illuminate\Support\Facades\Route::current()->getName();
+
+@endphp
 <header>
     <div id="sticky-header" class="menu__area transparent-header">
         <div class="container custom-container">
@@ -12,18 +17,19 @@
                             </div>
                             <div class="navbar__wrap main__menu d-none d-xl-flex">
                                 <ul class="navigation">
-                                    <li class="active"><a href="{{ route('welcome.page') }}">Home</a></li>
-                                    <li><a href="{{ route('home.about') }}">About</a></li>
-                                    <li><a href="services-details.html">Services</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Portfolio</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="portfolio.html">Portfolio</a></li>
-                                            <li><a href="portfolio-details.html">Portfolio details</a></li>
-                                        </ul>
+                                    <li class="{{ ($activeRoute ==  'welcome.page') ? 'active' : ''  }}">
+                                        <a href="{{ route('welcome.page') }}">Home</a></li>
+                                    <li class="{{ ($activeRoute ==  'home.about') ? 'active' : ''  }}">
+                                        <a href="{{ route('home.about') }}">About</a></li>
+                                    <li>
+                                        <a href="services-details.html">Services</a></li>
+                                    <li class="menu-item-has-children {{ ($activeRoute ==  'home.portfolio') ? 'active' : ''  }}">
+                                        <a href="{{ route('home.portfolio') }}">Portfolios</a></li>
+                                    <li class="menu-item-has-children {{ ($activeRoute ==  'home.blog') ? 'active' : ''  }}">
+                                        <a href="{{ route('home.blog') }}">Blog</a>
                                     </li>
-                                    <li class="menu-item-has-children"><a href="{{ route('home.blog') }}">Our blog</a>
-                                    </li>
-                                    <li><a href="{{ route('contact.me') }}">Contact me</a></li>
+                                    <li class="{{ ($activeRoute ==  'contact.me') ? 'active' : ''  }}">
+                                        <a href="{{ route('contact.me') }}">Contact me</a></li>
                                 </ul>
                             </div>
                             <div class="header__btn d-none d-md-block">

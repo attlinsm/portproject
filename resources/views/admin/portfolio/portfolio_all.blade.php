@@ -33,11 +33,11 @@
                                 </thead>
 
                                 <tbody>
-                                @php($i = 1)
-                                @foreach($portfolio as $item)
+
+                                @foreach($portfolio as $id => $item)
 
                                     <tr>
-                                        <td>{{ $i++ }}</td>
+                                        <td>{{ $id + 1 }}</td>
                                         <td>{{ $item->portfolio_name }}</td>
                                         <td>{{ $item->portfolio_title }}</td>
                                         <td><img src="{{ asset($item->portfolio_image) }}" alt="" style="width: 85px; height: 85px"></td>
