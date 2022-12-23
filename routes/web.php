@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Demo\DemoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Home\AboutController;
@@ -155,4 +154,5 @@ Route::controller(ContactController::class)->group(function () {
     route::get('/delete/message/{id}', 'DeleteMessage')->name('delete.message');
 
 });
+
 require __DIR__.'/auth.php';

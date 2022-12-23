@@ -7,12 +7,12 @@
             <div class="col-lg-6">
                 <div class="card">
 
-                    <img class="card-img-top img-fluid" src="{{ (!empty($adminData->profile_image)) ? url('/upload/admin_images/' . $adminData->profile_image) : url('upload/no_image.jpg') }}" alt="Card image cap">
+                    <img class="card-img-top img-fluid" src="{{ (!empty($user->profile_image)) ? url('/upload/admin_images/' . $user->profile_image) : url('upload/no_image.jpg') }}" alt="Card image cap">
 
                     <div class="card-body">
-                        <h4 class="card-title">Username: {{ $adminData->name }} </h4>
+                        <h4 class="card-title">Username: {{ $user->name }} </h4>
                         <hr>
-                        <h4 class="card-title">User email: {{ $adminData->email }} </h4>
+                        <h4 class="card-title">User email: {{ $user->email }} </h4>
                         <hr>
                         <a href="{{ route('edit.profile') }}" class="btn btn-info btn-rounded waves-effect waves-light" > Edit profile</a>
                     </div>

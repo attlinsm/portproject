@@ -7,19 +7,16 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/img/favicon.png') }}">
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/img/favicon_io/favicon-32x32.png') }}">
     <!-- Place favicon.ico in the root directory -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/animate.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/fontawesome-all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/default.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+
+
 </head>
 <body>
 
@@ -52,11 +49,8 @@
 <!-- Footer-area-end -->
 
 
-
-
 <!-- JS here -->
 <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
-<script src="{{ asset('frontend/assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/isotope.pkgd.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/imagesloaded.pkgd.min.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/jquery.magnific-popup.min.js') }}"></script>

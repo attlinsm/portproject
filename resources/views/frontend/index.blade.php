@@ -1,6 +1,6 @@
 @extends('frontend.main_master')
 
-@section('title', 'Home | Laravel 9 project')
+@section('title', 'Home | t.me/attl77')
 @section('main')
 
 <!-- banner-area -->

@@ -1,6 +1,6 @@
 @extends('frontend.main_master')
 
-@section('title', 'Categories | Laravel 9 project')
+@section('title', 'Categories | t.me/attl77')
 @section('main')
 <!-- breadcrumb-area -->
 <section class="breadcrumb__wrap">
