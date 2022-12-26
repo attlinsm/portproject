@@ -10,15 +10,17 @@
 
                 <li>
                     <a href="{{ route('dashboard') }}" class="waves-effect">
-                        <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">3</span>
+                        <i class="ri-dashboard-line"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
+                <li class="menu-title">ABOUT PERSON SECTION</li>
+
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-mail-send-line"></i>
-                        <span>Home slide setup</span>
+                        <i class="ri-community-line"></i>
+                        <span>Welcome section</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('home.slide') }}">Edit</a></li>
@@ -27,8 +29,8 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-mail-send-line"></i>
-                        <span>About page setup</span>
+                        <i class="ri-account-circle-line"></i>
+                        <span>About section</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('about.page') }}">General settings</a></li>
@@ -39,25 +41,25 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-mail-send-line"></i>
-                        <span>Portfolio setup</span>
+                        <i class="ri-file-info-line"></i>
+                        <span>Portfolio section</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('all.portfolio') }}">All portfolio</a></li>
+                        <li><a href="{{ route('all.portfolio') }}">All portfolios</a></li>
                         <li><a href="{{ route('add.portfolio') }}">Add portfolio</a></li>
                     </ul>
                 </li>
 
-                <li class="menu-title">Pages</li>
+                <li class="menu-title">BLOG SECTION</li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-account-circle-line"></i>
-                        <span>Blog category</span>
+                        <i class="ri-book-line"></i>
+                        <span>Blog categories</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('all.blog.category') }}">All blog category</a></li>
-                        <li><a href="{{ route('add.blog.category') }}">Add blog category</a></li>
+                        <li><a href="{{ route('all.blog.category') }}">All categories</a></li>
+                        <li><a href="{{ route('add.blog.category') }}">Add category</a></li>
                     </ul>
                 </li>
 
@@ -72,19 +74,23 @@
                     </ul>
                 </li>
 
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-profile-line"></i>
-                        <span>Footer</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('footer.setup') }}">Footer setup</a></li>
-                    </ul>
-                </li>
+                <li class="menu-title">FOOTER SECTION</li>
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="ri-profile-line"></i>
+                        <i class="ri-file-text-line"></i>
+                        <span>Footer info</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('footer.setup') }}">Edit</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-title">MESSAGES SECTION</li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-chat-1-line"></i>
                         <span>Messages</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">

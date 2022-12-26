@@ -52,7 +52,7 @@
     </div>
 </div>
 
-<script type="text/javascript">
+<script type="module">
     $(document).ready(function () {
         $('#image').change(function (e) {
             let reader = new FileReader();

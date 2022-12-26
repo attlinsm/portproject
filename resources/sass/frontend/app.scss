@@ -1,0 +1,42 @@
+// abstracts
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'abstracts/helpers';
+
+// adaptives
+@import 'adaptives/responsive';
+
+// base
+@import 'base/style';
+
+// components
+@import 'components/banner';
+@import 'components/breadcrumb';
+@import 'components/color-switcher';
+@import 'components/overlay';
+@import 'components/testimonial';
+@import 'components/pagination';
+
+// layout
+@import 'layout/footer';
+@import 'layout/header';
+
+// pages
+@import 'pages/about';
+@import 'pages/blog';
+@import 'pages/contact';
+@import 'pages/partner';
+@import 'pages/portfolio';
+@import 'pages/preloader';
+@import 'pages/services';
+@import 'pages/work-process';
+
+// themes
+@import 'themes/common';
+@import 'themes/dark-mode';
+
+// vendors
+@import 'vendors/slick';
+@import 'vendors/magnific-popup';
+@import 'vendors/animate';
+

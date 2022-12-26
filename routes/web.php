@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Demo\DemoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Home\AboutController;
@@ -147,7 +146,6 @@ Route::controller(FooterController::class)->group(function () {
 // Contact all routes
 Route::controller(ContactController::class)->group(function () {
 
-    route::get('/contact', 'Contact')->name('contact.me');
     route::post('/store/message', 'StoreMessage')->name('store.message');
 
     route::get('/contact/message', 'ContactMessage')->name('contact.message');
@@ -155,4 +153,5 @@ Route::controller(ContactController::class)->group(function () {
     route::get('/delete/message/{id}', 'DeleteMessage')->name('delete.message');
 
 });
+
 require __DIR__.'/auth.php';

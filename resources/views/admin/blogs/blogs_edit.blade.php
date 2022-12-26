@@ -103,7 +103,7 @@
 
     <script src="{{asset('backend/assets/libs/tinymce/tinymce.min.js')}}"></script>
     <script src="{{asset('backend/assets/js/pages/form-editor.init.js')}}"></script>
-    <script type="text/javascript">
+    <script type="module">
         $(document).ready(function () {
             $('#image').change(function (e) {
                 let reader = new FileReader();

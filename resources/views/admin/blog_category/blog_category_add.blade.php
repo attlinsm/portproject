@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <script type="text/javascript">
+    <script type="module">
         $(document).ready(function (){
             $('#passForm').validate({
                 rules: {

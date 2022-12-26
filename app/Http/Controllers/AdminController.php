@@ -34,9 +34,8 @@ class AdminController extends Controller
      */
     public function Profile()
     {
-        $id = Auth::user()->id;
-        $adminData = User::query()->find($id);
-        return view('admin.admin_profile_view',compact('adminData'));
+        $user = Auth::user();
+        return view('admin.admin_profile_view', compact('user'));
     }
 
     /**
@@ -46,7 +45,7 @@ class AdminController extends Controller
     {
         $id = Auth::user()->id;
         $editData = User::query()->find($id);
-        return view('admin.admin_profile_edit',compact('editData'));
+        return view('admin.admin_profile_edit', compact('editData'));
     }
 
     /**

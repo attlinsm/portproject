@@ -83,7 +83,7 @@ class AboutController extends Controller
 
         foreach ($image as $multi_image) {
             $name_generate = hexdec(uniqid()) . '.' . $multi_image->getClientOriginalExtension(); // 34534.png
-            Image::make($multi_image)->resize(220, 220)->save('upload/multi_images/' . $name_generate);
+            Image::make($multi_image)->resize(90, 90)->save('upload/multi_images/' . $name_generate);
             $save_url = 'upload/multi_images/' . $name_generate;
 
             MultiImage::query()->insert([
