@@ -22,15 +22,12 @@
                         <h2 class="title">{{ $aboutPage->title }}</h2>
                     </div>
                     <div class="about__exp">
-                        <div class="about__exp__icon">
-                            <img src="{{ asset('frontend/assets/img/icons/about_icon.png') }}" alt="">
-                        </div>
                         <div class="about__exp__content">
                             <p>{{ $aboutPage->short_title }}</p>
                         </div>
                     </div>
                     <p class="desc">{{ $aboutPage->short_description }}</p>
-                    <a href="about.html" class="btn">Download my resume</a>
+                    <a href="{{ route('home.about') }}" class="btn banner__btn wow fadeInUp" data-wow-delay=".6s">more about me</a>
                 </div>
             </div>
         </div>

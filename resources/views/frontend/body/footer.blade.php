@@ -7,7 +7,7 @@ $footer = \App\Models\Footer::query()->find(1);
         <div class="row">
             <div class="col-lg-6">
                 <div class="section__title">
-                    <span class="sub-title">06 - Ask me</span>
+                    <span class="sub-title">05 - Ask me</span>
                     <h2 class="title">Any questions?<br>Feel free to contact</h2><br>
                 </div>
                 <div class="homeContact__content">

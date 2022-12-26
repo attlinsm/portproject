@@ -13,13 +13,13 @@ $footer = \App\Models\Footer::query()->find(1);
                     <div class="menu__wrap">
                         <nav class="menu__nav">
                             <div class="navbar__wrap main__menu d-none d-xl-flex">
-                                <ul class="navigation">
+                                <ul class="navigation m-auto">
                                     <li class="{{ ($activeRoute ==  'welcome.page') ? 'active' : ''  }}">
                                         <a href="{{ route('welcome.page') }}">Home</a></li>
                                     <li class="{{ ($activeRoute ==  'home.about') ? 'active' : ''  }}">
                                         <a href="{{ route('home.about') }}">About</a></li>
                                     <li>
-                                        <a href="services-details.html">Services</a></li>
+                                        <a href="services-details.html">Skills</a></li>
                                     <li class="menu-item-has-children {{ ($activeRoute ==  'home.portfolio') ? 'active' : ''  }}">
                                         <a href="{{ route('home.portfolio') }}">Portfolios</a></li>
                                     <li class="menu-item-has-children {{ ($activeRoute ==  'home.blog') ? 'active' : ''  }}">

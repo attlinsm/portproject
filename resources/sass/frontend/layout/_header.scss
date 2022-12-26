@@ -116,7 +116,7 @@
                     height: 0;
                     border-style: solid;
                     border-width: 0 7px 14px 7px;;
-                    border-color: transparent transparent $secondary-color transparent;
+                    border-color: transparent transparent red transparent;
                     margin: 0 auto;
                     opacity: 0;
                     @include transition(.3s);
