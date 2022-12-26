@@ -25,23 +25,18 @@ $footer = \App\Models\Footer::query()->find(1);
                                     <li class="menu-item-has-children {{ ($activeRoute ==  'home.blog') ? 'active' : ''  }}">
                                         <a href="{{ route('home.blog') }}">Blog</a>
                                     </li>
-                                    <li class="{{ ($activeRoute ==  'contact.me') ? 'active' : ''  }}">
-                                        <a href="{{ route('contact.me') }}">Contact me</a></li>
                                 </ul>
                             </div>
-                            <div class="header__btn d-none d-md-block">
-                                <a href="{{ route('contact.me') }}" class="btn">Contact me</a>
-                            </div>
+                            <!--LANG CHOOSER-->
+
+                            <!--LANG CHOOSER-->
                         </nav>
                     </div>
                     <!-- Mobile Menu  -->
                     <div class="mobile__menu">
                         <nav class="menu__box">
                             <div class="close__btn"><i class="fal fa-times"></i></div>
-                            <div class="nav-logo">
-                                <a href="index.html" class="logo__black"><img src="{{ asset('frontend/assets/img/logo/logo_black.png') }}" alt=""></a>
-                                <a href="index.html" class="logo__white"><img src="{{ asset('frontend/assets/img/logo/logo_white.png') }}" alt=""></a>
-                            </div>
+                            <div class="nav-logo"></div>
                             <div class="menu__outer">
                                 <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
                             </div>

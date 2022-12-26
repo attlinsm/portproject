@@ -1,6 +1,37 @@
 @php
 $footer = \App\Models\Footer::query()->find(1);
 @endphp
+<!-- Contact form-->
+<div class="container">
+    <div class="homeContact__wrap">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section__title">
+                    <span class="sub-title">06 - Ask me</span>
+                    <h2 class="title">Any questions?<br>Feel free to contact</h2><br>
+                </div>
+                <div class="homeContact__content">
+                    <p>You can send me message very easy from this form. Just slide down message field and write me message with size whatever you want.</p>
+                    <h2 class="mail"><a href="mailto:{{ $footer->email }}">{{ $footer->email }}</a></h2>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="homeContact__form">
+                    <form action="{{ route('store.message') }}" method="POST">
+                        @csrf
+                        <input name="name" type="text" placeholder="Name*">
+                        <input name="email" type="email" placeholder="Mail*">
+                        <input name="subject" type="text" placeholder="Subject*">
+                        <input name="phone" type="text" placeholder="Number*">
+                        <textarea  name="message" id="message" placeholder="Message*"></textarea>
+                        <button type="submit">Send message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End contact form-->
 <footer class="footer">
     <div class="container">
         <div class="row justify-content-between">

@@ -146,7 +146,6 @@ Route::controller(FooterController::class)->group(function () {
 // Contact all routes
 Route::controller(ContactController::class)->group(function () {
 
-    route::get('/contact', 'Contact')->name('contact.me');
     route::post('/store/message', 'StoreMessage')->name('store.message');
 
     route::get('/contact/message', 'ContactMessage')->name('contact.message');

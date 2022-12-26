@@ -10,7 +10,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/img/favicon_io/favicon-32x32.png') }}">
     <!-- Place favicon.ico in the root directory -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/js/app.js'])
 
     <!-- CSS here -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/fontawesome-all.min.css') }}">
@@ -42,12 +42,9 @@
 </main>
 <!-- main-area-end -->
 
-
-
 <!-- Footer-area -->
 @include('frontend.body.footer')
 <!-- Footer-area-end -->
-
 
 <!-- JS here -->
 <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
