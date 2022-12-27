@@ -69,6 +69,7 @@
 <div class="rightbar-overlay"></div>
 
 <!-- JAVASCRIPT -->
+@section('scripts')
 <script src="{{ asset('backend/assets/libs/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('backend/assets/libs/metismenu/metisMenu.min.js') }}"></script>
@@ -136,7 +137,7 @@
     }
     @endif
 </script>
-
+@show
 </body>
 
 </html>

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\HomeSliderController;
@@ -37,11 +36,11 @@ Route::middleware(['auth'])->group(function () {
         route::get('/admin/logout', 'destroy')->name('admin.logout');
         route::get('/admin/profile', 'Profile')->name('admin.profile');
 
-        route::get('/edit/profile', 'EditProfile')->name('edit.profile');
-        route::post('/store/profile/{id}', 'StoreProfile')->name('store.profile');
+        route::get('/profile/edit', 'EditProfile')->name('profile.edit');
+        route::post('/profile/store', 'StoreProfile')->name('profile.store');
 
-        route::get('/change/password', 'ChangePassword')->name('change.password');
-        route::post('/update/password', 'UpdatePassword')->name('update.password');
+        route::get('/password/change', 'ChangePassword')->name('password.change');
+        route::post('/passwords/update', 'UpdatePassword')->name('passwords.update');
 
     });
 });
