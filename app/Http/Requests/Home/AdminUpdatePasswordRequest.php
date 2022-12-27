@@ -26,8 +26,8 @@ class AdminUpdatePasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'oldpassword' => ['required', 'max:255'],
-            'password' => ['required', 'max:255', Password::min(8)],
+            'oldpassword' => ['required', 'max:32'],
+            'password' => ['required', 'max:32', Password::min(8)->mixedCase()->letters()->numbers()],
             'password_confirmation' => ['required', 'confirmed'],
         ];
     }

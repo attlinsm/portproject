@@ -54,6 +54,7 @@
     </div>
 
 @endsection
+
 @section('scripts')
     @parent
     @if(session('status') === 'password-updated')

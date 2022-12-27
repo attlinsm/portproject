@@ -49,7 +49,7 @@ Route::middleware(['auth'])->group(function () {
 Route::controller(HomeSliderController::class)->group(function () {
 
     route::get('/home/slide', 'HomeSlider')->name('home.slide');
-    route::post('/update/slide', 'UpdateSlider')->name('update.slide');
+    route::post('/slide/update/{id}', 'UpdateSlider')->name('slide.update');
 
 });
 

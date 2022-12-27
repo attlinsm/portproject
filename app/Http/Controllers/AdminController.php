@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Home\AdminStoreProfileRequest;
 use App\Http\Requests\Home\AdminUpdatePasswordRequest;
-use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
