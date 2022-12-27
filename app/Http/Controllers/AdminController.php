@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function destroy(Request $request)
+
+    public function destroy(Request $request): object
     {
         Auth::guard('web')->logout();
 
@@ -29,35 +27,32 @@ class AdminController extends Controller
         return redirect('/login')->with($notification);
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function Profile()
+
+    public function Profile(): object
     {
         $user = Auth::user();
         return view('admin.admin_profile_view', compact('user'));
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function EditProfile()
+
+    public function EditProfile(): object
     {
-        $id = Auth::user()->id;
-        $editData = User::query()->find($id);
-        return view('admin.admin_profile_edit', compact('editData'));
+        $userData = Auth::user();
+        return view('admin.admin_profile_edit', compact('userData'));
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function StoreProfile(Request $request)
+    public function StoreProfile(Request $request, $id): object
     {
-        $id = Auth::user()->id;
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|max:255',
+        ], [
+            'name.required' => 'If you want change your user name you need to fill this field with new one.',
+            'email.required' => 'New email is missing',
+        ]);
+
         $data = User::query()->find($id);
-        $data->name = $request->name;
-        $data->email = $request->email;
 
         if ($request->file('profile_image')) {
             $file = $request->file('profile_image');
@@ -66,51 +61,62 @@ class AdminController extends Controller
 
             $filename = date('d_m_Y_H-i') . $file->getClientOriginalName();
             $file->move(public_path('upload/admin_images'), $filename);
-            $data['profile_image'] = $filename;
+
+            $data->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'profile_image' => $filename,
+                'updated_at' => Carbon::now('GMT+3'),
+            ]);
         }
-        $data->save();
+
+        $data->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'updated_at' => Carbon::now('GMT+3'),
+        ]);
 
         $notification = [
-            'message' => 'Admin profile updated successfully',
+            'message' => 'Admin profile updated',
             'alert-type' => 'success'
         ];
 
         return redirect()->route('admin.profile')->with($notification);
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function ChangePassword()
+    public function ChangePassword(): object
     {
         return view('admin.admin_change_password');
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function UpdatePassword(Request $request)
+    public function UpdatePassword(Request $request): object
     {
-        $validateData = $request->validate([
-            'oldpassword' => 'required',
-            'newpassword' => 'required',
+        $request->validate([
+            'oldpassword' => 'required|max:255',
+            'newpassword' => 'required|max:255',
             'confirm_password' => 'required|same:newpassword',
+        ], [
+            'oldpassword.required' => 'Need to write your current password',
+            'newpassword.required' => 'Enter new password',
+            'confirm_password.same' => 'New password does not match',
         ]);
 
-        $hashedPassword = Auth::user()->password;
-        if (Hash::check($request->oldpassword, $hashedPassword)) {
+        $user = Auth::user();
 
-            $users = User::query()->find(Auth::id());
-            $users->password = bcrypt($request->newpassword);
-            $users->save();
+        if (Hash::check($request->oldpassword, $user->password)) {
 
-            session()->flash('message', 'Password updated successfully');
+            User::query()->find($user->id)->update([
+                'password' => bcrypt($request->newpassword),
+                'updated_at' => Carbon::now('GMT+3'),
+            ]);
 
-        } else {
-            session()->flash('message', 'Old password is not match');
         }
 
-        return redirect()->back();
+        $notification = [
+            'message' => 'Password changed',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->back()->with($notification);
     }
 }

@@ -30,12 +30,6 @@ Route::get('/dashboard', function () {
     return view('admin.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 // Admin all routes
 Route::middleware(['auth'])->group(function () {
     Route::controller(AdminController::class)->group(function () {
@@ -44,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
         route::get('/admin/profile', 'Profile')->name('admin.profile');
 
         route::get('/edit/profile', 'EditProfile')->name('edit.profile');
-        route::post('/store/profile', 'StoreProfile')->name('store.profile');
+        route::post('/store/profile/{id}', 'StoreProfile')->name('store.profile');
 
         route::get('/change/password', 'ChangePassword')->name('change.password');
         route::post('/update/password', 'UpdatePassword')->name('update.password');
