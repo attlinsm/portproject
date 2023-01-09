@@ -18,7 +18,7 @@
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="text" placeholder="{{ $user->name }}" id="name" name="name">
+                                    <input class="form-control @error('name') is-invalid @enderror" type="text" placeholder="{{ $user->name }}" id="name" name="name">
                                     @error('name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -28,7 +28,7 @@
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="email" placeholder="{{ $user->email }}" id="email" name="email">
+                                    <input class="form-control @error('email') is-invalid @enderror" type="email" placeholder="{{ $user->email }}" id="email" name="email">
                                     @error('email')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -38,7 +38,10 @@
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">Profile image</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="file" name="profile_image" id="image">
+                                    <input class="form-control @error('profile_image') is-invalid @enderror" type="file" name="profile_image" id="image">
+                                    @error('profile_image')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 

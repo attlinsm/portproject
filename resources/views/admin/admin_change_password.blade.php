@@ -16,7 +16,7 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Old password</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="password" id="oldpassword" name="oldpassword">
+                                        <input class="form-control @error('oldpassword') is-invalid @enderror" type="password" id="oldpassword" name="oldpassword">
                                         @error('oldpassword')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -26,7 +26,7 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">New password</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="password" id="password" name="password">
+                                        <input class="form-control @error('newpassword') is-invalid @enderror" type="password" id="password" name="password">
                                         @error('newpassword')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -36,7 +36,7 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Confirm password</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="password" id="password_confirmation" name="password_confirmation">
+                                        <input class="form-control @error('confirm_password') is-invalid @enderror" type="password" id="password_confirmation" name="password_confirmation">
                                         @error('confirm_password')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
