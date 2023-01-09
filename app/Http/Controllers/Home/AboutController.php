@@ -59,7 +59,6 @@ class AboutController extends Controller
 
             MultiImage::query()->insert([
                 'multi_image' => $save_url,
-                'created_at' => Carbon::now(),
             ]);
         }
 
