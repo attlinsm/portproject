@@ -50,8 +50,8 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Slider image</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control @error('home_slide') is-invalid @enderror" type="file" name="home_slide" id="image">
-                                        @error('home_slide')
+                                        <input class="form-control @error('home_slide') is-invalid @enderror" type="file" name="slider_image" id="image">
+                                        @error('slider_image')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -60,7 +60,7 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
-                                        <img id="showImage" class="rounded avatar-lg" src="{{ (!empty($slider->home_slide)) ? url($slider->home_slide) : url('upload/no_image.jpg') }}" alt="Card image cap">
+                                        <img id="showImage" class="rounded avatar-lg" src="{{ (!empty(asset('upload/home_slide/' . $slider->slider_image))) ? asset('upload/home_slide/' . $slider->slider_image) : url('upload/no_image.jpg') }}" alt="Card image cap">
                                     </div>
                                 </div>
                                 <input type="submit" class="btn btn-info waves-effect waves-light" value="Update slide">

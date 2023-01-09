@@ -24,10 +24,10 @@ class UpdateAboutRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['string', 'required', 'max:60'],
+            'title' => ['string', 'required', 'max:150'],
             'short_title' => ['string', 'required', 'max:192'],
-            'short_description' => ['string', 'required', 'max:255'],
-            'long_description' => ['string', 'required', 'max:1000'],
+            'short_description' => ['string', 'required', 'max:500'],
+            'long_description' => ['string', 'required', 'max:2500'],
             'about_image' => ['nullable', 'image'],
         ];
     }
