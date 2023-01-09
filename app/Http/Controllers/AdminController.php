@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Http\Requests\Home\AdminStoreProfileRequest;
+use App\Http\Requests\Home\AdminUpdatePasswordRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
+
     public function destroy(Request $request)
     {
         Auth::guard('web')->logout();
@@ -21,96 +19,56 @@ class AdminController extends Controller
 
         $request->session()->regenerateToken();
 
-        $notification = [
-            'message' => 'User logout successfully',
-            'alert-type' => 'success'
-        ];
-
-        return redirect('/login')->with($notification);
+        return redirect('/login')->with('status', 'admin-logout');
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
     public function Profile()
     {
         $user = Auth::user();
         return view('admin.admin_profile_view', compact('user'));
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
     public function EditProfile()
     {
-        $id = Auth::user()->id;
-        $editData = User::query()->find($id);
-        return view('admin.admin_profile_edit', compact('editData'));
+        $user = Auth::user();
+        return view('admin.admin_profile_edit', compact('user'));
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function StoreProfile(Request $request)
+    public function StoreProfile(AdminStoreProfileRequest $request)
     {
-        $id = Auth::user()->id;
-        $data = User::query()->find($id);
-        $data->name = $request->name;
-        $data->email = $request->email;
+
+        $validated = $request->validated();
 
         if ($request->file('profile_image')) {
             $file = $request->file('profile_image');
 
-            unlink(public_path('upload/admin_images/' . $data->profile_image));
-
-            $filename = date('d_m_Y_H-i') . $file->getClientOriginalName();
+            $filename = 'avatar_' . $request->user()->id;
             $file->move(public_path('upload/admin_images'), $filename);
-            $data['profile_image'] = $filename;
+
+            $validated['profile_image'] = $filename;
         }
-        $data->save();
 
-        $notification = [
-            'message' => 'Admin profile updated successfully',
-            'alert-type' => 'success'
-        ];
+        $request->user()->fill($validated)->save();
 
-        return redirect()->route('admin.profile')->with($notification);
+        return redirect()->route('admin.profile')->with('status', 'profile-updated');
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
     public function ChangePassword()
     {
         return view('admin.admin_change_password');
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function UpdatePassword(Request $request)
+    public function UpdatePassword(AdminUpdatePasswordRequest $request)
     {
-        $validateData = $request->validate([
-            'oldpassword' => 'required',
-            'newpassword' => 'required',
-            'confirm_password' => 'required|same:newpassword',
-        ]);
+        $validated = $request->validated();
 
-        $hashedPassword = Auth::user()->password;
-        if (Hash::check($request->oldpassword, $hashedPassword)) {
+        if (Hash::check($request->oldpassword, $request->user()->password)) {
 
-            $users = User::query()->find(Auth::id());
-            $users->password = bcrypt($request->newpassword);
-            $users->save();
+            $request->user()->update([
+                'password' => Hash::make($validated['password']),
+            ]);
 
-            session()->flash('message', 'Password updated successfully');
-
-        } else {
-            session()->flash('message', 'Old password is not match');
         }
-
-        return redirect()->back();
+        return redirect()->back()->with('status', 'password-updated');
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\HomeSliderController;
@@ -30,12 +29,6 @@ Route::get('/dashboard', function () {
     return view('admin.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
 // Admin all routes
 Route::middleware(['auth'])->group(function () {
     Route::controller(AdminController::class)->group(function () {
@@ -43,11 +36,11 @@ Route::middleware(['auth'])->group(function () {
         route::get('/admin/logout', 'destroy')->name('admin.logout');
         route::get('/admin/profile', 'Profile')->name('admin.profile');
 
-        route::get('/edit/profile', 'EditProfile')->name('edit.profile');
-        route::post('/store/profile', 'StoreProfile')->name('store.profile');
+        route::get('/profile/edit', 'EditProfile')->name('profile.edit');
+        route::post('/profile/store', 'StoreProfile')->name('profile.store');
 
-        route::get('/change/password', 'ChangePassword')->name('change.password');
-        route::post('/update/password', 'UpdatePassword')->name('update.password');
+        route::get('/password/change', 'ChangePassword')->name('password.change');
+        route::post('/passwords/update', 'UpdatePassword')->name('passwords.update');
 
     });
 });
@@ -56,7 +49,7 @@ Route::middleware(['auth'])->group(function () {
 Route::controller(HomeSliderController::class)->group(function () {
 
     route::get('/home/slide', 'HomeSlider')->name('home.slide');
-    route::post('/update/slide', 'UpdateSlider')->name('update.slide');
+    route::post('/slide/update/{id}', 'UpdateSlider')->name('slide.update');
 
 });
 
@@ -64,7 +57,7 @@ Route::controller(HomeSliderController::class)->group(function () {
 Route::controller(AboutController::class)->group(function () {
 
     route::get('/about/page', 'AboutPage')->name('about.page');
-    route::post('/update/about', 'UpdateAbout')->name('update.about');
+    route::post('/about/update/{id}', 'UpdateAbout')->name('about.update');
 
     route::get('/about', 'HomeAbout')->name('home.about');
 

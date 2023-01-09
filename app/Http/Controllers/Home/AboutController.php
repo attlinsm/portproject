@@ -3,69 +3,40 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Home\UpdateAboutRequest;
 use App\Models\About;
 use App\Models\MultiImage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
-use PhpParser\Node\Expr\AssignOp\Mul;
 
 class AboutController extends Controller
 {
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
+
     public function AboutPage()
     {
         $aboutPage = About::query()->find(1);
         return view('admin.about_page.about_page_all', compact('aboutPage'));
     }
 
-    public function UpdateAbout(Request $request)
+    public function UpdateAbout(UpdateAboutRequest $request, $id)
     {
-        $about_id = $request->id;
+        $validated = $request->validated();
 
         if ($request->file('about_image')) {
 
             $image = $request->file('about_image');
-            $name_generate = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension(); // 34534.png
-            Image::make($image)->resize(523, 605)->save('upload/about_image/' . $name_generate);
-            $save_url = 'upload/about_image/' . $name_generate;
+            $name = Str::uuid();
+            Image::make($image)->resize(523, 605)->save('upload/about_image/' . $name);
 
-            About::query()->findOrFail($about_id)->update([
-                'title' => $request->title,
-                'short_title' => $request->short_title,
-                'short_description' => $request->short_description,
-                'long_description' => $request->long_description,
-                'about_image' => $save_url,
-            ]);
-
-            $notification = [
-                'message' => 'About page updated with image successfully',
-                'alert-type' => 'success'
-            ];
-
-            return redirect()->back()->with($notification);
-
-        } else {
-
-            About::query()->findOrFail($about_id)->update([
-                'title' => $request->title,
-                'short_title' => $request->short_title,
-                'short_description' => $request->short_description,
-                'long_description' => $request->long_description,
-            ]);
-
-            $notification = [
-                'message' => 'About page updated without image successfully',
-                'alert-type' => 'success'
-            ];
-
-            return redirect()->back()->with($notification);
         }
+        $data = About::query()->findOrFail($id);
+        $data->fill($validated)->save();
 
+        return redirect()->back()->with('status', 'about-updated');
     }
-
+////////////////////////////////////////////////////////////
     public function HomeAbout()
     {
         $aboutPage = About::query()->find(1);
