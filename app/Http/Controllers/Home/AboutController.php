@@ -29,7 +29,7 @@ class AboutController extends Controller
             $image = $request->file('about_image');
             $name = Str::uuid();
             Image::make($image)->resize(523, 605)->save('upload/about_image/' . $name);
-
+            $validated['about_image'] = $name;
         }
         $data = About::query()->findOrFail($id);
         $data->fill($validated)->save();
@@ -59,7 +59,6 @@ class AboutController extends Controller
 
             MultiImage::query()->insert([
                 'multi_image' => $save_url,
-                'created_at' => Carbon::now(),
             ]);
         }
 

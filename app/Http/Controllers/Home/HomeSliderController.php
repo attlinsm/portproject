@@ -23,13 +23,13 @@ class HomeSliderController extends Controller
 
         $validated = $request->validated();
 
-        if ($request->file('home_slide')) {
+        if ($request->file('slider_image')) {
 
-            $image = $request->file('home_slide');
+            $image = $request->file('slider_image');
             $name = Str::uuid();
             Image::make($image)->resize(1200, 852)->save('upload/home_slide/' . $name);
 
-            $validated['home_slide'] = $name;
+            $validated['slider_image'] = $name;
 
         }
         $data = HomeSlide::query()->findOrFail($id);
