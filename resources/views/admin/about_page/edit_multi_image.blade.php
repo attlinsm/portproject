@@ -12,7 +12,7 @@
 
                         <p class="card-title font-size-18">Update image</p><br>
 
-                        <form method="POST" action="{{ route('update.multi.image', $multiImage->id) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('multi.image.update', $multiImage->id) }}" enctype="multipart/form-data">
                             @csrf
                             {{--Изображение--}}
                             <div class="row mb-3">

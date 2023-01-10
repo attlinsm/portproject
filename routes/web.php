@@ -57,34 +57,34 @@ Route::controller(HomeSliderController::class)->group(function () {
 Route::controller(AboutController::class)->group(function () {
 
     route::get('/about/page', 'AboutPage')->name('about.page');
-    route::post('/about/update/{id}', 'UpdateAbout')->name('update.about');
+    route::post('/about/update/{id}', 'UpdateAbout')->name('about.update');
 
     route::get('/about', 'HomeAbout')->name('home.about');
 
-    route::get('/about/multi/image', 'AboutMultiImage')->name('about.multi.image');
-    route::post('/store/multi/image', 'StoreMultiImage')->name('store.multi.image');
+    route::get('/multi/image/add', 'AboutMultiImage')->name('multi.image.add');
+    route::post('/multi/image/store', 'StoreMultiImage')->name('multi.image.store');
 
-    route::get('/all/multi/image', 'AllMultiImage')->name('all.multi.image');
+    route::get('/multi/image/all', 'AllMultiImage')->name('multi.image.all');
 
-    route::get('/edit/multi/image/{id}', 'EditMultiImage')->name('edit.multi.image');
-    route::post('/update/multi/image/{id}', 'UpdateMultiImage')->name('update.multi.image');
+    route::get('/multi/image/edit/{id}', 'EditMultiImage')->name('multi.image.edit');
+    route::post('/multi/image/update/{id}', 'UpdateMultiImage')->name('multi.image.update');
 
-    route::get('/delete/multi/image/{id}', 'DeleteMultiImage')->name('delete.multi.image');
+    route::get('/multi/image/delete/{id}', 'DeleteMultiImage')->name('multi.image.delete');
 
 });
 
 // Portfolio all routes
 Route::controller(PortfolioController::class)->group(function () {
 
-    route::get('/all/portfolio', 'AllPortfolio')->name('all.portfolio');
-    route::get('/add/portfolio', 'AddPortfolio')->name('add.portfolio');
+    route::get('/portfolio/all', 'AllPortfolio')->name('portfolio.all');
+    route::get('/portfolio/add', 'AddPortfolio')->name('portfolio.add');
 
-    route::post('/store/portfolio', 'StorePortfolio')->name('store.portfolio');
+    route::post('/portfolio/store', 'StorePortfolio')->name('portfolio.store');
 
-    route::get('/edit/portfolio/{id}', 'EditPortfolio')->name('edit.portfolio');
-    route::post('/update/portfolio', 'UpdatePortfolio')->name('update.portfolio');
+    route::get('/portfolio/edit/{id}', 'EditPortfolio')->name('portfolio.edit');
+    route::post('/portfolio/update/{id}', 'UpdatePortfolio')->name('portfolio.update');
 
-    route::get('/delete/portfolio/{id}', 'DeletePortfolio')->name('delete.portfolio');
+    route::get('/portfolio/delete/{id}', 'DeletePortfolio')->name('portfolio.delete');
 
     route::get('/portfolio/details/{id}', 'PortfolioDetails')->name('portfolio.details');
 

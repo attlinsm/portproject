@@ -12,7 +12,7 @@
 
                         <p class="card-title font-size-18">About page</p><br>
 
-                        <form method="POST" action="{{ route('update.about', $aboutPage->id) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('about.update', $aboutPage->id) }}" enctype="multipart/form-data">
                             @csrf
                             {{--Поля--}}
 

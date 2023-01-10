@@ -34,8 +34,8 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('about.page') }}">General settings</a></li>
-                        <li><a href="{{ route('about.multi.image') }}">Add multi image</a></li>
-                        <li><a href="{{ route('all.multi.image') }}">All multi image</a></li>
+                        <li><a href="{{ route('multi.image.add') }}">Add multi image</a></li>
+                        <li><a href="{{ route('multi.image.all') }}">All multi image</a></li>
                     </ul>
                 </li>
 
@@ -45,8 +45,8 @@
                         <span>Portfolio section</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('all.portfolio') }}">All portfolios</a></li>
-                        <li><a href="{{ route('add.portfolio') }}">Add portfolio</a></li>
+                        <li><a href="{{ route('portfolio.all') }}">All portfolios</a></li>
+                        <li><a href="{{ route('portfolio.add') }}">Add portfolio</a></li>
                     </ul>
                 </li>
 
