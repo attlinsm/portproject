@@ -9,8 +9,8 @@
                 <ul class="about__icons__wrap">
                     @foreach($all_multi_image as $item)
                         <li>
-                            <img class="light" src="{{ asset($item->multi_image) }}" alt="">
-                            <img class="dark" src="{{ asset($item->multi_image) }}" alt="">
+                            <img class="light" src="{{ asset('upload/multi_images/' . $item->multi_image) }}" alt="">
+                            <img class="dark" src="{{ asset('upload/multi_images/' . $item->multi_image) }}" alt="">
                         </li>
                     @endforeach
                 </ul>

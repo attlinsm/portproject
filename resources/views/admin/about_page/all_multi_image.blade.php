@@ -36,7 +36,7 @@
 
                             <tr>
                                 <td>{{ $id + 1 }}</td>
-                                <td><img src="{{ asset($item->multi_image) }}" alt="" style="width: 85px; height: 85px"></td>
+                                <td><img src="{{ asset('upload/multi_images/' . $item->multi_image) }}" alt="" style="width: 85px; height: 85px"></td>
                                 <td>
                                     <a class="btn btn-info sm" href="{{ route('edit.multi.image', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
                                     <a class="btn btn-danger sm" href="{{ route('delete.multi.image', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
@@ -55,4 +55,18 @@
     </div> <!-- container-fluid -->
 </div>
 
+@endsection
+
+@section('scripts')
+    @parent
+    @if(session('status') === 'multi-updated')
+        <script>
+            toastr.success('Image updated')
+        </script>
+    @endif
+    @if(session('status') === 'image-deleted')
+        <script>
+            toastr.success('Image deleted')
+        </script>
+    @endif
 @endsection
