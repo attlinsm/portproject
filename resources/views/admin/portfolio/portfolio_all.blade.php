@@ -40,7 +40,7 @@
                                         <td>{{ $id + 1 }}</td>
                                         <td>{{ $item->portfolio_name }}</td>
                                         <td>{{ $item->portfolio_title }}</td>
-                                        <td><img src="{{ asset($item->portfolio_image) }}" alt="" style="width: 85px; height: 85px"></td>
+                                        <td><img src="{{ asset('upload/portfolio_images/' . $item->portfolio_image) }}" alt="" style="width: 85px; height: 85px"></td>
                                         <td>
                                             <a class="btn btn-info sm" href="{{ route('portfolio.edit', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
                                             <a class="btn btn-danger sm" href="{{ route('portfolio.delete', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
@@ -59,4 +59,22 @@
         </div> <!-- container-fluid -->
     </div>
 
+@endsection
+@section('scripts')
+    @parent
+    @if(session('status') === 'portfolio-added')
+        <script>
+            toastr.success('Portfolio added')
+        </script>
+    @endif
+    @if(session('status') === 'portfolio-updated')
+        <script>
+            toastr.success('Portfolio updated')
+        </script>
+    @endif
+    @if(session('status') === 'portfolio-deleted')
+        <script>
+            toastr.success('Portfolio deleted')
+        </script>
+    @endif
 @endsection

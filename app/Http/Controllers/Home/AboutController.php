@@ -8,8 +8,6 @@ use App\Http\Requests\Home\UpdateAboutRequest;
 use App\Http\Requests\Home\UpdateMultiImageRequest;
 use App\Models\About;
 use App\Models\MultiImage;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
@@ -97,13 +95,11 @@ class AboutController extends Controller
             $validated['multi_image'] = $name;
 
             $data = MultiImage::query()->findOrFail($id);
-            $data->update([
-                'multi_image' => $validated['multi_image'],
-            ]);
+            $data->fill($validated)->save();
 
         }
 
-        return redirect()->route('all.multi.image')->with('status', 'multi-updated');
+        return redirect()->route('multi.image.all')->with('status', 'multi-updated');
     }
 
     public function DeleteMultiImage($id)
