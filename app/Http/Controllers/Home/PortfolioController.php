@@ -30,7 +30,7 @@ class PortfolioController extends Controller
 
         $image = $request->file('portfolio_image');
         $name = Str::uuid();
-        Image::make($image)->resize(1020, 519)->save('upload/portfolio_images/' . $name);
+        Image::make($image)->resize(800, 800)->save('upload/portfolio_images/' . $name);
         $validated['portfolio_image'] = $name;
 
         Portfolio::query()->insert([
@@ -57,7 +57,7 @@ class PortfolioController extends Controller
 
             $image = $request->file('portfolio_image');
             $name = Str::uuid();
-            Image::make($image)->resize(1020, 519)->save('upload/portfolio_images/' . $name);
+            Image::make($image)->resize(800, 800)->save('upload/portfolio_images/' . $name);
             $validated['portfolio_image'] = $name;
 
         }

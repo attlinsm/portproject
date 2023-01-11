@@ -27,7 +27,7 @@ class UpdatePortfolioRequest extends FormRequest
             'portfolio_name' => ['required', 'string', 'max:100'],
             'portfolio_title' => ['required', 'string', 'max:255'],
             'portfolio_description' => ['required', 'string', 'max:2500'],
-            'portfolio_image' => ['required', 'image', 'mimes:jpg,jpeg,png,svg'],
+            'portfolio_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,svg'],
         ];
     }
 }
