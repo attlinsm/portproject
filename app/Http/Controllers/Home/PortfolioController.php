@@ -33,12 +33,8 @@ class PortfolioController extends Controller
         Image::make($image)->resize(800, 800)->save('upload/portfolio_images/' . $name);
         $validated['portfolio_image'] = $name;
 
-        Portfolio::query()->insert([
-            'portfolio_name' => $validated['portfolio_name'],
-            'portfolio_title' => $validated['portfolio_title'],
-            'portfolio_description' => $validated['portfolio_description'],
-            'portfolio_image' => $validated['portfolio_image'],
-        ]);
+        $data = new Portfolio();
+        $data->fill($validated)->save();
 
         return redirect()->route('portfolio.all')->with('status', 'portfolio-added');
     }

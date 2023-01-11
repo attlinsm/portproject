@@ -62,9 +62,9 @@ class AboutController extends Controller
 
             $validated['multi_image'] = $name;
 
-            MultiImage::query()->insert([
-                'multi_image' => $validated['multi_image'],
-            ]);
+            $data = new MultiImage();
+            $data->fill($validated)->save();
+
         }
 
         return redirect()->back()->with('status', 'multi-updated');

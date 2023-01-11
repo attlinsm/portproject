@@ -95,15 +95,15 @@ Route::controller(PortfolioController::class)->group(function () {
 // Blog category all routes
 Route::controller(BlogCategoryController::class)->group(function () {
 
-    route::get('/all/blog/category', 'AllBlogCategory')->name('all.blog.category');
-    route::get('/add/blog/category', 'AddBlogCategory')->name('add.blog.category');
+    route::get('blog/category/all', 'AllBlogCategory')->name('blog.category.all');
+    route::get('blog/category/add', 'AddBlogCategory')->name('blog.category.add');
 
-    route::post('/store/blog/category', 'StoreBlogCategory')->name('store.blog.category');
+    route::post('blog/category/store', 'StoreBlogCategory')->name('blog.category.store');
 
-    route::get('/edit/blog/category/{id}', 'EditBlogCategory')->name('edit.blog.category');
-    route::post('/update/blog/category/{id}', 'UpdateBlogCategory')->name('update.blog.category');
+    route::get('/blog/category/edit/{id}', 'EditBlogCategory')->name('blog.category.edit');
+    route::post('/blog/category/update/{id}', 'UpdateBlogCategory')->name('blog.category.update');
 
-    route::get('/delete/blog/category/{id}', 'DeleteBlogCategory')->name('delete.blog.category');
+    route::get('/blog/category/delete/{id}', 'DeleteBlogCategory')->name('blog.category.delete');
 
 });
 

@@ -38,8 +38,8 @@
                                         <td>{{ $id + 1 }}</td>
                                         <td>{{ $item->blog_category }}</td>
                                         <td>
-                                            <a class="btn btn-info sm" href="{{ route('edit.blog.category', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
-                                            <a class="btn btn-danger sm" href="{{ route('delete.blog.category', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
+                                            <a class="btn btn-info sm" href="{{ route('blog.category.edit', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
+                                            <a class="btn btn-danger sm" href="{{ route('blog.category.delete', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
 
