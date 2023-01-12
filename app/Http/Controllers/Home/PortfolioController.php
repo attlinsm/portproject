@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Home\StorePortfolioRequest;
 use App\Http\Requests\Home\UpdatePortfolioRequest;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Models\Portfolio;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;

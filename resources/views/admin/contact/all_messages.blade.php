@@ -47,7 +47,7 @@
                                         <td>{{ $item->phone }}</td>
                                         <td>{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</td>
                                         <td>
-                                            <a class="btn btn-danger sm" href="{{ route('delete.message', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
+                                            <a class="btn btn-danger sm" href="{{ route('message.delete', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
 
@@ -63,4 +63,12 @@
         </div> <!-- container-fluid -->
     </div>
 
+@endsection
+@section('scripts')
+    @parent
+    @if(session('status') === 'message-deleted')
+        <script>
+            toastr.success('Message deleted')
+        </script>
+    @endif
 @endsection

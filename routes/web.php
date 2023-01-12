@@ -132,18 +132,18 @@ Route::controller(BlogController::class)->group(function () {
 Route::controller(FooterController::class)->group(function () {
 
     route::get('/footer/setup', 'FooterSetup')->name('footer.setup');
-    route::post('/update/footer/{id}', 'UpdateFooter')->name('update.footer');
+    route::post('/footer/update/{id}', 'UpdateFooter')->name('footer.update');
 
 });
 
 // Contact all routes
 Route::controller(ContactController::class)->group(function () {
 
-    route::post('/store/message', 'StoreMessage')->name('store.message');
+    route::post('/message/store', 'StoreMessage')->name('message.store');
 
     route::get('/contact/message', 'ContactMessage')->name('contact.message');
 
-    route::get('/delete/message/{id}', 'DeleteMessage')->name('delete.message');
+    route::get('/message/delete/{id}', 'DeleteMessage')->name('message.delete');
 
 });
 

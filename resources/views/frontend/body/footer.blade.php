@@ -17,7 +17,7 @@ $footer = \App\Models\Footer::query()->find(1);
             </div>
             <div class="col-lg-6">
                 <div class="homeContact__form">
-                    <form action="{{ route('store.message') }}" method="POST">
+                    <form action="{{ route('message.store') }}" method="POST">
                         @csrf
                         <input name="name" type="text" placeholder="Name*">
                         <input name="email" type="email" placeholder="Mail*">
