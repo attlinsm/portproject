@@ -110,19 +110,19 @@ Route::controller(BlogCategoryController::class)->group(function () {
 // Blog all routes
 Route::controller(BlogController::class)->group(function () {
 
-    route::get('/all/blog', 'AllBlog')->name('all.blog');
-    route::get('/add/blog', 'AddBlog')->name('add.blog');
+    route::get('/blog/all', 'AllBlog')->name('blog.all');
+    route::get('/blog/add', 'AddBlog')->name('blog.add');
 
-    route::post('/store/blog', 'StoreBlog')->name('store.blog');
+    route::post('/blog/store', 'StoreBlog')->name('blog.store');
 
-    route::get('/edit/blog/{id}', 'EditBlog')->name('edit.blog');
-    route::post('/update/blog/{id}', 'UpdateBlog')->name('update.blog');
+    route::get('/blog/edit/{id}', 'EditBlog')->name('blog.edit');
+    route::post('/blog/update/{id}', 'UpdateBlog')->name('blog.update');
 
-    route::get('/delete/blog/{id}', 'DeleteBlog')->name('delete.blog');
+    route::get('/blog/delete/{id}', 'DeleteBlog')->name('blog.delete');
 
     route::get('/blog/details/{id}', 'BlogDetails')->name('blog.details');
 
-    route::get('/category/blog/{id}', 'CategoryBlog')->name('category.blog');
+    route::get('/blog/category/{id}', 'CategoryBlog')->name('blog.category');
 
     route::get('/blog', 'HomeBlog')->name('home.blog');
 

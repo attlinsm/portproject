@@ -56,3 +56,22 @@
     </div>
 
 @endsection
+
+@section('scripts')
+    @parent
+    @if(session('status') === 'blog-category-added')
+        <script>
+            toastr.success('Blog category added')
+        </script>
+    @endif
+    @if(session('status') === 'blog-category-updated')
+        <script>
+            toastr.success('Blog category updated')
+        </script>
+    @endif
+    @if(session('status') === 'blog-category-deleted')
+        <script>
+            toastr.success('Blog category deleted')
+        </script>
+    @endif
+@endsection
