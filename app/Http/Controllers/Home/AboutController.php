@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Home\StoreMultiImageRequest;
 use App\Http\Requests\Home\UpdateAboutRequest;
+use App\Http\Requests\Home\UpdateMultiImageRequest;
 use App\Models\About;
 use App\Models\MultiImage;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
@@ -36,7 +36,7 @@ class AboutController extends Controller
 
         return redirect()->back()->with('status', 'about-updated');
     }
-////////////////////////////////////////////////////////////
+
     public function HomeAbout()
     {
         $aboutPage = About::query()->find(1);
@@ -48,26 +48,26 @@ class AboutController extends Controller
         return view('admin.about_page.multi_image');
     }
 
-    public function StoreMultiImage(Request $request)
+    public function StoreMultiImage(StoreMultiImageRequest $request)
     {
+        $validated = $request->validated();
+
         $image = $request->file('multi_image');
 
         foreach ($image as $multi_image) {
-            $name_generate = hexdec(uniqid()) . '.' . $multi_image->getClientOriginalExtension(); // 34534.png
-            Image::make($multi_image)->resize(90, 90)->save('upload/multi_images/' . $name_generate);
-            $save_url = 'upload/multi_images/' . $name_generate;
 
-            MultiImage::query()->insert([
-                'multi_image' => $save_url,
-            ]);
+            $name = Str::uuid();
+
+            Image::make($multi_image)->resize(90, 90)->save('upload/multi_images/' . $name);
+
+            $validated['multi_image'] = $name;
+
+            $data = new MultiImage();
+            $data->fill($validated)->save();
+
         }
 
-        $notification = [
-            'message' => 'Multi image inserted successfully',
-            'alert-type' => 'success'
-        ];
-
-        return redirect()->back()->with($notification);
+        return redirect()->back()->with('status', 'multi-updated');
     }
 
     public function AllMultiImage()
@@ -82,41 +82,34 @@ class AboutController extends Controller
         return view('admin.about_page.edit_multi_image', compact('multiImage'));
     }
 
-    public function UpdateMultiImage(Request $request)
+    public function UpdateMultiImage(UpdateMultiImageRequest $request, $id)
     {
-        $image_id = $request->id;
+        $validated = $request->validated();
 
         if ($request->file('multi_image')) {
 
             $image = $request->file('multi_image');
-            $name_generate = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension(); // 34534.png
-            Image::make($image)->resize(220, 220)->save('upload/multi_images/' . $name_generate);
-            $save_url = 'upload/multi_images/' . $name_generate;
 
-            MultiImage::query()->findOrFail($image_id)->update([
-                'multi_image' => $save_url,
-            ]);
+            $name = Str::uuid();
+            Image::make($image)->resize(220, 220)->save('upload/multi_images/' . $name);
+            $validated['multi_image'] = $name;
 
-            $notification = [
-                'message' => 'Image updated successfully',
-                'alert-type' => 'success'
-            ];
+            $data = MultiImage::query()->findOrFail($id);
+            $data->fill($validated)->save();
+
         }
-        return redirect()->route('all.multi.image')->with($notification);
+
+        return redirect()->route('multi.image.all')->with('status', 'multi-updated');
     }
 
     public function DeleteMultiImage($id)
     {
         $multiImage = MultiImage::query()->findOrFail($id);
         $img = $multiImage->multi_image;
-        unlink($img);
+        unlink('upload/multi_images/' . $img);
 
         MultiImage::query()->findOrFail($id)->delete();
 
-        $notification = [
-            'message' => 'Image deleted successfully',
-            'alert-type' => 'success'
-        ];
-        return redirect()->back()->with($notification);
+        return redirect()->back()->with('status', 'image-deleted');
     }
 }

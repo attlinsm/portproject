@@ -12,7 +12,7 @@
 
                         <p class="card-title font-size-18">Add multi image</p><br>
 
-                        <form method="POST" action="{{ route('store.multi.image') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('multi.image.store') }}" enctype="multipart/form-data">
                             @csrf
                             {{--Поля--}}
 

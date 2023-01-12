@@ -18,23 +18,23 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <p class="card-title font-size-18">Add blog page</p><br>
+                            <p class="card-title font-size-18">Add blog</p><br>
 
-                            <form method="POST" action="{{ route('store.blog') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('blog.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 {{--Поля--}}
 
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Blog category name</label>
                                     <div class="col-sm-10">
-                                        <select name="blog_category_id" class="form-select" aria-label="Default select example">
+                                        <select name="category_id" class="form-select" aria-label="Default select example">
                                             <option selected="">Choose the category</option>
                                             @foreach($categories as $item)
                                             <option value="{{ $item->id }}">{{ $item->blog_category }}</option>
                                             @endforeach
 
                                         </select>
-                                        @error('blog_category_id')
+                                        @error('category_id')
                                         <span class="text-danger"> {{ $message }}</span>
                                         @enderror
                                     </div>
@@ -43,8 +43,8 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="text" id="blog_title" name="blog_title">
-                                        @error('blog_title')
+                                        <input class="form-control @error('title') is-invalid @enderror" type="text" id="blog_title" name="title">
+                                        @error('title')
                                         <span class="text-danger"> {{ $message }}</span>
                                         @enderror
                                     </div>
@@ -53,8 +53,8 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Short description</label>
                                     <div class="col-sm-10">
-                                        <textarea required="" class="form-control" rows="5" name="blog_short_description"></textarea>
-                                        @error('blog_short_description')
+                                        <textarea required="" class="form-control @error('short_description') is-invalid @enderror" rows="5" name="short_description"></textarea>
+                                        @error('short_description')
                                         <span class="text-danger"> {{ $message }}</span>
                                         @enderror
                                     </div>
@@ -63,8 +63,8 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Description</label>
                                     <div class="col-sm-10">
-                                        <textarea id="elm1" name="blog_description"></textarea>
-                                        @error('blog_description')
+                                        <textarea id="elm1" name="description" class="form-control @error('description') is-invalid @enderror"></textarea>
+                                        @error('description')
                                         <span class="text-danger"> {{ $message }}</span>
                                         @enderror
                                     </div>
@@ -73,7 +73,10 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Tags</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="text" id="blog_tags" value="home, tech" name="blog_tags" data-role="tagsinput">
+                                        <input class="form-control @error('tags') is-invalid @enderror" type="text" id="blog_tags" value="home, tech" name="tags" data-role="tagsinput">
+                                        @error('tags')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -81,8 +84,8 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Blog image</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="blog_image" id="image">
-                                        @error('blog_image')
+                                        <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image">
+                                        @error('image')
                                         <span class="text-danger"> {{ $message }}</span>
                                         @enderror
                                     </div>

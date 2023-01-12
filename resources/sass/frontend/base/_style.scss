@@ -3176,7 +3176,7 @@ Breadcrumb
     left: auto;
     right: -60px; }
 .portfolio__active .slick-arrow:hover {
-    color: #0054FF; }
+    color: grey; }
 .portfolio__item {
     position: relative; }
 @media (max-width: 767.98px) {
@@ -3187,18 +3187,18 @@ Breadcrumb
 @media (max-width: 767.98px) {
     .portfolio__thumb img {
         max-width: inherit;
-        max-height: 340px; } }
+        max-height: 250px; } }
 .portfolio__overlay__content {
     position: absolute;
     width: 438px;
-    height: 438px;
-    background: rgba(0, 84, 255, 0.95);
-    border-radius: 50%;
+    height: 145px;
+    background: rgba(23, 23, 23, 0.7);
+    border-radius: 1%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    top: 50%;
+    top: 85%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%) scale(0.3);
     -ms-transform: translate(-50%, -50%) scale(0.3);
@@ -3208,7 +3208,7 @@ Breadcrumb
     -ms-transition: all 0.5s ease-out 0s;
     -o-transition: all 0.5s ease-out 0s;
     transition: all 0.5s ease-out 0s;
-    padding: 65px;
+    padding: 10px;
     text-align: center;
     opacity: 0;
     z-index: 1; }
@@ -3220,7 +3220,8 @@ Breadcrumb
 @media (max-width: 991.98px) {
     .portfolio__overlay__content {
         width: 300px;
-        height: 300px; } }
+        height: 145px;
+        top: 100%; } }
 @media (max-width: 767.98px) {
     .portfolio__overlay__content {
         width: 250px;
@@ -3230,7 +3231,7 @@ Breadcrumb
     letter-spacing: 0.1em;
     text-transform: uppercase;
     font-weight: 700;
-    color: #FCAF17;
+    color: red;
     font-size: 15px;
     line-height: 1;
     margin-bottom: 10px; }

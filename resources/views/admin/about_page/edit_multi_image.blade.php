@@ -12,22 +12,23 @@
 
                         <p class="card-title font-size-18">Update image</p><br>
 
-                        <form method="POST" action="{{ route('update.multi.image') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('multi.image.update', $multiImage->id) }}" enctype="multipart/form-data">
                             @csrf
-                            {{--Поля--}}
-                            <input type="hidden" name="id" value="{{ $multiImage->id }}">
                             {{--Изображение--}}
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">Image</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="file" name="multi_image" id="image">
+                                    <input class="form-control @error('multi_image') is-invalid @enderror" type="file" name="multi_image" id="image">
+                                    @error('multi_image')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-10">
-                                    <img id="showImage" class="rounded avatar-lg" src="{{ asset($multiImage->multi_image) }}" alt="Card image cap">
+                                    <img id="showImage" class="rounded avatar-lg" src="{{ asset('upload/multi_images/' . $multiImage->multi_image) }}" alt="Card image cap">
                                 </div>
                             </div>
                             <input type="submit" class="btn btn-info waves-effect waves-light" value="Update image">
@@ -55,3 +56,4 @@
 </script>
 
 @endsection
+
