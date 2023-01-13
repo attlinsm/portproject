@@ -27,7 +27,7 @@ class UpdateSliderRequest extends FormRequest
             'title' => ['required', 'max:255'],
             'short_title' => ['required', 'max:255'],
             'video_url' => ['required', 'url', 'max:192'],
-            'home_slide' => ['nullable', 'image'],
+            'slider_image' => ['nullable', 'image'],
         ];
     }
 

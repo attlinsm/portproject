@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Home\StoreBlogCategoryRequest;
+use App\Http\Requests\Home\UpdateBlogCategoryRequest;
 use App\Models\BlogCategory;
 
 class BlogCategoryController extends Controller
@@ -19,22 +20,14 @@ class BlogCategoryController extends Controller
         return view('admin.blog_category.blog_category_add');
     }
 
-    public function StoreBlogCategory(Request $request)
+    public function StoreBlogCategory(StoreBlogCategoryRequest $request)
     {
-        $request->validate([
-            'blog_category' => 'required'
-        ]);
+        $validated = $request->validated();
 
-        BlogCategory::query()->insert([
-            'blog_category' => $request->blog_category,
-        ]);
+        $data = new BlogCategory();
+        $data->fill($validated)->save();
 
-        $notification = [
-            'message' => 'Blog category added successfully',
-            'alert-type' => 'success'
-        ];
-
-        return redirect()->route('all.blog.category')->with($notification);
+        return redirect()->route('blog.category.all')->with('status', 'blog-category-added');
     }
 
     public function EditBlogCategory($id)
@@ -43,31 +36,20 @@ class BlogCategoryController extends Controller
         return view('admin.blog_category.blog_category_edit', compact('blogCategory'));
     }
 
-    public function UpdateBlogCategory(Request $request, $id)
+    public function UpdateBlogCategory(UpdateBlogCategoryRequest $request, $id)
     {
-        $request->validate([
-            'blog_category' => 'required'
-        ]);
+        $validated = $request->validated();
 
-        BlogCategory::query()->findOrFail($id)->update([
-            'blog_category' => $request->blog_category,
-        ]);
+        $data = BlogCategory::query()->findOrFail($id);
+        $data->fill($validated)->save();
 
-        $notification = [
-            'message' => 'Blog category updated successfully',
-            'alert-type' => 'success'
-        ];
-        return redirect()->route('all.blog.category')->with($notification);
+        return redirect()->route('blog.category.all')->with('status', 'blog-category-updated');
     }
 
     public function DeleteBlogCategory($id)
     {
         BlogCategory::query()->findOrFail($id)->delete();
 
-        $notification = [
-            'message' => 'Blog category deleted successfully',
-            'alert-type' => 'success'
-        ];
-        return redirect()->back()->with($notification);
+        return redirect()->back()->with('status', 'blog-category-deleted');
     }
 }

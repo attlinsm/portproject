@@ -7,11 +7,12 @@
     }
     &__wrap {
         background: #fff;
+
         padding: 80px 80px 60px 70px;
         border: 2px solid $grey;
         position: relative;
         z-index: 1;
-        margin: -238px 0 -210px;
+        margin: 0 0 -210px;
         @media #{$lg} {
             padding: 70px 50px 60px 50px;
         }

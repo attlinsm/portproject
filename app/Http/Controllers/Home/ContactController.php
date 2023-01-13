@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Home\StoreMessageRequest;
 use App\Models\Contact;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -10,37 +11,14 @@ use Illuminate\Http\Request;
 class ContactController extends Controller
 {
 
-    public function StoreMessage(Request $request)
+    public function StoreMessage(StoreMessageRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'subject' => 'required',
-            'phone' => 'required',
-            'message' => 'required',
-        ], [
-            'name.required' => 'Enter your Name',
-            'email.required' => 'Email is required',
-            'subject.required' => 'Subject is required',
-            'phone.required' => 'Enter your phone number',
-            'message.required' => 'Enter your message',
-        ]);
+        $validated = $request->validated();
 
-        Contact::query()->insert([
-            'name' => $request->name,
-            'email' => $request->email,
-            'subject' => $request->subject,
-            'phone' => $request->phone,
-            'message' => $request->message,
-            'created_at' => Carbon::now('GMT+3'),
-        ]);
+        $data = new Contact();
+        $data->fill($validated)->save();
 
-        $notification = [
-            'message' => 'Your message sended successfully',
-            'alert-type' => 'success',
-        ];
-
-        return redirect()->back()->with($notification);
+        return redirect()->back()->with('status', 'message-delivered');
     }
 
     public function ContactMessage()
@@ -53,11 +31,6 @@ class ContactController extends Controller
     {
         Contact::query()->findOrFail($id)->delete();
 
-        $notification = [
-            'message' => 'Message deleted',
-            'alert-type' => 'success'
-        ];
-
-        return redirect()->route('contact.message')->with($notification);
+        return redirect()->route('contact.message')->with('status', 'message-deleted');
     }
 }

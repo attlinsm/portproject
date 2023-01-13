@@ -12,7 +12,7 @@ class HomeSlide extends Model
     protected $fillable = [
         'title',
         'short_title',
-        'home_slide',
+        'slider_image',
         'video_url',
     ];
 

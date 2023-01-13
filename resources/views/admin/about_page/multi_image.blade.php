@@ -12,7 +12,7 @@
 
                         <p class="card-title font-size-18">Add multi image</p><br>
 
-                        <form method="POST" action="{{ route('store.multi.image') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('multi.image.store') }}" enctype="multipart/form-data">
                             @csrf
                             {{--Поля--}}
 
@@ -20,7 +20,10 @@
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">About multi image</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="file" name="multi_image[]" id="image" multiple>
+                                    <input class="form-control @error('multi_image[]') is-invalid @enderror" type="file" name="multi_image[]" id="image" multiple>
+                                    @error('multi_image[]')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -53,5 +56,15 @@
         });
     });
 </script>
-
 @endsection
+
+@section('scripts')
+    @parent
+    @if(session('status') === 'multi-updated')
+        <script>
+            toastr.success('Multi image updated')
+        </script>
+    @endif
+@endsection
+
+

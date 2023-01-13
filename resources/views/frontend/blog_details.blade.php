@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-8 col-md-10">
                 <div class="breadcrumb__wrap__content">
-                    <h2 class="title">{{ $blog->blog_title }}</h2>
+                    <h2 class="title">{{ $blog->title }}</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('welcome.page') }}">Home</a></li>
@@ -40,7 +40,7 @@
             <div class="col-lg-8">
                 <div class="standard__blog__post">
                     <div class="standard__blog__thumb">
-                        <img src="{{ asset($blog->blog_image_details) }}" alt="">
+                        <img src="{{ asset('upload/blog_images/blog_details/' . $blog->image_details) }}" alt="">
                     </div>
                     <div class="blog__details__content services__details__content">
                         <ul class="blog__post__meta">
@@ -48,14 +48,14 @@
                             <li><i class="fal fa-comments-alt"></i> <a href="#">Comment (08)</a></li>
                             <li class="post-share"><a href="#"><i class="fal fa-share-all"></i> (18)</a></li>
                         </ul>
-                        <h2 class="title">{{ $blog->blog_title }}</h2>
-                        {!! $blog->blog_description !!}
+                        <h2 class="title">{{ $blog->title }}</h2>
+                        {!! $blog->description !!}
                     </div>
                     <div class="blog__details__bottom">
                         <ul class="blog__details__tag">
                             <li class="title">Tag:</li>
                             <li class="tags-list">
-                                <a href="#">{{ $blog->blog_tags }}</a>
+                                <a href="#">{{ $blog->tags }}</a>
                             </li>
                         </ul>
                         <ul class="blog__details__social">
@@ -209,10 +209,10 @@
                             @foreach($all_blogs as $item)
                             <li class="rc__post__item">
                                 <div class="rc__post__thumb">
-                                    <a href="{{ route('blog.details', $item->id) }}"><img src="{{ asset($item->blog_image) }}" alt=""></a>
+                                    <a href="{{ route('blog.details', $item->id) }}"><img src="{{ asset('upload/blog_images/' . $item->image) }}" alt=""></a>
                                 </div>
                                 <div class="rc__post__content">
-                                    <h5 class="title"><a href="{{ route('blog.details', $item->id) }}">{{ $item->blog_title }}</a></h5>
+                                    <h5 class="title"><a href="{{ route('blog.details', $item->id) }}">{{ $item->title }}</a></h5>
                                     <span class="post-date"><i class="fal fa-calendar-alt"></i>{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
                                 </div>
                             </li>
@@ -223,7 +223,7 @@
                         <h4 class="widget-title">Categories</h4>
                         <ul class="sidebar__cat">
                             @foreach($categories as $item)
-                            <li class="sidebar__cat__item"><a href="{{ route('category.blog', $item->id) }}">{{ $item->blog_category }}</a></li>
+                            <li class="sidebar__cat__item"><a href="{{ route('blog.category', $item->id) }}">{{ $item->blog_category }}</a></li>
                             @endforeach
                         </ul>
                     </div>

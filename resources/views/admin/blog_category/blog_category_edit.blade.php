@@ -10,17 +10,19 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <p class="card-title font-size-18">Edit blog category page</p><br>
+                            <p class="card-title font-size-18">Edit blog category</p><br>
 
-                            <form method="POST" id="passForm" action="{{ route('update.blog.category', $blogCategory->id) }}">
+                            <form method="POST" id="passForm" action="{{ route('blog.category.update', $blogCategory->id) }}">
                                 @csrf
                                 {{--Поля--}}
 
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Name</label>
                                     <div class="form-group col-sm-10">
-                                        <input class="form-control" type="text" id="blog_category" name="blog_category" value="{{ $blogCategory->blog_category }}">
-
+                                        <input class="form-control @error('blog_category') is-invalid @enderror" type="text" id="blog_category" name="blog_category" value="{{ $blogCategory->blog_category }}">
+                                        @error('blog_category')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -33,33 +35,5 @@
             </div>
         </div>
     </div>
-
-    <script type="module">
-        $(document).ready(function (){
-            $('#passForm').validate({
-                rules: {
-                    blog_category: {
-                        required: true,
-                    },
-                },
-                message: {
-                    blog_category: {
-                        required: 'Please enter blog category',
-                    },
-                },
-                errorElement: 'span',
-                errorPlacement: function (error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function (element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight: function (element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                },
-            });
-        });
-    </script>
 
 @endsection

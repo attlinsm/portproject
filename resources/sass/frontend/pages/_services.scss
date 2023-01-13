@@ -253,9 +253,10 @@
         padding: 120px 0 120px;
     }
     &__thumb {
-        margin-bottom: 40px;
+        margin: 0 126px 25px 126px;
         & img {
-            max-width: 100%;
+            width: 600px;
+            height: 500px;
         }
     }
     &__content {

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use App\Http\Requests\Home\StorePortfolioRequest;
+use App\Http\Requests\Home\UpdatePortfolioRequest;
 use App\Models\Portfolio;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 
 class PortfolioController extends Controller
 {
@@ -21,37 +22,19 @@ class PortfolioController extends Controller
         return view('admin.portfolio.portfolio_add');
     }
 
-    public function StorePortfolio(Request $request)
+    public function StorePortfolio(StorePortfolioRequest $request)
     {
-        $request->validate([
-            'portfolio_name' => 'required',
-            'portfolio_title' => 'required',
-            'portfolio_image' => 'required',
-        ], [
-            'portfolio_name.required' => 'Name is required',
-            'portfolio_title.required' => 'Title is required',
-            'portfolio_image.required' => 'Image is required',
-        ]);
+        $validated = $request->validated();
 
         $image = $request->file('portfolio_image');
-        $name_generate = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension(); // 34534.png
-        Image::make($image)->resize(1020, 519)->save('upload/portfolio_images/' . $name_generate);
-        $save_url = 'upload/portfolio_images/' . $name_generate;
+        $name = Str::uuid();
+        Image::make($image)->resize(800, 800)->save('upload/portfolio_images/' . $name);
+        $validated['portfolio_image'] = $name;
 
-        Portfolio::query()->insert([
-            'portfolio_name' => $request->portfolio_name,
-            'portfolio_title' => $request->portfolio_title,
-            'portfolio_description' => $request->portfolio_description,
-            'portfolio_image' => $save_url,
-            'created_at' => Carbon::now(),
-        ]);
+        $data = new Portfolio();
+        $data->fill($validated)->save();
 
-        $notification = [
-            'message' => 'Portfolio added successfully',
-            'alert-type' => 'success'
-        ];
-
-        return redirect()->route('all.portfolio')->with($notification);
+        return redirect()->route('portfolio.all')->with('status', 'portfolio-added');
     }
 
     public function EditPortfolio($id)
@@ -60,55 +43,33 @@ class PortfolioController extends Controller
         return view('admin.portfolio.portfolio_edit', compact('portfolio'));
     }
 
-    public function UpdatePortfolio(Request $request)
+    public function UpdatePortfolio(UpdatePortfolioRequest $request, $id)
     {
-        $portfolio_id = $request->id;
+        $validated = $request->validated();
 
         if ($request->file('portfolio_image')) {
 
             $image = $request->file('portfolio_image');
-            $name_generate = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension(); // 34534.png
-            Image::make($image)->resize(1020, 519)->save('upload/portfolio_images/' . $name_generate);
-            $save_url = 'upload/portfolio_images/' . $name_generate;
-
-            Portfolio::query()->findOrFail($portfolio_id)->update([
-                'portfolio_name' => $request->portfolio_name,
-                'portfolio_title' => $request->portfolio_title,
-                'portfolio_description' => $request->portfolio_description,
-                'portfolio_image' => $save_url,
-            ]);
-
-        } else {
-
-            Portfolio::query()->findOrFail($portfolio_id)->update([
-                'portfolio_name' => $request->portfolio_name,
-                'portfolio_title' => $request->portfolio_title,
-                'portfolio_description' => $request->portfolio_description,
-            ]);
+            $name = Str::uuid();
+            Image::make($image)->resize(800, 800)->save('upload/portfolio_images/' . $name);
+            $validated['portfolio_image'] = $name;
 
         }
+        $data = Portfolio::query()->findOrFail($id);
+        $data->fill($validated)->save();
 
-        $notification = [
-            'message' => 'Portfolio updated successfully',
-            'alert-type' => 'success'
-        ];
-
-        return redirect()->route('all.portfolio')->with($notification);
+        return redirect()->route('portfolio.all')->with('status', 'portfolio-updated');
     }
 
     public function DeletePortfolio($id)
     {
         $portfolio = Portfolio::query()->findOrFail($id);
         $portfolio_image = $portfolio->portfolio_image;
-        unlink($portfolio_image);
+        unlink('upload/portfolio_images/' . $portfolio_image);
 
         Portfolio::query()->findOrFail($id)->delete();
 
-        $notification = [
-            'message' => 'Portfolio deleted successfully',
-            'alert-type' => 'success'
-        ];
-        return redirect()->back()->with($notification);
+        return redirect()->back()->with('status', 'portfolio-deleted');
     }
 
     public function PortfolioDetails($id)

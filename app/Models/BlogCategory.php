@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class BlogCategory extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $fillable = [
+        'blog_category'
+    ];
 }

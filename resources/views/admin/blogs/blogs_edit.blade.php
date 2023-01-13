@@ -18,23 +18,23 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <p class="card-title font-size-18">Edit blog page</p><br>
+                            <p class="card-title font-size-18">Edit blog</p><br>
 
-                            <form method="POST" action="{{ route('update.blog', $blogs->id) }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('blog.update', $blogs->id) }}" enctype="multipart/form-data">
                                 @csrf
                                 {{--Поля--}}
 
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Blog category name</label>
                                     <div class="col-sm-10">
-                                        <select name="blog_category_id" class="form-select" aria-label="Default select example">
+                                        <select name="category_id" class="form-select" aria-label="Default select example">
                                             <option selected="">Choose the category</option>
                                             @foreach($categories as $item)
-                                                <option value="{{ $item->id }}" {{ $item->id == $blogs->blog_category_id ? 'selected' : '' }}>{{ $item->blog_category }}</option>
+                                                <option value="{{ $item->id }}" {{ $item->id == $blogs->category_id ? 'selected' : '' }}>{{ $item->blog_category }}</option>
                                             @endforeach
 
                                         </select>
-                                        @error('blog_category_id')
+                                        @error('category_id')
                                         <span class="text-danger"> {{ $message }}</span>
                                         @enderror
                                     </div>
@@ -43,8 +43,8 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="text" id="blog_title" name="blog_title" value="{{ $blogs->blog_title }}">
-                                        @error('blog_title')
+                                        <input class="form-control @error('title') is-invalid @enderror" type="text" id="blog_title" name="title" value="{{ $blogs->title }}">
+                                        @error('title')
                                         <span class="text-danger"> {{ $message }}</span>
                                         @enderror
                                     </div>
@@ -53,8 +53,8 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Short description</label>
                                     <div class="col-sm-10">
-                                        <textarea required="" class="form-control" rows="5" name="blog_short_description">{{ $blogs->blog_short_description }}</textarea>
-                                        @error('blog_short_description')
+                                        <textarea required="" class="form-control @error('short_description') is-invalid @enderror" rows="5" name="short_description">{{ $blogs->short_description }}</textarea>
+                                        @error('short_description')
                                         <span class="text-danger"> {{ $message }}</span>
                                         @enderror
                                     </div>
@@ -63,8 +63,8 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Description</label>
                                     <div class="col-sm-10">
-                                        <textarea id="elm1" name="blog_description">{{ $blogs->blog_description }}</textarea>
-                                        @error('blog_description')
+                                        <textarea id="elm1" name="description" class="form-control @error('description') is-invalid @enderror">{{ $blogs->description }}</textarea>
+                                        @error('description')
                                         <span class="text-danger"> {{ $message }}</span>
                                         @enderror
                                     </div>
@@ -73,7 +73,10 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Tags</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="text" id="blog_tags" value="{{ $blogs->blog_tags }}" name="blog_tags" data-role="tagsinput">
+                                        <input class="form-control @error('tags') is-invalid @enderror" type="text" id="blog_tags" value="{{ $blogs->tags }}" name="tags" data-role="tagsinput">
+                                        @error('tags')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -81,14 +84,17 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Blog image</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="blog_image" id="image">
+                                        <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image">
+                                        @error('image')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
-                                        <img id="showImage" class="rounded avatar-lg" src="{{ asset($blogs->blog_image) }}" alt="Card image cap">
+                                        <img id="showImage" class="rounded avatar-lg" src="{{ asset('upload/blog_images/' . $blogs->image) }}" alt="Card image cap">
                                     </div>
                                 </div>
                                 <input type="submit" class="btn btn-info waves-effect waves-light" value="Update blog">

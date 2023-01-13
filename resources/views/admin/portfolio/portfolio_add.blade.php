@@ -12,15 +12,14 @@
 
                             <p class="card-title font-size-18">Portfolio page</p><br>
 
-                            <form method="POST" action="{{ route('store.portfolio') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('portfolio.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 {{--Поля--}}
-
 
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="text" id="portfolio_name" name="portfolio_name">
+                                        <input class="form-control @error('portfolio_name') is-invalid @enderror" type="text" id="portfolio_name" name="portfolio_name">
                                         @error('portfolio_name')
                                         <span class="text-danger"> {{ $message }}</span>
                                         @enderror
@@ -30,7 +29,7 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="text" id="portfolio_title" name="portfolio_title">
+                                        <input class="form-control @error('portfolio_title') is-invalid @enderror" type="text" id="portfolio_title" name="portfolio_title">
                                         @error('portfolio_title')
                                         <span class="text-danger"> {{ $message }}</span>
                                         @enderror
@@ -40,7 +39,10 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Description</label>
                                     <div class="col-sm-10">
-                                        <textarea id="elm1" name="portfolio_description"></textarea>
+                                        <textarea class="form-control @error('portfolio_description') is-invalid @enderror" id="elm1" name="portfolio_description"></textarea>
+                                        @error('portfolio_description')
+                                        <span class="text-danger"> {{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -48,7 +50,7 @@
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Portfolio image</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="portfolio_image" id="image">
+                                        <input class="form-control @error('portfolio_image') is-invalid @enderror" type="file" name="portfolio_image" id="image">
                                         @error('portfolio_image')
                                         <span class="text-danger"> {{ $message }}</span>
                                         @enderror

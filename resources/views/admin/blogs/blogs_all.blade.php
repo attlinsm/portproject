@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Blogs all data</h4>
+                        <h4 class="mb-sm-0">All blogs</h4>
 
                     </div>
                 </div>
@@ -40,12 +40,12 @@
                                     <tr>
                                         <td>{{ $id + 1 }}</td>
                                         <td>{{ $item['Category']['blog_category'] }}</td>
-                                        <td>{{ $item->blog_title }}</td>
-                                        <td>{{ $item->blog_tags }}</td>
-                                        <td><img src="{{ asset($item->blog_image) }}" alt="" style="width: 85px; height: 85px"></td>
+                                        <td>{{ $item->title }}</td>
+                                        <td>{{ $item->tags }}</td>
+                                        <td><img src="{{ asset('upload/blog_images/' . $item->image) }}" alt="" style="width: 85px; height: 85px"></td>
                                         <td>
-                                            <a class="btn btn-info sm" href="{{ route('edit.blog', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
-                                            <a class="btn btn-danger sm" href="{{ route('delete.blog', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
+                                            <a class="btn btn-info sm" href="{{ route('blog.edit', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
+                                            <a class="btn btn-danger sm" href="{{ route('blog.delete', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
 
@@ -61,4 +61,23 @@
         </div> <!-- container-fluid -->
     </div>
 
+@endsection
+
+@section('scripts')
+    @parent
+    @if(session('status') === 'blog-added')
+        <script>
+            toastr.success('Blog added')
+        </script>
+    @endif
+    @if(session('status') === 'blog-updated')
+        <script>
+            toastr.success('Blog updated')
+        </script>
+    @endif
+    @if(session('status') === 'blog-deleted')
+        <script>
+            toastr.success('Blog deleted')
+        </script>
+    @endif
 @endsection

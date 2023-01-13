@@ -101,7 +101,6 @@
         }
         & .slick-arrow {
             position: absolute;
-            position: absolute;
             left: -60px;
             top: 50%;
             @include transform(translateY(-50%));
@@ -131,42 +130,48 @@
     &__thumb {
         & img {
             display: inline-block;
-            @media #{$xs} {
+            margin: auto;
+            @media #{$sm} {
                 max-width: inherit;
-                max-height: 340px;
+                max-height: 250px;
             }
         }
     }
     &__overlay__content {
         position: absolute;
         width: 438px;
-        height: 438px;
-        background: rgba(0, 84, 255, .95);
-        border-radius: 50%;
+        height: 145px;
+        background: rgba(23, 23, 23, .4);
+        border-radius: 1%;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        top: 50%;
+        top: 85%;
         left: 50%;
         @include transform(translate(-50%, -50%) scale(.3));
         @include transition(.5s);
-        padding: 65px;
+        padding: 10px;
         text-align: center;
         opacity: 0;
         z-index: 1;
         @media #{$lg} {
             width: 340px;
-            height: 340px;
-            padding: 30px;
+            height: 145px;
+            padding: 10px;
+            top: 85%;
         }
         @media #{$md} {
             width: 300px;
-            height: 300px;
+            height: 80px;
+            top: 85%;
+
         }
-        @media #{$xs} {
+        @media #{$sm} {
             width: 250px;
-            height: 250px;
+            height: 80px;
+            top: 85%;
+
         }
         & > span {
             display: block;
@@ -182,14 +187,14 @@
             font-size: 24px;
             color: #fff;
             letter-spacing: -0.01em;
-            margin-bottom: 37px;
+            margin-bottom: 12px;
             line-height: 1.35;
             @media #{$md} {
-                font-size: 22px;
-                margin-bottom: 30px;
+                font-size: 15px;
+                margin-bottom: 11px;
             }
             @media #{$xs} {
-                font-size: 20px;
+                font-size: 15px;
             }
             & a:hover {
                 color: #fff;

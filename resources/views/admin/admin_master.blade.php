@@ -69,7 +69,7 @@
 <div class="rightbar-overlay"></div>
 
 <!-- JAVASCRIPT -->
-@section('scripts')
+
 <script src="{{ asset('backend/assets/libs/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('backend/assets/libs/metismenu/metisMenu.min.js') }}"></script>
@@ -103,6 +103,7 @@
 <!--Datatable init js -->
 <script src="{{asset('backend/assets/js/pages/datatables.init.js')}}"></script>
 
+@section('scripts')
 <!-- toastr -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
