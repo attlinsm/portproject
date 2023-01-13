@@ -9,7 +9,7 @@ use App\Http\Controllers\Home\BlogCategoryController;
 use App\Http\Controllers\Home\BlogController;
 use App\Http\Controllers\Home\FooterController;
 use App\Http\Controllers\Home\ContactController;
-
+use App\Http\Controllers\Home\SkillsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +29,7 @@ Route::get('/dashboard', function () {
     return view('admin.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Admin all routes
+// Admin routes
 Route::middleware(['auth'])->group(function () {
     Route::controller(AdminController::class)->group(function () {
 
@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-// Home slider all routes
+// Home slider routes
 Route::controller(HomeSliderController::class)->group(function () {
 
     route::get('/home/slide', 'HomeSlider')->name('home.slide');
@@ -53,7 +53,7 @@ Route::controller(HomeSliderController::class)->group(function () {
 
 });
 
-// About page all routes
+// About page routes
 Route::controller(AboutController::class)->group(function () {
 
     route::get('/about/page', 'AboutPage')->name('about.page');
@@ -73,7 +73,7 @@ Route::controller(AboutController::class)->group(function () {
 
 });
 
-// Portfolio all routes
+// Portfolio routes
 Route::controller(PortfolioController::class)->group(function () {
 
     route::get('/portfolio/all', 'AllPortfolio')->name('portfolio.all');
@@ -92,7 +92,7 @@ Route::controller(PortfolioController::class)->group(function () {
 
 });
 
-// Blog category all routes
+// Blog category routes
 Route::controller(BlogCategoryController::class)->group(function () {
 
     route::get('blog/category/all', 'AllBlogCategory')->name('blog.category.all');
@@ -107,7 +107,7 @@ Route::controller(BlogCategoryController::class)->group(function () {
 
 });
 
-// Blog all routes
+// Blog routes
 Route::controller(BlogController::class)->group(function () {
 
     route::get('/blog/all', 'AllBlog')->name('blog.all');
@@ -128,7 +128,7 @@ Route::controller(BlogController::class)->group(function () {
 
 });
 
-// Footer all routes
+// Footer routes
 Route::controller(FooterController::class)->group(function () {
 
     route::get('/footer/setup', 'FooterSetup')->name('footer.setup');
@@ -136,7 +136,7 @@ Route::controller(FooterController::class)->group(function () {
 
 });
 
-// Contact all routes
+// Contact routes
 Route::controller(ContactController::class)->group(function () {
 
     route::post('/message/store', 'StoreMessage')->name('message.store');
@@ -144,6 +144,21 @@ Route::controller(ContactController::class)->group(function () {
     route::get('/contact/message', 'ContactMessage')->name('contact.message');
 
     route::get('/message/delete/{id}', 'DeleteMessage')->name('message.delete');
+
+});
+
+//Skills routes
+Route::controller(SkillsController::class)->group(function () {
+
+    route::get('/skills/new', 'NewSkills')->name('skills.new');
+    route::post('/skills/store', 'StoreSkills')->name('skills.store');
+
+    route::get('/skills/all', 'AllSkills')->name('skills.all');
+
+    route::get('/skills/edit/{id}', 'EditSkills')->name('skills.edit');
+    route::post('/skills/update/{id}', 'UpdateSkills')->name('skills.update');
+
+    route::get('/skills/delete/{id}', 'DeleteSkills')->name('skills.delete');
 
 });
 
