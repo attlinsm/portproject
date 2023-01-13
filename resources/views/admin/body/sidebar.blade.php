@@ -41,6 +41,17 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-admin-line"></i>
+                        <span>Skills section</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('skills.new') }}">Add new</a></li>
+                        <li><a href="{{ route('skills.all') }}">All skills</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-file-info-line"></i>
                         <span>Portfolio section</span>
                     </a>
