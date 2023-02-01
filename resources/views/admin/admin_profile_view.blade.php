@@ -14,6 +14,8 @@
                         <hr>
                         <h4 class="card-title">Email: {{ $user->email }} </h4>
                         <hr>
+                        <h4 class="card-title">Groups: {{ $role->name }} </h4>
+                        <hr>
                         <a href="{{ route('profile.edit') }}" class="btn btn-info btn-rounded waves-effect waves-light" > Edit profile</a>
                     </div>
 

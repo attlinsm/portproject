@@ -8,13 +8,13 @@ use App\Models\Footer;
 
 class FooterController extends Controller
 {
-    public function FooterSetup()
+    public function footerSetup()
     {
         $footer = Footer::query()->find(1);
         return view('admin.footer.footer_all', compact('footer'));
     }
 
-    public function UpdateFooter(UpdateFooterRequest $request, $id)
+    public function updateFooter(UpdateFooterRequest $request, $id)
     {
         $validated = $request->validated();
 

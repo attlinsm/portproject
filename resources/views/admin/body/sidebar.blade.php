@@ -20,7 +20,7 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-community-line"></i>
-                        <span>Welcome section</span>
+                        <span>Welcome</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('home.slide') }}">Edit</a></li>
@@ -30,7 +30,7 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-account-circle-line"></i>
-                        <span>About section</span>
+                        <span>About</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('about.page') }}">General settings</a></li>
@@ -42,7 +42,7 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-admin-line"></i>
-                        <span>Skills section</span>
+                        <span>Skills</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('skills.new') }}">Add new</a></li>
@@ -53,7 +53,7 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-file-info-line"></i>
-                        <span>Portfolio section</span>
+                        <span>Portfolio projects</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('portfolio.all') }}">All portfolios</a></li>
@@ -106,6 +106,18 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('contact.message') }}">Show messages</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-title">USERS SECTION</li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-user-2-line"></i>
+                        <span>Users</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('users.all') }}">All users</a></li>
                     </ul>
                 </li>
 
