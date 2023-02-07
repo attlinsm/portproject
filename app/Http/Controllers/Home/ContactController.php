@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class ContactController extends Controller
 {
 
-    public function StoreMessage(StoreMessageRequest $request)
+    public function storeMessage(StoreMessageRequest $request)
     {
         $validated = $request->validated();
 
@@ -21,13 +21,13 @@ class ContactController extends Controller
         return redirect()->back()->with('status', 'message-delivered');
     }
 
-    public function ContactMessage()
+    public function contactMessage()
     {
         $contact = Contact::query()->latest()->get();
         return view('admin.contact.all_messages', compact('contact'));
     }
 
-    public function DeleteMessage($id)
+    public function deleteMessage($id)
     {
         Contact::query()->findOrFail($id)->delete();
 

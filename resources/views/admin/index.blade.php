@@ -21,6 +21,28 @@
         </div>
         <!-- end page title -->
 
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" action="{{ route('chat.ask') }}">
+                            @csrf
+                            <div class="row mb-3">
+                                <div class="col-sm-10">
+                                    <label for="example-text-input" class="col-sm-2 col-form-label"> ChatGPT interact field</label>
+                                    <textarea class="form-control @error('question') is-invalid @enderror" type="text" name="question"></textarea>
+                                    @error('question')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-info waves-effect waves-light" value="Ask">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </div>
