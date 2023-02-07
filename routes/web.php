@@ -228,7 +228,6 @@ Route::controller(UsersController::class)->group(function () {
 |--------------------------------------------------------------------------
 |
 */
-
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::controller(OpenAIController::class)->group(function () {
 
