@@ -41,7 +41,7 @@
                                         <td>{{ $id + 1 }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td><img src="{{ (!empty($user->profile_image)) ? url('/upload/admin_images/' . $user->profile_image) : url('upload/no_image.jpg') }}" alt="" style="width: 85px; height: 85px"></td>
+                                        <td><img src="{{ (!empty($user->profile_image)) ? url('storage/upload/admin_images/' . $user->profile_image) : url('storage/upload/no_image.jpg') }}" alt="" style="width: 85px; height: 85px"></td>
                                         @foreach($user->role as $role)
                                             <td>{{ $role->name }}</td>
                                         @endforeach
