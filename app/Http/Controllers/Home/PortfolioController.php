@@ -11,18 +11,18 @@ use Illuminate\Support\Str;
 
 class PortfolioController extends Controller
 {
-    public function AllPortfolio()
+    public function allPortfolio()
     {
         $portfolio = Portfolio::query()->latest()->get();
         return view('admin.portfolio.portfolio_all', compact('portfolio'));
     }
 
-    public function AddPortfolio()
+    public function addPortfolio()
     {
         return view('admin.portfolio.portfolio_add');
     }
 
-    public function StorePortfolio(StorePortfolioRequest $request)
+    public function storePortfolio(StorePortfolioRequest $request)
     {
         $validated = $request->validated();
 
@@ -37,13 +37,13 @@ class PortfolioController extends Controller
         return redirect()->route('portfolio.all')->with('status', 'portfolio-added');
     }
 
-    public function EditPortfolio($id)
+    public function editPortfolio($id)
     {
         $portfolio = Portfolio::query()->findOrFail($id);
         return view('admin.portfolio.portfolio_edit', compact('portfolio'));
     }
 
-    public function UpdatePortfolio(UpdatePortfolioRequest $request, $id)
+    public function updatePortfolio(UpdatePortfolioRequest $request, $id)
     {
         $validated = $request->validated();
 
@@ -61,7 +61,7 @@ class PortfolioController extends Controller
         return redirect()->route('portfolio.all')->with('status', 'portfolio-updated');
     }
 
-    public function DeletePortfolio($id)
+    public function deletePortfolio($id)
     {
         $portfolio = Portfolio::query()->findOrFail($id);
         $portfolio_image = $portfolio->portfolio_image;
@@ -72,13 +72,13 @@ class PortfolioController extends Controller
         return redirect()->back()->with('status', 'portfolio-deleted');
     }
 
-    public function PortfolioDetails($id)
+    public function portfolioDetails($id)
     {
         $portfolio = Portfolio::query()->findOrFail($id);
         return view('frontend.portfolio_details',compact('portfolio'));
     }
 
-    public function HomePortfolio()
+    public function homePortfolio()
     {
         $portfolio = Portfolio::query()->latest()->get();
         return view('frontend.portfolio',compact('portfolio'));

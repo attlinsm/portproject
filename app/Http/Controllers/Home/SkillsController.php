@@ -12,12 +12,12 @@ use Intervention\Image\Facades\Image;
 
 class SkillsController extends Controller
 {
-    public function NewSkills()
+    public function newSkills()
     {
         return view('admin.skills.skills_add');
     }
 
-    public function StoreSkills(StoreSkillsRequest $request)
+    public function storeSkills(StoreSkillsRequest $request)
     {
         $validated = $request->validated();
 
@@ -39,19 +39,19 @@ class SkillsController extends Controller
         return redirect()->route('skills.all')->with('status', 'skill-added');
     }
 
-    public function AllSkills()
+    public function allSkills()
     {
         $skills = Skills::query()->latest()->get();
         return view('admin.skills.skills_all', compact('skills'));
     }
 
-    public function EditSkills($id)
+    public function editSkills($id)
     {
         $skill = Skills::query()->findOrFail($id);
         return view('admin.skills.skills_edit', compact('skill'));
     }
 
-    public function DeleteSkills($id)
+    public function deleteSkills($id)
     {
         $skill = Skills::query()->findOrFail($id);
 
@@ -66,7 +66,7 @@ class SkillsController extends Controller
         return redirect()->back()->with('status', 'skill-deleted');
     }
 
-    public function UpdateSkills(UpdateSkillsRequest $request, $id)
+    public function updateSkills(UpdateSkillsRequest $request, $id)
     {
         $validated = $request->validated();
 
