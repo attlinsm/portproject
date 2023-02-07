@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OpenAI\OpenAIController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\HomeSliderController;
@@ -25,10 +26,6 @@ use App\Http\Controllers\Home\UsersController;
 Route::get('/', function () {
     return view('frontend.index');
 })->name('welcome.page');
-
-Route::get('/dashboard', function () {
-    return view('admin.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 /*
 |--------------------------------------------------------------------------
@@ -222,6 +219,23 @@ Route::controller(UsersController::class)->group(function () {
     route::get('/users/{id}/delete', 'deleteUsers')->name('users.delete');
 
     route::post('/users/{id}/update', 'updateUsers')->name('users.update');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| OpenAI Routes
+|--------------------------------------------------------------------------
+|
+*/
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::controller(OpenAIController::class)->group(function () {
+
+        route::get('/dashboard', 'showChatGpt')->name('dashboard');
+        route::post('/chatgpt', 'askChatGpt')->name('chat.ask');
+
+    });
 });
 
 require __DIR__.'/auth.php';
