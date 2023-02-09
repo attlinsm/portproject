@@ -30,12 +30,16 @@ class BlogController extends Controller
 
         $image = $request->file('image');
         $name = Str::uuid();
-        Image::make($image)->resize(430, 327)->save('upload/blog_images/' . $name);
+
+        Image::make($image)->resize(430, 327)->save(storage_path('app/public/upload/blog_images/') . $name);
+
         $validated['image'] = $name;
 
         $image_details = $request->file('image');
         $name_details = Str::uuid();
-        Image::make($image_details)->resize(850, 430)->save('upload/blog_images/blog_details/' . $name_details);
+
+        Image::make($image_details)->resize(850, 430)->save(storage_path('app/public/upload/blog_images/blog_details/') . $name_details);
+
         $validated['image_details'] = $name_details;
 
         $data = new Blog();
@@ -59,12 +63,15 @@ class BlogController extends Controller
 
             $image = $request->file('image');
             $name = Str::uuid();
-            Image::make($image)->resize(430, 327)->save('upload/blog_images/' . $name);
+
+            Image::make($image)->resize(430, 327)->save(storage_path('app/public/upload/blog_images/') . $name);
             $validated['image'] = $name;
 
             $image_details = $request->file('image');
             $name_details = Str::uuid();
-            Image::make($image_details)->resize(850, 430)->save('upload/blog_images/blog_details/' . $name_details);
+
+            Image::make($image_details)->resize(850, 430)->save(storage_path('app/public/upload/blog_images/blog_details/') . $name_details);
+
             $validated['image_details'] = $name_details;
 
         }
@@ -80,8 +87,8 @@ class BlogController extends Controller
         $blog = Blog::query()->findOrFail($id);
         $image = $blog->image;
         $image_details = $blog->image_details;
-        unlink('upload/blog_images/' . $image);
-        unlink('upload/blog_images/' . $image_details);
+        unlink(storage_path('app/public/upload/blog_images/') . $image);
+        unlink(storage_path('app/public/upload/blog_images/') . $image_details);
 
         Blog::query()->findOrFail($id)->delete();
 

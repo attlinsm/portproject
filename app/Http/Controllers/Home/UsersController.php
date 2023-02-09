@@ -48,7 +48,7 @@ class UsersController extends Controller
             $file = $validated['profile_image'];
             $filename = 'avatar_' . $id;
 
-            $file->move(public_path('upload/admin_images'), $filename);
+            $file->move(storage_path('app/public/upload/admin_images'), $filename);
             $validated['profile_image'] = $filename;
 
             $user->update([

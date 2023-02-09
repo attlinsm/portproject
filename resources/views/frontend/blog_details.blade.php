@@ -40,7 +40,7 @@
             <div class="col-lg-8">
                 <div class="standard__blog__post">
                     <div class="standard__blog__thumb">
-                        <img src="{{ asset('upload/blog_images/blog_details/' . $blog->image_details) }}" alt="">
+                        <img src="{{ asset('storage/upload/blog_images/blog_details/' . $blog->image_details) }}" alt="">
                     </div>
                     <div class="blog__details__content services__details__content">
                         <ul class="blog__post__meta">
@@ -209,7 +209,7 @@
                             @foreach($all_blogs as $item)
                             <li class="rc__post__item">
                                 <div class="rc__post__thumb">
-                                    <a href="{{ route('blog.details', $item->id) }}"><img src="{{ asset('upload/blog_images/' . $item->image) }}" alt=""></a>
+                                    <a href="{{ route('blog.details', $item->id) }}"><img src="{{ asset('storage/upload/blog_images/' . $item->image) }}" alt=""></a>
                                 </div>
                                 <div class="rc__post__content">
                                     <h5 class="title"><a href="{{ route('blog.details', $item->id) }}">{{ $item->title }}</a></h5>

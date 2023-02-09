@@ -28,7 +28,9 @@ class PortfolioController extends Controller
 
         $image = $request->file('portfolio_image');
         $name = Str::uuid();
-        Image::make($image)->resize(800, 800)->save('upload/portfolio_images/' . $name);
+
+        Image::make($image)->resize(800, 800)->save(storage_path('app/public/upload/portfolio_images/') . $name);
+
         $validated['portfolio_image'] = $name;
 
         $data = new Portfolio();
@@ -51,7 +53,9 @@ class PortfolioController extends Controller
 
             $image = $request->file('portfolio_image');
             $name = Str::uuid();
-            Image::make($image)->resize(800, 800)->save('upload/portfolio_images/' . $name);
+
+            Image::make($image)->resize(800, 800)->save(storage_path('app/public/upload/portfolio_images/') . $name);
+
             $validated['portfolio_image'] = $name;
 
         }
@@ -65,7 +69,7 @@ class PortfolioController extends Controller
     {
         $portfolio = Portfolio::query()->findOrFail($id);
         $portfolio_image = $portfolio->portfolio_image;
-        unlink('upload/portfolio_images/' . $portfolio_image);
+        unlink(storage_path('app/public/upload/portfolio_images/') . $portfolio_image);
 
         Portfolio::query()->findOrFail($id)->delete();
 
