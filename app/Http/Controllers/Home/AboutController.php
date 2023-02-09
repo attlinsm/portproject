@@ -32,10 +32,18 @@ class AboutController extends Controller
             Image::make($image)->resize(523, 605)->save(storage_path('app/public/upload/about_image/') . $name);
 
             $validated['about_image'] = $name;
-        }
 
-        $data = About::query()->findOrFail($id);
-        $data->fill($validated)->save();
+            $data = About::query()->findOrFail($id);
+
+            if ($data->about_image) {
+
+                $old_image = $data->about_image;
+                unlink(storage_path('app/public/upload/about_image/') . $old_image);
+
+            }
+
+            $data->fill($validated)->save();
+        }
 
         return redirect()->back()->with('status', 'about-updated');
     }
