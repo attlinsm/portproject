@@ -21,7 +21,7 @@ class OpenAIController extends Controller
             'model' => 'text-davinci-003',
             'prompt' => $validated['question'],
             'max_tokens' => 400,
-            'temperature' => 0,
+            'temperature' => 0.1,
         ]);
 
         return view('admin.openai.result', compact('response'));
