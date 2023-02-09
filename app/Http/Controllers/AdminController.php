@@ -26,7 +26,7 @@ class AdminController extends Controller
     public function profile()
     {
         $user = Auth::user();
-        $role = Role::query()->find($user->id);
+        $role = $user->role;
         return view('admin.admin_profile_view', compact('user', 'role'));
     }
 
@@ -45,7 +45,7 @@ class AdminController extends Controller
             $file = $request->file('profile_image');
 
             $filename = 'avatar_' . $request->user()->id;
-            $file->move(public_path('upload/admin_images'), $filename);
+            $file->move(storage_path('app/public/upload/admin_images'), $filename);
 
             $validated['profile_image'] = $filename;
         }

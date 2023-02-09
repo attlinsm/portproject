@@ -28,11 +28,22 @@ class AboutController extends Controller
 
             $image = $request->file('about_image');
             $name = Str::uuid();
-            Image::make($image)->resize(523, 605)->save('upload/about_image/' . $name);
+
+            Image::make($image)->resize(523, 605)->save(storage_path('app/public/upload/about_image/') . $name);
+
             $validated['about_image'] = $name;
+
+            $data = About::query()->findOrFail($id);
+
+            if ($data->about_image) {
+
+                $old_image = $data->about_image;
+                unlink(storage_path('app/public/upload/about_image/') . $old_image);
+
+            }
+
+            $data->fill($validated)->save();
         }
-        $data = About::query()->findOrFail($id);
-        $data->fill($validated)->save();
 
         return redirect()->back()->with('status', 'about-updated');
     }
@@ -58,7 +69,7 @@ class AboutController extends Controller
 
             $name = Str::uuid();
 
-            Image::make($multi_image)->resize(90, 90)->save('upload/multi_images/' . $name);
+            Image::make($multi_image)->resize(90, 90)->save(storage_path('app/public/upload/multi_images/') . $name);
 
             $validated['multi_image'] = $name;
 
@@ -89,9 +100,10 @@ class AboutController extends Controller
         if ($request->file('multi_image')) {
 
             $image = $request->file('multi_image');
-
             $name = Str::uuid();
-            Image::make($image)->resize(220, 220)->save('upload/multi_images/' . $name);
+
+            Image::make($image)->resize(220, 220)->save(storage_path('app/public/upload/multi_images/') . $name);
+
             $validated['multi_image'] = $name;
 
             $data = MultiImage::query()->findOrFail($id);
@@ -106,7 +118,7 @@ class AboutController extends Controller
     {
         $multiImage = MultiImage::query()->findOrFail($id);
         $img = $multiImage->multi_image;
-        unlink('upload/multi_images/' . $img);
+        unlink(storage_path('app/public/upload/multi_images/') . $img);
 
         MultiImage::query()->findOrFail($id)->delete();
 
