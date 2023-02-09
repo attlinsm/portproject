@@ -53,21 +53,13 @@
                     </div>
                     <div class="blog__details__bottom">
                         <ul class="blog__details__tag">
-                            <li class="title">Tag:</li>
+                            <li class="title">Tags:</li>
                             <li class="tags-list">
                                 <a href="#">{{ $blog->tags }}</a>
                             </li>
                         </ul>
-                        <ul class="blog__details__social">
-                            <li class="title">Share :</li>
-                            <li class="social-icons">
-                                <a href="#"><i class="fab fa-facebook"></i></a>
-                                <a href="#"><i class="fab fa-twitter-square"></i></a>
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-pinterest"></i></a>
-                            </li>
-                        </ul>
                     </div>
+                    {{-- Next or prev post --}}
                     <div class="blog__next__prev">
                         <div class="row justify-content-between">
                             <div class="col-xl-5 col-md-6">
@@ -99,6 +91,7 @@
                             </div>
                         </div>
                     </div>
+                    {{-- Comments --}}
                     <div class="comment comment__wrap">
                         <div class="comment__title">
                             <h4 class="title">(04) Comment</h4>
@@ -166,33 +159,17 @@
                             </li>
                         </ul>
                     </div>
+                    {{-- Comment form --}}
                     <div class="comment__form">
                         <div class="comment__title">
                             <h4 class="title">Write your comment</h4>
                         </div>
                         <form action="#">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" placeholder="Enter your name*">
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="email" placeholder="Enter your mail*">
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" placeholder="Enter your number*">
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" placeholder="Website*">
-                                </div>
-                            </div>
                             <textarea name="message" id="message" placeholder="Enter your Massage*"></textarea>
-                            <div class="form-grp checkbox-grp">
-                                <input type="checkbox" id="checkbox">
-                                <label for="checkbox">Save my name, email, and website in this browser for the next time I comment.</label>
-                            </div>
                             <button type="submit" class="btn">post a comment</button>
                         </form>
                     </div>
+
                 </div>
             </div>
             <div class="col-lg-4">
@@ -204,7 +181,7 @@
                         </form>
                     </div>
                     <div class="widget">
-                        <h4 class="widget-title">Recent blog</h4>
+                        <h4 class="widget-title">Recent posts</h4>
                         <ul class="rc__post">
                             @foreach($all_blogs as $item)
                             <li class="rc__post__item">
@@ -225,43 +202,6 @@
                             @foreach($categories as $item)
                             <li class="sidebar__cat__item"><a href="{{ route('blog.category', $item->id) }}">{{ $item->blog_category }}</a></li>
                             @endforeach
-                        </ul>
-                    </div>
-                    <div class="widget">
-                        <h4 class="widget-title">Recent Comment</h4>
-                        <ul class="sidebar__comment">
-                            <li class="sidebar__comment__item">
-                                <a href="blog-details.html">Rasalina Sponde</a>
-                                <p>There are many variations of passages of lorem ipsum available, but the majority have</p>
-                            </li>
-                            <li class="sidebar__comment__item">
-                                <a href="blog-details.html">Rasalina Sponde</a>
-                                <p>There are many variations of passages of lorem ipsum available, but the majority have</p>
-                            </li>
-                            <li class="sidebar__comment__item">
-                                <a href="blog-details.html">Rasalina Sponde</a>
-                                <p>There are many variations of passages of lorem ipsum available, but the majority have</p>
-                            </li>
-                            <li class="sidebar__comment__item">
-                                <a href="blog-details.html">Rasalina Sponde</a>
-                                <p>There are many variations of passages of lorem ipsum available, but the majority have</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="widget">
-                        <h4 class="widget-title">Popular Tags</h4>
-                        <ul class="sidebar__tags">
-                            <li><a href="blog.html">Business</a></li>
-                            <li><a href="blog.html">Design</a></li>
-                            <li><a href="blog.html">apps</a></li>
-                            <li><a href="blog.html">landing page</a></li>
-                            <li><a href="blog.html">data</a></li>
-                            <li><a href="blog.html">website</a></li>
-                            <li><a href="blog.html">book</a></li>
-                            <li><a href="blog.html">Design</a></li>
-                            <li><a href="blog.html">product design</a></li>
-                            <li><a href="blog.html">landing page</a></li>
-                            <li><a href="blog.html">data</a></li>
                         </ul>
                     </div>
                 </aside>

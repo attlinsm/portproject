@@ -81,7 +81,7 @@
                         </form>
                     </div>
                     <div class="widget">
-                        <h4 class="widget-title">Recent Blog</h4>
+                        <h4 class="widget-title">Recent posts</h4>
                         <ul class="rc__post">
                             @foreach($all_blogs as $item)
                             <li class="rc__post__item">
@@ -102,43 +102,6 @@
                             @foreach($categories as $item)
                             <li class="sidebar__cat__item"><a href="{{ route('blog.category', $item->id) }}">{{ $item->blog_category }}</a></li>
                             @endforeach
-                        </ul>
-                    </div>
-                    <div class="widget">
-                        <h4 class="widget-title">Recent Comment</h4>
-                        <ul class="sidebar__comment">
-                            <li class="sidebar__comment__item">
-                                <a href="blog-details.html">Rasalina Sponde</a>
-                                <p>There are many variations of passages of lorem ipsum available, but the majority have</p>
-                            </li>
-                            <li class="sidebar__comment__item">
-                                <a href="blog-details.html">Rasalina Sponde</a>
-                                <p>There are many variations of passages of lorem ipsum available, but the majority have</p>
-                            </li>
-                            <li class="sidebar__comment__item">
-                                <a href="blog-details.html">Rasalina Sponde</a>
-                                <p>There are many variations of passages of lorem ipsum available, but the majority have</p>
-                            </li>
-                            <li class="sidebar__comment__item">
-                                <a href="blog-details.html">Rasalina Sponde</a>
-                                <p>There are many variations of passages of lorem ipsum available, but the majority have</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="widget">
-                        <h4 class="widget-title">Popular Tags</h4>
-                        <ul class="sidebar__tags">
-                            <li><a href="blog.html">Business</a></li>
-                            <li><a href="blog.html">Design</a></li>
-                            <li><a href="blog.html">apps</a></li>
-                            <li><a href="blog.html">landing page</a></li>
-                            <li><a href="blog.html">data</a></li>
-                            <li><a href="blog.html">website</a></li>
-                            <li><a href="blog.html">book</a></li>
-                            <li><a href="blog.html">Design</a></li>
-                            <li><a href="blog.html">product design</a></li>
-                            <li><a href="blog.html">landing page</a></li>
-                            <li><a href="blog.html">data</a></li>
                         </ul>
                     </div>
                 </aside>
