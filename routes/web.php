@@ -3,15 +3,15 @@
 use App\Http\Controllers\OpenAI\OpenAIController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Home\HomeSliderController;
-use App\Http\Controllers\Home\AboutController;
-use App\Http\Controllers\Home\PortfolioController;
-use App\Http\Controllers\Home\BlogCategoryController;
-use App\Http\Controllers\Home\BlogController;
-use App\Http\Controllers\Home\FooterController;
+use App\Http\Controllers\Admin\HomeSliderController;
+use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\PortfolioController;
+use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Home\ContactController;
-use App\Http\Controllers\Home\SkillsController;
-use App\Http\Controllers\Home\UsersController;
+use App\Http\Controllers\Admin\SkillsController;
+use App\Http\Controllers\Admin\UsersController;
 
 
 Route::view('/', 'frontend.index')->name('welcome.page');

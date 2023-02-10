@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Home;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateMultiImageRequest extends FormRequest
+class UpdateRoleUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,8 @@ class UpdateMultiImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'multi_image' => [
-                'required',
-                'image',
-                'mimes:jpeg,png,jpg,gif,svg',
-                'dimensions:max_width=250,max_height=250'
-            ]
+            'role' => ['nullable'],
+            'profile_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,svg', 'dimensions:max_width=1500,max_height=1500']
         ];
     }
 }
