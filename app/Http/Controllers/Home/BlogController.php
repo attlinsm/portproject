@@ -12,19 +12,19 @@ use Intervention\Image\Facades\Image;
 
 class BlogController extends Controller
 {
-    public function allBlog()
+    public function all()
     {
         $blogs = Blog::query()->latest()->get();
         return view('admin.blogs.blogs_all', compact('blogs'));
     }
 
-    public function addBlog()
+    public function add()
     {
         $categories = BlogCategory::query()->orderBy('blog_category', 'ASC')->get();
         return view('admin.blogs.blogs_add', compact('categories'));
     }
 
-    public function storeBlog(StoreBlogRequest $request)
+    public function store(StoreBlogRequest $request)
     {
         $validated = $request->validated();
 
@@ -48,14 +48,14 @@ class BlogController extends Controller
         return redirect()->route('blog.all')->with('status', 'blog-added');
     }
 
-    public function editBlog($id)
+    public function edit($id)
     {
         $blogs = Blog::query()->findOrFail($id);
         $categories = BlogCategory::query()->orderBy('blog_category', 'ASC')->get();
         return view('admin.blogs.blogs_edit', compact('blogs', 'categories'));
     }
 
-    public function updateBlog(UpdateBlogRequest $request, $id)
+    public function update(UpdateBlogRequest $request, $id)
     {
         $validated = $request->validated();
 
@@ -82,7 +82,7 @@ class BlogController extends Controller
         return redirect()->route('blog.all')->with('status', 'blog-updated');
     }
 
-    public function deleteBlog($id)
+    public function delete($id)
     {
         $blog = Blog::query()->findOrFail($id);
         $image = $blog->image;
@@ -95,7 +95,7 @@ class BlogController extends Controller
         return redirect()->back()->with('status', 'blog-deleted');
     }
 
-    public function blogDetails($id)
+    public function details($id)
     {
         $categories = BlogCategory::query()->orderBy('blog_category', 'ASC')->get();
         $all_blogs = Blog::query()->latest()->limit(5)->get();
@@ -103,7 +103,7 @@ class BlogController extends Controller
         return view('frontend.blog_details', compact('blog', 'all_blogs', 'categories'));
     }
 
-    public function categoryBlog($id)
+    public function category($id)
     {
         $blog_post = Blog::query()->where('category_id', $id)->orderBy('id', 'DESC')->get();
         $all_blogs = Blog::query()->latest()->limit(5)->get();
@@ -112,7 +112,7 @@ class BlogController extends Controller
         return view('frontend.category_blog_details', compact('blog_post', 'all_blogs', 'categories', 'category_name'));
     }
 
-    public function homeBlog()
+    public function blog()
     {
         $all_blogs = Blog::query()->latest()->paginate(3);
         $categories = BlogCategory::query()->orderBy('blog_category', 'ASC')->get();

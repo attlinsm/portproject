@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\OpenAI\OpenAIController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\PortfolioController;
@@ -12,20 +12,9 @@ use App\Http\Controllers\Home\FooterController;
 use App\Http\Controllers\Home\ContactController;
 use App\Http\Controllers\Home\SkillsController;
 use App\Http\Controllers\Home\UsersController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('frontend.index');
-})->name('welcome.page');
+
+Route::view('/', 'frontend.index')->name('welcome.page');
 
 /*
 |--------------------------------------------------------------------------
@@ -33,17 +22,19 @@ Route::get('/', function () {
 |--------------------------------------------------------------------------
 |
 */
+
 Route::middleware(['auth'])->group(function () {
-    Route::controller(AdminController::class)->group(function () {
+    Route::controller(AdminController::class)
+        ->prefix('admin')->group(function () {
 
-        route::get('/admin/logout', 'destroy')->name('admin.logout');
-        route::get('/admin/profile', 'profile')->name('admin.profile');
+        route::get('/logout', 'destroy')->name('admin.logout');
+        route::get('/profile', 'profile')->name('admin.profile');
 
-        route::get('/profile/edit', 'editProfile')->name('profile.edit');
-        route::post('/profile/store', 'storeProfile')->name('profile.store');
+        route::get('/profile/edit', 'edit')->name('profile.edit');
+        route::post('/profile/store', 'store')->name('profile.store');
 
-        route::get('/password/change', 'changePassword')->name('password.change');
-        route::post('/passwords/update', 'updatePassword')->name('passwords.update');
+        route::get('/password/change', 'change')->name('password.change');
+        route::post('/passwords/update', 'update')->name('passwords.update');
 
     });
 });
@@ -54,10 +45,11 @@ Route::middleware(['auth'])->group(function () {
 |--------------------------------------------------------------------------
 |
 */
+
 Route::controller(HomeSliderController::class)->group(function () {
 
-    route::get('/home/slide', 'homeSlider')->name('home.slide');
-    route::post('/slide/update/{id}', 'updateSlider')->name('slide.update');
+    route::get('/home/slide', 'slide')->name('home.slide');
+    route::post('/slide/{id}/update', 'update')->name('slide.update');
 
 });
 
@@ -67,22 +59,23 @@ Route::controller(HomeSliderController::class)->group(function () {
 |--------------------------------------------------------------------------
 |
 */
+
 Route::controller(AboutController::class)->group(function () {
 
-    route::get('/about/page', 'aboutPage')->name('about.page');
-    route::post('/about/update/{id}', 'updateAbout')->name('about.update');
+    route::get('/about/edit', 'edit')->name('about.edit');
+    route::post('/about/{id}/update', 'update')->name('about.update');
 
-    route::get('/about', 'homeAbout')->name('home.about');
+    route::get('/home/about', 'about')->name('home.about');
 
     route::get('/multi/image/add', 'aboutMultiImage')->name('multi.image.add');
     route::post('/multi/image/store', 'storeMultiImage')->name('multi.image.store');
 
     route::get('/multi/image/all', 'allMultiImage')->name('multi.image.all');
 
-    route::get('/multi/image/edit/{id}', 'editMultiImage')->name('multi.image.edit');
-    route::post('/multi/image/update/{id}', 'updateMultiImage')->name('multi.image.update');
+    route::get('/multi/image/{id}/edit', 'editMultiImage')->name('multi.image.edit');
+    route::post('/multi/image/{id}/update', 'updateMultiImage')->name('multi.image.update');
 
-    route::get('/multi/image/delete/{id}', 'deleteMultiImage')->name('multi.image.delete');
+    route::get('/multi/image/{id}/delete', 'deleteMultiImage')->name('multi.image.delete');
 
 });
 
@@ -92,23 +85,25 @@ Route::controller(AboutController::class)->group(function () {
 |--------------------------------------------------------------------------
 |
 */
-Route::controller(PortfolioController::class)->group(function () {
 
-    route::get('/portfolio/all', 'allPortfolio')->name('portfolio.all');
-    route::get('/portfolio/add', 'addPortfolio')->name('portfolio.add');
+Route::controller(PortfolioController::class)
+    ->prefix('portfolio')->group(function () {
 
-    route::post('/portfolio/store', 'storePortfolio')->name('portfolio.store');
+    route::get('/all', 'all')->name('portfolio.all');
+    route::get('/add', 'add')->name('portfolio.add');
 
-    route::get('/portfolio/edit/{id}', 'editPortfolio')->name('portfolio.edit');
-    route::post('/portfolio/update/{id}', 'updatePortfolio')->name('portfolio.update');
+    route::post('/store', 'store')->name('portfolio.store');
 
-    route::get('/portfolio/delete/{id}', 'deletePortfolio')->name('portfolio.delete');
+    route::get('/{id}/edit', 'edit')->name('portfolio.edit');
+    route::post('/{id}/update', 'update')->name('portfolio.update');
 
-    route::get('/portfolio/details/{id}', 'portfolioDetails')->name('portfolio.details');
+    route::get('/{id}/delete', 'delete')->name('portfolio.delete');
 
-    route::get('/portfolio', 'homePortfolio')->name('home.portfolio');
+    route::get('/{id}/details', 'details')->name('portfolio.details');
 
 });
+
+Route::get('/home/portfolio', [PortfolioController::class, 'portfolio'])->name('home.portfolio');
 
 /*
 |--------------------------------------------------------------------------
@@ -116,17 +111,19 @@ Route::controller(PortfolioController::class)->group(function () {
 |--------------------------------------------------------------------------
 |
 */
-Route::controller(BlogCategoryController::class)->group(function () {
 
-    route::get('blog/category/all', 'allBlogCategory')->name('blog.category.all');
-    route::get('blog/category/add', 'addBlogCategory')->name('blog.category.add');
+Route::controller(BlogCategoryController::class)
+    ->prefix('blog/category')->group(function () {
 
-    route::post('blog/category/store', 'storeBlogCategory')->name('blog.category.store');
+    route::get('/all', 'all')->name('blog.category.all');
+    route::get('/add', 'add')->name('blog.category.add');
 
-    route::get('/blog/category/edit/{id}', 'editBlogCategory')->name('blog.category.edit');
-    route::post('/blog/category/update/{id}', 'updateBlogCategory')->name('blog.category.update');
+    route::post('/store', 'store')->name('blog.category.store');
 
-    route::get('/blog/category/delete/{id}', 'deleteBlogCategory')->name('blog.category.delete');
+    route::get('/{id}/edit', 'edit')->name('blog.category.edit');
+    route::post('/{id}/update', 'update')->name('blog.category.update');
+
+    route::get('/{id}/delete', 'delete')->name('blog.category.delete');
 
 });
 
@@ -136,25 +133,27 @@ Route::controller(BlogCategoryController::class)->group(function () {
 |--------------------------------------------------------------------------
 |
 */
-Route::controller(BlogController::class)->group(function () {
 
-    route::get('/blog/all', 'allBlog')->name('blog.all');
-    route::get('/blog/add', 'addBlog')->name('blog.add');
+Route::controller(BlogController::class)
+    ->prefix('blog')->group(function () {
 
-    route::post('/blog/store', 'storeBlog')->name('blog.store');
+    route::get('/all', 'all')->name('blog.all');
+    route::get('/add', 'add')->name('blog.add');
 
-    route::get('/blog/edit/{id}', 'editBlog')->name('blog.edit');
-    route::post('/blog/update/{id}', 'updateBlog')->name('blog.update');
+    route::post('/store', 'store')->name('blog.store');
 
-    route::get('/blog/delete/{id}', 'deleteBlog')->name('blog.delete');
+    route::get('/{id}/edit', 'edit')->name('blog.edit');
+    route::post('/{id}/update', 'update')->name('blog.update');
 
-    route::get('/blog/details/{id}', 'blogDetails')->name('blog.details');
+    route::get('/{id}/delete', 'delete')->name('blog.delete');
 
-    route::get('/blog/category/{id}', 'categoryBlog')->name('blog.category');
+    route::get('/{id}/details', 'details')->name('blog.details');
 
-    route::get('/blog', 'homeBlog')->name('home.blog');
+    route::get('/{id}/category', 'category')->name('blog.category');
 
 });
+
+Route::get('/home/blog', [BlogController::class, 'blog'])->name('home.blog');
 
 /*
 |--------------------------------------------------------------------------
@@ -162,10 +161,12 @@ Route::controller(BlogController::class)->group(function () {
 |--------------------------------------------------------------------------
 |
 */
-Route::controller(FooterController::class)->group(function () {
 
-    route::get('/footer/setup', 'footerSetup')->name('footer.setup');
-    route::post('/footer/update/{id}', 'updateFooter')->name('footer.update');
+Route::controller(FooterController::class)
+    ->prefix('footer')->group(function () {
+
+    route::get('/setup', 'setup')->name('footer.setup');
+    route::post('/{id}/update', 'update')->name('footer.update');
 
 });
 
@@ -175,13 +176,14 @@ Route::controller(FooterController::class)->group(function () {
 |--------------------------------------------------------------------------
 |
 */
+
 Route::controller(ContactController::class)->group(function () {
 
-    route::post('/message/store', 'storeMessage')->name('message.store');
+    route::post('/message/store', 'store')->name('message.store');
 
-    route::get('/contact/message', 'contactMessage')->name('contact.message');
+    route::get('/contact/message', 'message')->name('contact.message');
 
-    route::get('/message/delete/{id}', 'deleteMessage')->name('message.delete');
+    route::get('/message/{id}/delete', 'delete')->name('message.delete');
 
 });
 
@@ -191,17 +193,19 @@ Route::controller(ContactController::class)->group(function () {
 |--------------------------------------------------------------------------
 |
 */
-Route::controller(SkillsController::class)->group(function () {
 
-    route::get('/skills/new', 'newSkills')->name('skills.new');
-    route::post('/skills/store', 'storeSkills')->name('skills.store');
+Route::controller(SkillsController::class)
+    ->prefix('skills')->group(function () {
 
-    route::get('/skills/all', 'allSkills')->name('skills.all');
+    route::get('/new', 'new')->name('skills.new');
+    route::post('/store', 'store')->name('skills.store');
 
-    route::get('/skills/edit/{id}', 'editSkills')->name('skills.edit');
-    route::post('/skills/update/{id}', 'updateSkills')->name('skills.update');
+    route::get('/all', 'all')->name('skills.all');
 
-    route::get('/skills/delete/{id}', 'deleteSkills')->name('skills.delete');
+    route::get('/{id}/edit', 'edit')->name('skills.edit');
+    route::post('/{id}/update', 'update')->name('skills.update');
+
+    route::get('/{id}/delete', 'delete')->name('skills.delete');
 
 });
 
@@ -211,14 +215,16 @@ Route::controller(SkillsController::class)->group(function () {
 |--------------------------------------------------------------------------
 |
 */
-Route::controller(UsersController::class)->group(function () {
 
-    route::get('/users/all', 'allUsers')->name('users.all');
+Route::controller(UsersController::class)
+    ->prefix('user')->group(function () {
 
-    route::get('/users/{id}/edit', 'editUsers')->name('users.edit');
-    route::get('/users/{id}/delete', 'deleteUsers')->name('users.delete');
+    route::get('/all', 'all')->name('users.all');
 
-    route::post('/users/{id}/update', 'updateUsers')->name('users.update');
+    route::get('/{id}/edit', 'edit')->name('users.edit');
+    route::get('/{id}/delete', 'delete')->name('users.delete');
+
+    route::post('/{id}/update', 'update')->name('users.update');
 });
 
 
@@ -228,11 +234,12 @@ Route::controller(UsersController::class)->group(function () {
 |--------------------------------------------------------------------------
 |
 */
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::controller(OpenAIController::class)->group(function () {
 
-        route::get('/dashboard', 'showChatGpt')->name('dashboard');
-        route::post('/chatgpt', 'askChatGpt')->name('chat.ask');
+        route::get('/dashboard', 'dashboard')->name('dashboard');
+        route::post('/chatgpt', 'ask')->name('chat.ask');
 
     });
 });

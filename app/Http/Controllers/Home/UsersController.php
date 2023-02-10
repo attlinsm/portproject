@@ -10,20 +10,20 @@ use App\Models\User;
 
 class UsersController extends Controller
 {
-    public function allUsers()
+    public function all()
     {
         $users = User::query()->get()->all();
         return view('admin.users.users_all', compact('users'));
     }
 
-    public function editUsers($id)
+    public function edit($id)
     {
         $user = User::query()->findOrFail($id);
         $roles = Role::query()->get()->all();
         return view('admin.users.users_edit', compact('user', 'roles'));
     }
 
-    public function deleteUsers($id)
+    public function delete($id)
     {
         $user = User::query()->findOrFail($id);
 
@@ -37,7 +37,7 @@ class UsersController extends Controller
         return redirect()->back()->with('status', 'user-deleted');
     }
 
-    public function updateUsers(UpdateRoleUserRequest $request, $id)
+    public function update(UpdateRoleUserRequest $request, $id)
     {
         $validated = $request->validated();
 

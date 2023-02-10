@@ -14,13 +14,13 @@ use Intervention\Image\Facades\Image;
 class AboutController extends Controller
 {
 
-    public function aboutPage()
+    public function edit()
     {
         $aboutPage = About::query()->find(1);
         return view('admin.about_page.about_page_all', compact('aboutPage'));
     }
 
-    public function updateAbout(UpdateAboutRequest $request, $id)
+    public function update(UpdateAboutRequest $request, $id)
     {
         $validated = $request->validated();
 
@@ -48,7 +48,7 @@ class AboutController extends Controller
         return redirect()->back()->with('status', 'about-updated');
     }
 
-    public function homeAbout()
+    public function about()
     {
         $aboutPage = About::query()->find(1);
         return view('frontend.about', compact('aboutPage'));

@@ -12,13 +12,13 @@ use Intervention\Image\Facades\Image;
 class HomeSliderController extends Controller
 {
 
-    public function homeSlider()
+    public function slide()
     {
         $slider = HomeSlide::query()->find(1);
         return view('admin.home_slide.home_slide_all', compact('slider'));
     }
 
-    public function updateSlider(UpdateSliderRequest $request, $id)
+    public function update(UpdateSliderRequest $request, $id)
     {
 
         $validated = $request->validated();
