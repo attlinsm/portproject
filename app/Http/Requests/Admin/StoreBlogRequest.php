@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Home;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateBlogRequest extends FormRequest
+class StoreBlogRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,12 @@ class UpdateBlogRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => ['nullable'],
-            'title' => ['nullable', 'string', 'max:150'],
-            'short_description' => ['nullable', 'string', 'max:255'],
-            'description' => ['nullable', 'string'],
-            'tags' => ['nullable', 'string', 'max:25'],
-            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,svg'],
+            'category_id' => ['required'],
+            'title' => ['required', 'string', 'max:150'],
+            'short_description' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
+            'tags' => ['required', 'string', 'max:25'],
+            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,svg'],
             'image_details' => ['nullable', 'image', 'mimes:jpg,jpeg,png,svg']
         ];
     }

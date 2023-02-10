@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Home;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMultiImageRequest extends FormRequest
+class UpdateSliderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,11 @@ class StoreMultiImageRequest extends FormRequest
     public function rules()
     {
         return [
-            'multi_image' => ['required', 'array'],
-            'multi_image.*' => [
-                'required',
-                'image',
-                'mimes:jpeg,png,jpg,gif,svg',
-                'dimensions:max_width=250,max_height=250'
-            ],
+            'title' => ['required', 'max:255'],
+            'short_title' => ['required', 'max:255'],
+            'video_url' => ['required', 'url', 'max:192'],
+            'slider_image' => ['nullable', 'image'],
         ];
     }
+
 }

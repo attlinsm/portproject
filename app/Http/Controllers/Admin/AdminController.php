@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Home\AdminStoreProfileRequest;
 use App\Http\Requests\Home\AdminUpdatePasswordRequest;
-use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -30,13 +30,13 @@ class AdminController extends Controller
         return view('admin.admin_profile_view', compact('user', 'role'));
     }
 
-    public function editProfile()
+    public function edit()
     {
         $user = Auth::user();
         return view('admin.admin_profile_edit', compact('user'));
     }
 
-    public function storeProfile(AdminStoreProfileRequest $request)
+    public function store(AdminStoreProfileRequest $request)
     {
 
         $validated = $request->validated();
@@ -55,12 +55,12 @@ class AdminController extends Controller
         return redirect()->route('admin.profile')->with('status', 'profile-updated');
     }
 
-    public function changePassword()
+    public function change()
     {
         return view('admin.admin_change_password');
     }
 
-    public function updatePassword(AdminUpdatePasswordRequest $request)
+    public function update(AdminUpdatePasswordRequest $request)
     {
         $validated = $request->validated();
 

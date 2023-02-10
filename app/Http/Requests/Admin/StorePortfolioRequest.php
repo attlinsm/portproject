@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Home;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateSliderRequest extends FormRequest
+class StorePortfolioRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,10 @@ class UpdateSliderRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'max:255'],
-            'short_title' => ['required', 'max:255'],
-            'video_url' => ['required', 'url', 'max:192'],
-            'slider_image' => ['nullable', 'image'],
+            'portfolio_name' => ['required', 'string', 'max:100'],
+            'portfolio_title' => ['required', 'string', 'max:255'],
+            'portfolio_description' => ['required', 'string', 'max:2500'],
+            'portfolio_image' => ['required', 'image', 'mimes:jpg,jpeg,png,svg'],
         ];
     }
-
 }

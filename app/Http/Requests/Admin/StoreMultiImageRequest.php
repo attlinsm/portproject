@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Home;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAboutRequest extends FormRequest
+class StoreMultiImageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,13 @@ class UpdateAboutRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['string', 'required', 'max:150'],
-            'short_title' => ['string', 'required', 'max:192'],
-            'short_description' => ['string', 'required', 'max:500'],
-            'long_description' => ['string', 'required', 'max:2500'],
-            'about_image' => ['nullable', 'image'],
+            'multi_image' => ['required', 'array'],
+            'multi_image.*' => [
+                'required',
+                'image',
+                'mimes:jpeg,png,jpg,gif,svg',
+                'dimensions:max_width=250,max_height=250'
+            ],
         ];
     }
 }
