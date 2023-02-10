@@ -16,14 +16,6 @@ use App\Http\Controllers\Admin\UsersController;
 
 Route::view('/', 'frontend.index')->name('welcome.page');
 
-Route::get('/about', [AboutController::class ,'about'])->name('home.about');
-
-Route::get('/portfolio', [PortfolioController::class , 'portfolio'])->name('home.portfolio');
-
-Route::get('/blog',  [BlogController::class , 'blog'])->name('home.blog');
-
-Route::post('/message/store', [ContactController::class, 'store'])->name('message.store');
-
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -43,7 +35,6 @@ Route::middleware(['auth'])->group(function () {
 
         route::get('/password/change', 'change')->name('password.change');
         route::post('/password/update', 'update')->name('passwords.update');
-
     });
 });
 
@@ -59,7 +50,6 @@ Route::middleware('auth')->group(function () {
 
         route::get('/home/slide', 'slide')->name('home.slide');
         route::post('/slide/{id}/update', 'update')->name('slide.update');
-
     });
 });
 
@@ -86,6 +76,8 @@ Route::middleware('auth')->group(function () {
         route::post('/multi/image/{id}/update', 'updateMultiImage')->name('multi.image.update');
 
         route::get('/multi/image/{id}/delete', 'deleteMultiImage')->name('multi.image.delete');
+
+        route::get('/about', 'about')->name('home.about')->withoutMiddleware('auth');
     });
 });
 
@@ -112,9 +104,9 @@ Route::middleware('auth')->group(function() {
 
         route::get('/{id}/details', 'details')->name('portfolio.details');
 
+        route::get('/',  'portfolio')->name('home.portfolio')->withoutMiddleware('auth');
     });
 });
-
 
 /*
 |--------------------------------------------------------------------------
@@ -163,6 +155,8 @@ Route::middleware('auth')->group(function () {
         route::get('/{id}/details', 'details')->name('blog.details');
 
         route::get('/{id}/category', 'category')->name('blog.category');
+
+        route::get('/',  'blog')->name('home.blog')->withoutMiddleware('auth');
     });
 });
 
@@ -179,7 +173,6 @@ Route::middleware('auth')->group(function () {
 
         route::get('/setup', 'setup')->name('footer.setup');
         route::post('/{id}/update', 'update')->name('footer.update');
-
     });
 });
 
@@ -197,6 +190,7 @@ Route::middleware('auth')->group(function () {
 
         route::get('/message/{id}/delete', 'delete')->name('message.delete');
 
+        route::post('/message/store', 'store')->name('message.store')->withoutMiddleware('auth');
     });
 });
 
@@ -243,7 +237,6 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-
 /*
 |--------------------------------------------------------------------------
 | OpenAI Routes
@@ -256,7 +249,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         route::get('/dashboard', 'dashboard')->name('dashboard');
         route::post('/chatgpt', 'ask')->name('chat.ask');
-
     });
 });
 
