@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function () {
 |
 */
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::controller(HomeSliderController::class)->group(function () {
 
         route::get('/home/slide', 'slide')->name('home.slide');
@@ -61,7 +61,7 @@ Route::middleware('auth')->group(function () {
 |
 */
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::controller(AboutController::class)->group(function () {
 
         route::get('/about/edit', 'edit')->name('about.edit');
@@ -70,14 +70,14 @@ Route::middleware('auth')->group(function () {
         route::get('/multi/image/add', 'aboutMultiImage')->name('multi.image.add');
         route::post('/multi/image/store', 'storeMultiImage')->name('multi.image.store');
 
-        route::get('/multi/image/all', 'allMultiImage')->name('multi.image.all');
+        route::get('/multi/image/all', 'allMultiImage')->name('multi.image.all')->withoutMiddleware('admin');
 
         route::get('/multi/image/{id}/edit', 'editMultiImage')->name('multi.image.edit');
         route::post('/multi/image/{id}/update', 'updateMultiImage')->name('multi.image.update');
 
         route::get('/multi/image/{id}/delete', 'deleteMultiImage')->name('multi.image.delete');
 
-        route::get('/about', 'about')->name('home.about')->withoutMiddleware('auth');
+        route::get('/about', 'about')->name('home.about')->withoutMiddleware(['auth', 'admin']);
     });
 });
 
@@ -88,11 +88,11 @@ Route::middleware('auth')->group(function () {
 |
 */
 
-Route::middleware('auth')->group(function() {
+Route::middleware(['auth', 'admin'])->group(function() {
     Route::controller(PortfolioController::class)
         ->prefix('portfolio')->group(function () {
 
-        route::get('/all', 'all')->name('portfolio.all');
+        route::get('/all', 'all')->name('portfolio.all')->withoutMiddleware('admin');
         route::get('/add', 'add')->name('portfolio.add');
 
         route::post('/store', 'store')->name('portfolio.store');
@@ -102,9 +102,9 @@ Route::middleware('auth')->group(function() {
 
         route::get('/{id}/delete', 'delete')->name('portfolio.delete');
 
-        route::get('/{id}/details', 'details')->name('portfolio.details');
+        route::get('/{id}/details', 'details')->name('portfolio.details')->withoutMiddleware('admin');
 
-        route::get('/',  'portfolio')->name('home.portfolio')->withoutMiddleware('auth');
+        route::get('/',  'portfolio')->name('home.portfolio')->withoutMiddleware(['auth', 'admin']);
     });
 });
 
@@ -115,11 +115,11 @@ Route::middleware('auth')->group(function() {
 |
 */
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::controller(BlogCategoryController::class)
         ->prefix('blog/category')->group(function () {
 
-        route::get('/all', 'all')->name('blog.category.all');
+        route::get('/all', 'all')->name('blog.category.all')->withoutMiddleware('admin');
         route::get('/add', 'add')->name('blog.category.add');
 
         route::post('/store', 'store')->name('blog.category.store');
@@ -138,11 +138,11 @@ Route::middleware('auth')->group(function () {
 |
 */
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::controller(BlogController::class)
         ->prefix('blog')->group(function () {
 
-        route::get('/all', 'all')->name('blog.all');
+        route::get('/all', 'all')->name('blog.all')->withoutMiddleware('admin');
         route::get('/add', 'add')->name('blog.add');
 
         route::post('/store', 'store')->name('blog.store');
@@ -152,9 +152,9 @@ Route::middleware('auth')->group(function () {
 
         route::get('/{id}/delete', 'delete')->name('blog.delete');
 
-        route::get('/{id}/details', 'details')->name('blog.details');
+        route::get('/{id}/details', 'details')->name('blog.details')->withoutMiddleware('admin');
 
-        route::get('/{id}/category', 'category')->name('blog.category');
+        route::get('/{id}/category', 'category')->name('blog.category')->withoutMiddleware('admin');
 
         route::get('/',  'blog')->name('home.blog')->withoutMiddleware('auth');
     });
@@ -167,11 +167,11 @@ Route::middleware('auth')->group(function () {
 |
 */
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::controller(FooterController::class)
         ->prefix('footer')->group(function () {
 
-        route::get('/setup', 'setup')->name('footer.setup');
+        route::get('/setup', 'setup')->name('footer.setup')->withoutMiddleware('admin');
         route::post('/{id}/update', 'update')->name('footer.update');
     });
 });
@@ -183,14 +183,14 @@ Route::middleware('auth')->group(function () {
 |
 */
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::controller(ContactController::class)->group(function () {
 
-        route::get('/contact/message', 'message')->name('contact.message');
+        route::get('/contact/message', 'message')->name('contact.message')->withoutMiddleware('admin');
 
         route::get('/message/{id}/delete', 'delete')->name('message.delete');
 
-        route::post('/message/store', 'store')->name('message.store')->withoutMiddleware('auth');
+        route::post('/message/store', 'store')->name('message.store')->withoutMiddleware(['auth', 'admin']);
     });
 });
 
@@ -201,14 +201,14 @@ Route::middleware('auth')->group(function () {
 |
 */
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::controller(SkillsController::class)
         ->prefix('skills')->group(function () {
 
         route::get('/new', 'new')->name('skills.new');
         route::post('/store', 'store')->name('skills.store');
 
-        route::get('/all', 'all')->name('skills.all');
+        route::get('/all', 'all')->name('skills.all')->withoutMiddleware('admin');
 
         route::get('/{id}/edit', 'edit')->name('skills.edit');
         route::post('/{id}/update', 'update')->name('skills.update');
@@ -224,11 +224,11 @@ Route::middleware('auth')->group(function () {
 |
 */
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::controller(UsersController::class)
         ->prefix('user')->group(function () {
 
-        route::get('/all', 'all')->name('users.all');
+        route::get('/all', 'all')->name('users.all')->withoutMiddleware('admin');
 
         route::get('/{id}/edit', 'edit')->name('users.edit');
         route::get('/{id}/delete', 'delete')->name('users.delete');
@@ -244,7 +244,7 @@ Route::middleware('auth')->group(function () {
 |
 */
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::controller(OpenAIController::class)->group(function () {
 
         route::get('/dashboard', 'dashboard')->name('dashboard');
