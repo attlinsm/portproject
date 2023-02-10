@@ -47,3 +47,12 @@
 
 </div>
 @endsection
+
+@section('scripts')
+    @parent
+        @if(session('status') === 'access-denied')
+            <script>
+                toastr.error('Access denied');
+            </script>
+        @endif
+@endsection

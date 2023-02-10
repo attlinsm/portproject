@@ -8,12 +8,12 @@ use OpenAI\Laravel\Facades\OpenAI;
 
 class OpenAIController extends Controller
 {
-    public function showChatGpt()
+    public function dashboard()
     {
         return view('admin.index');
     }
 
-    public function askChatGpt(OpenAIControllerRequest $request)
+    public function ask(OpenAIControllerRequest $request)
     {
         $validated = $request->validated();
 

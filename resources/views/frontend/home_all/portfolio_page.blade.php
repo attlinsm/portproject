@@ -7,7 +7,7 @@ $portfolios = \App\Models\Portfolio::query()->latest()->get();
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-8">
                 <div class="section__title text-center">
-                    <span class="sub-title">04 - Portfolio</span>
+                    <span class="sub-title">04 - Work</span>
                     <h2 class="title">All creative work</h2>
                 </div>
             </div>

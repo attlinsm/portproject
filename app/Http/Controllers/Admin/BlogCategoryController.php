@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Home\StoreBlogCategoryRequest;
@@ -9,18 +9,18 @@ use App\Models\BlogCategory;
 
 class BlogCategoryController extends Controller
 {
-    public function allBlogCategory()
+    public function all()
     {
         $blogCategory = BlogCategory::query()->latest()->get();
         return view('admin.blog_category.blog_category_all', compact('blogCategory'));
     }
 
-    public function addBlogCategory()
+    public function add()
     {
         return view('admin.blog_category.blog_category_add');
     }
 
-    public function storeBlogCategory(StoreBlogCategoryRequest $request)
+    public function store(StoreBlogCategoryRequest $request)
     {
         $validated = $request->validated();
 
@@ -30,13 +30,13 @@ class BlogCategoryController extends Controller
         return redirect()->route('blog.category.all')->with('status', 'blog-category-added');
     }
 
-    public function editBlogCategory($id)
+    public function edit($id)
     {
         $blogCategory = BlogCategory::query()->findOrFail($id);
         return view('admin.blog_category.blog_category_edit', compact('blogCategory'));
     }
 
-    public function updateBlogCategory(UpdateBlogCategoryRequest $request, $id)
+    public function update(UpdateBlogCategoryRequest $request, $id)
     {
         $validated = $request->validated();
 
@@ -46,7 +46,7 @@ class BlogCategoryController extends Controller
         return redirect()->route('blog.category.all')->with('status', 'blog-category-updated');
     }
 
-    public function deleteBlogCategory($id)
+    public function delete($id)
     {
         BlogCategory::query()->findOrFail($id)->delete();
 
