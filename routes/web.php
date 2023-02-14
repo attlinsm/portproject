@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Home\CommentController;
 use App\Http\Controllers\OpenAI\OpenAIController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
@@ -152,11 +153,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
         route::get('/{id}/delete', 'delete')->name('blog.delete');
 
-        route::get('/{id}/details', 'details')->name('blog.details')->withoutMiddleware('admin');
+        route::get('/{id}/details', 'details')->name('blog.details')->withoutMiddleware(['auth','admin']);
 
-        route::get('/{id}/category', 'category')->name('blog.category')->withoutMiddleware('admin');
+        route::get('/{id}/category', 'category')->name('blog.category')->withoutMiddleware(['auth','admin']);
 
-        route::get('/',  'blog')->name('home.blog')->withoutMiddleware('auth');
+        route::get('/',  'blog')->name('home.blog')->withoutMiddleware(['auth', 'admin']);
     });
 });
 
@@ -252,4 +253,17 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
+/*
+|--------------------------------------------------------------------------
+| Comments Routes
+|--------------------------------------------------------------------------
+|
+*/
+Route::middleware('auth')->group(function () {
+    Route::controller(CommentController::class)->group(function () {
+
+        route::post('/comments', 'store')->name('comments.store');
+
+    });
+});
 require __DIR__.'/auth.php';
