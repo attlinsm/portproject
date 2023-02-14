@@ -20,9 +20,6 @@ $footer = \App\Models\Footer::query()->find(1);
                                     <li class="{{ ($activeRoute ==  'home.about') ? 'active' : ''  }}">
                                         <a href="{{ route('home.about') }}">About</a>
                                     </li>
-                                    <li>
-                                        <a href="services-details.html">Skills</a>
-                                    </li>
                                     <li class="menu-item-has-children {{ ($activeRoute ==  'home.portfolio') ? 'active' : ''  }}">
                                         <a href="{{ route('home.portfolio') }}">My work</a></li>
                                     <li class="menu-item-has-children {{ ($activeRoute ==  'home.blog') ? 'active' : ''  }}">
