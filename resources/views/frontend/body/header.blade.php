@@ -25,6 +25,9 @@ $footer = \App\Models\Footer::query()->find(1);
                                     <li class="menu-item-has-children {{ ($activeRoute ==  'home.blog') ? 'active' : ''  }}">
                                         <a href="{{ route('home.blog') }}">Blog</a>
                                     </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="{{ route('login') }}">CMS Dashboard</a>
+                                    </li>
                                 </ul>
                             </div>
                             <!--LANG CHOOSER-->
