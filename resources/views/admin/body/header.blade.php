@@ -9,6 +9,14 @@
         </div>
 
         <div class="d-flex">
+            <button type="button" class="btn header-item waves-effect">
+                <a class="d-none d-xl-inline-block ms-1" href="{{ route('welcome.page') }}">
+                    {{ __('Return to home') }}
+                </a>
+            </button>
+        </div>
+
+        <div class="d-flex">
 
             @php
             $id = Auth::user()->id;
