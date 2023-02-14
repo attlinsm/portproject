@@ -7,6 +7,7 @@ use App\Http\Requests\Home\StoreBlogRequest;
 use App\Http\Requests\Home\UpdateBlogRequest;
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Comments;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
@@ -100,7 +101,8 @@ class BlogController extends Controller
         $categories = BlogCategory::query()->orderBy('blog_category', 'ASC')->get();
         $all_blogs = Blog::query()->latest()->limit(5)->get();
         $blog = Blog::query()->findOrFail($id);
-        return view('frontend.blog_details', compact('blog', 'all_blogs', 'categories'));
+        $comments = Comments::query()->where('blog_id', '=', $id)->get()->all();
+        return view('frontend.blog_details', compact('blog', 'all_blogs', 'categories', 'comments'));
     }
 
     public function category($id)

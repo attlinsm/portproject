@@ -45,8 +45,7 @@
                     <div class="blog__details__content services__details__content">
                         <ul class="blog__post__meta">
                             <li><i class="fal fa-calendar-alt"></i>{{ \Carbon\Carbon::parse($blog->created_at)->diffForHumans() }}</li>
-                            <li><i class="fal fa-comments-alt"></i> <a href="#">Comment (08)</a></li>
-                            <li class="post-share"><a href="#"><i class="fal fa-share-all"></i> (18)</a></li>
+                            <li><i class="fal fa-comments-alt"></i> <a href="#Comments">{{"Comments " . "(" . count($comments) . ")"}}</a></li>
                         </ul>
                         <h2 class="title">{{ $blog->title }}</h2>
                         {!! $blog->description !!}
@@ -59,114 +58,38 @@
                             </li>
                         </ul>
                     </div>
-                    {{-- Next or prev post --}}
-                    <div class="blog__next__prev">
-                        <div class="row justify-content-between">
-                            <div class="col-xl-5 col-md-6">
-                                <div class="blog__next__prev__item">
-                                    <h4 class="title">Previous Post</h4>
-                                    <div class="blog__next__prev__post">
-                                        <div class="blog__next__prev__thumb">
-                                            <a href="blog-details.html"><img src="{{ asset('frontend/assets/img/blog/blog_prev.jpg') }}" alt=""></a>
-                                        </div>
-                                        <div class="blog__next__prev__content">
-                                            <h5 class="title"><a href="blog-details.html">Digital Marketing Agency Pricing Guide.</a></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-5 col-md-6">
-                                <div class="blog__next__prev__item next_post text-end">
-                                    <h4 class="title">Next Post</h4>
-                                    <div class="blog__next__prev__post">
-                                        <div class="blog__next__prev__thumb">
-                                            <a href="blog-details.html"><img src="{{ asset('frontend/assets/img/blog/blog_next.jpg') }}" alt=""></a>
-                                        </div>
-                                        <div class="blog__next__prev__content">
-                                            <h5 class="title"><a href="blog-details.html">App Prototyping
-                                                    Types, Example & Usages.</a></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     {{-- Comments --}}
-                    <div class="comment comment__wrap">
-                        <div class="comment__title">
-                            <h4 class="title">(04) Comment</h4>
-                        </div>
-                        <ul class="comment__list">
-                            <li class="comment__item">
-                                <div class="comment__thumb">
-                                    <img src="{{ asset('frontend/assets/img/blog/comment_thumb01.png') }}" alt="">
-                                </div>
-                                <div class="comment__content">
-                                    <div class="comment__avatar__info">
-                                        <div class="info">
-                                            <h4 class="title">Rohan De Spond</h4>
-                                            <span class="date">25 january 2021</span>
-                                        </div>
-                                        <a href="#" class="reply"><i class="far fa-reply-all"></i></a>
-                                    </div>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have. There are many variations of passages of Lorem Ipsum available, but the majority have</p>
-                                </div>
-                            </li>
-                            <li class="comment__item children">
-                                <div class="comment__thumb">
-                                    <img src="{{ asset('frontend/assets/img/blog/comment_thumb02.png') }}" alt="">
-                                </div>
-                                <div class="comment__content">
-                                    <div class="comment__avatar__info">
-                                        <div class="info">
-                                            <h4 class="title">Johan Ritaxon</h4>
-                                            <span class="date">25 january 2021</span>
-                                        </div>
-                                        <a href="#" class="reply"><i class="far fa-reply-all"></i></a>
-                                    </div>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have. There are many variations of passages</p>
-                                </div>
-                            </li>
-                            <li class="comment__item">
-                                <div class="comment__thumb">
-                                    <img src="{{ asset('frontend/assets/img/blog/comment_thumb03.png') }}" alt="">
-                                </div>
-                                <div class="comment__content">
-                                    <div class="comment__avatar__info">
-                                        <div class="info">
-                                            <h4 class="title">Alexardy Ditartina</h4>
-                                            <span class="date">25 january 2021</span>
-                                        </div>
-                                        <a href="#" class="reply"><i class="far fa-reply-all"></i></a>
-                                    </div>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have. There are many variations of passages of Lorem Ipsum available, but the majority have</p>
-                                </div>
-                            </li>
-                            <li class="comment__item children">
-                                <div class="comment__thumb">
-                                    <img src="{{ asset('frontend/assets/img/blog/comment_thumb04.png') }}" alt="">
-                                </div>
-                                <div class="comment__content">
-                                    <div class="comment__avatar__info">
-                                        <div class="info">
-                                            <h4 class="title">Rashedul islam Kabir</h4>
-                                            <span class="date">25 january 2021</span>
-                                        </div>
-                                        <a href="#" class="reply"><i class="far fa-reply-all"></i></a>
-                                    </div>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have. There are many variations of passages</p>
-                                </div>
-                            </li>
-                        </ul>
+                    @if(count($blog->comments) === 0)
+
+                    <div class="comment__title mt-4" id="Comments">
+                        <h4 class="title">{{ __('No comments here') }}</h4>
                     </div>
+
+                    @else
+                    <div class="comment__title mt-4" id="Comments">
+                        <h4 class="title">{{ count($comments) . " comments" }}</h4>
+                    </div>
+                    <div class="comment comment__wrap">
+                        @include('frontend.comments.show', ['comments' => $blog->comments, 'blog_id' => $blog->id])
+                    </div>
+                    @endif
                     {{-- Comment form --}}
                     <div class="comment__form">
                         <div class="comment__title">
                             <h4 class="title">Write your comment</h4>
                         </div>
-                        <form action="#">
-                            <textarea name="message" id="message" placeholder="Enter your Massage*"></textarea>
-                            <button type="submit" class="btn">post a comment</button>
+                        <form action="{{ route('comments.store') }}" method="POST">
+                            @csrf
+
+                                <textarea class="form-control @error('comment') is-invalid @enderror" name="comment" placeholder="Enter your Massage*">
+                                </textarea>
+                                @error('comment')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+
+                                <input type="hidden" name="blog_id" value="{{ $blog->id }}">
+
+                                <button type="submit" class="btn">post a comment</button>
                         </form>
                     </div>
 
