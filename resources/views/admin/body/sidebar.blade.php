@@ -22,9 +22,11 @@
                         <i class="ri-community-line"></i>
                         <span>Welcome</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('home.slide') }}">Edit</a></li>
-                    </ul>
+                    @if(auth()->user()->role->first()->name === 'Administrator')
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="{{ route('home.slide') }}">Edit</a></li>
+                        </ul>
+                    @endif
                 </li>
 
                 <li>
@@ -33,8 +35,15 @@
                         <span>About</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('about.edit') }}">General settings</a></li>
-                        <li><a href="{{ route('multi.image.add') }}">Add multi image</a></li>
+
+                        @if(auth()->user()->role->first()->name === 'Administrator')
+                            <li><a href="{{ route('about.edit') }}">General settings</a></li>
+                        @endif
+
+                        @if(auth()->user()->role->first()->name === 'Administrator')
+                            <li><a href="{{ route('multi.image.add') }}">Add multi image</a></li>
+                        @endif
+
                         <li><a href="{{ route('multi.image.all') }}">All multi image</a></li>
                     </ul>
                 </li>
@@ -45,7 +54,11 @@
                         <span>Skills</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('skills.new') }}">Add new</a></li>
+
+                        @if(auth()->user()->role->first()->name === 'Administrator')
+                            <li><a href="{{ route('skills.new') }}">Add new</a></li>
+                        @endif
+
                         <li><a href="{{ route('skills.all') }}">All skills</a></li>
                     </ul>
                 </li>
@@ -57,7 +70,11 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('portfolio.all') }}">All portfolios</a></li>
-                        <li><a href="{{ route('portfolio.add') }}">Add portfolio</a></li>
+
+                        @if(auth()->user()->role->first()->name === 'Administrator')
+                            <li><a href="{{ route('portfolio.add') }}">Add portfolio</a></li>
+                        @endif
+
                     </ul>
                 </li>
 
@@ -70,7 +87,11 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('blog.category.all') }}">All categories</a></li>
-                        <li><a href="{{ route('blog.category.add') }}">Add category</a></li>
+
+                        @if(auth()->user()->role->first()->name === 'Administrator')
+                            <li><a href="{{ route('blog.category.add') }}">Add category</a></li>
+                        @endif
+
                     </ul>
                 </li>
 
@@ -81,7 +102,11 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('blog.all') }}">All blogs</a></li>
-                        <li><a href="{{ route('blog.add') }}">Add blog</a></li>
+
+                        @if(auth()->user()->role->first()->name === 'Administrator')
+                            <li><a href="{{ route('blog.add') }}">Add blog</a></li>
+                        @endif
+
                     </ul>
                 </li>
 
@@ -93,7 +118,11 @@
                         <span>Footer info</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('footer.setup') }}">Edit</a></li>
+
+                        @if(auth()->user()->role->first()->name === 'Administrator')
+                            <li><a href="{{ route('footer.setup') }}">Edit</a></li>
+                        @endif
+
                     </ul>
                 </li>
 

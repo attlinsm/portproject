@@ -30,7 +30,10 @@
                                     <th>Subject</th>
                                     <th>Message</th>
                                     <th>Phone</th>
-                                    <th>Action</th>
+                                    <th>Was created</th>
+                                    @if(auth()->user()->role->first()->name === 'Administrator')
+                                        <th>Action</th>
+                                    @endif
                                 </tr>
                                 </thead>
 
@@ -46,9 +49,13 @@
                                         <td>{{ $item->message }}</td>
                                         <td>{{ $item->phone }}</td>
                                         <td>{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</td>
-                                        <td>
-                                            <a class="btn btn-danger sm" href="{{ route('message.delete', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
-                                        </td>
+
+                                        @if(auth()->user()->role->first()->name === 'Administrator')
+                                            <td>
+                                                <a class="btn btn-danger sm" href="{{ route('message.delete', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                        @endif
+
                                     </tr>
 
                                 @endforeach

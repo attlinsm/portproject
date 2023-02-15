@@ -29,7 +29,9 @@
                                     <th>Title</th>
                                     <th>Tags</th>
                                     <th>Image</th>
-                                    <th>Action</th>
+                                    @if(auth()->user()->role->first()->name === 'Administrator')
+                                        <th>Action</th>
+                                    @endif
                                 </tr>
                                 </thead>
 
@@ -43,10 +45,14 @@
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->tags }}</td>
                                         <td><img src="{{ asset('upload/blog_images/' . $item->image) }}" alt="" style="width: 85px; height: 85px"></td>
-                                        <td>
-                                            <a class="btn btn-info sm" href="{{ route('blog.edit', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
-                                            <a class="btn btn-danger sm" href="{{ route('blog.delete', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
-                                        </td>
+
+                                        @if(auth()->user()->role->first()->name === 'Administrator')
+                                            <td>
+                                                <a class="btn btn-info sm" href="{{ route('blog.edit', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a class="btn btn-danger sm" href="{{ route('blog.delete', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                        @endif
+
                                     </tr>
 
                                 @endforeach

@@ -28,7 +28,11 @@
                                     <th>Name</th>
                                     <th>Title</th>
                                     <th>Image</th>
-                                    <th>Action</th>
+
+                                    @if(auth()->user()->role->first()->name === 'Administrator')
+                                        <th>Action</th>
+                                    @endif
+
                                 </tr>
                                 </thead>
 
@@ -41,10 +45,12 @@
                                         <td>{{ $item->portfolio_name }}</td>
                                         <td>{{ $item->portfolio_title }}</td>
                                         <td><img src="{{ asset('upload/portfolio_images/' . $item->portfolio_image) }}" alt="" style="width: 85px; height: 85px"></td>
-                                        <td>
-                                            <a class="btn btn-info sm" href="{{ route('portfolio.edit', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
-                                            <a class="btn btn-danger sm" href="{{ route('portfolio.delete', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
-                                        </td>
+                                        @if(auth()->user()->role->first()->name === 'Administrator')
+                                            <td>
+                                                <a class="btn btn-info sm" href="{{ route('portfolio.edit', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a class="btn btn-danger sm" href="{{ route('portfolio.delete', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                        @endif
                                     </tr>
 
                                 @endforeach

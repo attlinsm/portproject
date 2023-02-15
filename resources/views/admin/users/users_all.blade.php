@@ -29,7 +29,9 @@
                                     <th>Email</th>
                                     <th>Profile image</th>
                                     <th>Role</th>
-                                    <th>Action</th>
+                                    @if(auth()->user()->role->first()->name === 'Administrator')
+                                        <th>Action</th>
+                                    @endif
                                 </tr>
                                 </thead>
 
@@ -45,10 +47,12 @@
                                         @foreach($user->role as $role)
                                             <td>{{ $role->name }}</td>
                                         @endforeach
-                                        <td>
-                                            <a class="btn btn-info sm" href="{{ route('users.edit', $user->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
-                                            <a class="btn btn-danger sm" href="{{ route('users.delete', $user->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
-                                        </td>
+                                        @if(auth()->user()->role->first()->name === 'Administrator')
+                                            <td>
+                                                <a class="btn btn-info sm" href="{{ route('users.edit', $user->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a class="btn btn-danger sm" href="{{ route('users.delete', $user->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                        @endif
                                     </tr>
 
                                 @endforeach

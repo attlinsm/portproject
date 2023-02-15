@@ -26,7 +26,9 @@
                                 <tr>
                                     <th>Number</th>
                                     <th>Name</th>
-                                    <th>Action</th>
+                                    @if(auth()->user()->role->first()->name === 'Administrator')
+                                        <th>Action</th>
+                                    @endif
                                 </tr>
                                 </thead>
 
@@ -37,10 +39,14 @@
                                     <tr>
                                         <td>{{ $id + 1 }}</td>
                                         <td>{{ $item->blog_category }}</td>
-                                        <td>
-                                            <a class="btn btn-info sm" href="{{ route('blog.category.edit', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
-                                            <a class="btn btn-danger sm" href="{{ route('blog.category.delete', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
-                                        </td>
+
+                                        @if(auth()->user()->role->first()->name === 'Administrator')
+                                            <td>
+                                                <a class="btn btn-info sm" href="{{ route('blog.category.edit', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a class="btn btn-danger sm" href="{{ route('blog.category.delete', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                        @endif
+
                                     </tr>
 
                                 @endforeach
