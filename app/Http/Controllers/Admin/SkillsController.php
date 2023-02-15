@@ -26,8 +26,8 @@ class SkillsController extends Controller
         $image_name = Str::uuid();
         $icon_name = Str::uuid();
 
-        Image::make($image)->resize(310, 230)->save(storage_path('app/public/upload/skills_images/') . $image_name);
-        Image::make($icon)->resize(45, 45)->save(storage_path('app/public/upload/skills_images/icons/') . $icon_name);
+        Image::make($image)->resize(310, 230)->save(public_path('upload/skills_images/') . $image_name);
+        Image::make($icon)->resize(45, 45)->save(public_path('upload/skills_images/icons/') . $icon_name);
 
         $validated['image'] = $image_name;
         $validated['icon'] = $icon_name;
@@ -57,8 +57,8 @@ class SkillsController extends Controller
         $image = $skill->image;
         $icon = $skill->icon;
 
-        unlink(storage_path('app/public/upload/skills_images/') . $image);
-        unlink(storage_path('app/public/upload/skills_images/icons/') . $icon);
+        unlink(public_path('upload/skills_images/') . $image);
+        unlink(public_path('upload/skills_images/icons/') . $icon);
 
         Skills::query()->findOrFail($id)->delete();
 
@@ -75,7 +75,7 @@ class SkillsController extends Controller
 
             $image_name = Str::uuid();
 
-            Image::make($image)->resize(310, 230)->save(storage_path('app/public/upload/skills_images/') . $image_name);
+            Image::make($image)->resize(310, 230)->save(public_path('upload/skills_images/') . $image_name);
 
             $validated['image'] = $image_name;
 
@@ -86,7 +86,7 @@ class SkillsController extends Controller
 
             $icon_name = Str::uuid();
 
-            Image::make($icon)->resize(45, 45)->save(storage_path('app/public/upload/skills_images/icons/') . $icon_name);
+            Image::make($icon)->resize(45, 45)->save(public_path('upload/skills_images/icons/') . $icon_name);
 
             $validated['icon'] = $icon_name;
 

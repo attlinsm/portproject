@@ -42,7 +42,7 @@
                                         <td>{{ $item['Category']['blog_category'] }}</td>
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->tags }}</td>
-                                        <td><img src="{{ asset('storage/upload/blog_images/' . $item->image) }}" alt="" style="width: 85px; height: 85px"></td>
+                                        <td><img src="{{ asset('upload/blog_images/' . $item->image) }}" alt="" style="width: 85px; height: 85px"></td>
                                         <td>
                                             <a class="btn btn-info sm" href="{{ route('blog.edit', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
                                             <a class="btn btn-danger sm" href="{{ route('blog.delete', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>

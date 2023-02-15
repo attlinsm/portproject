@@ -70,7 +70,7 @@
                             <div class="row mb-3">
                                 <label for="example-text-input" class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-10">
-                                    <img id="showImage" class="rounded avatar-lg" src="{{ (!empty(asset('storage/upload/about_image/' . $aboutPage->about_image))) ? asset('storage/upload/about_image/' . $aboutPage->about_image) : url('upload/no_image.jpg') }}" alt="Card image cap">
+                                    <img id="showImage" class="rounded avatar-lg" src="{{ (!empty(asset('upload/about_image/' . $aboutPage->about_image))) ? asset('upload/about_image/' . $aboutPage->about_image) : url('upload/no_image.jpg') }}" alt="Card image cap">
                                 </div>
                             </div>
                             <input type="submit" class="btn btn-info waves-effect waves-light" value="Update about page">

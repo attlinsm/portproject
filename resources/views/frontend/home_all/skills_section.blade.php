@@ -18,11 +18,11 @@
                 <div class="col-xl-3">
                     <div class="bg-white">
                         <div class="services__thumb">
-                            <a href="#"><img src="{{ asset('storage/upload/skills_images/' . $item->image) }}" alt=""></a>
+                            <a href="#"><img src="{{ asset('upload/skills_images/' . $item->image) }}" alt=""></a>
                         </div>
                         <div class="services__content" style="min-height: 584px">
                             <div class="services__icon">
-                                <img class="light" src="{{ asset('storage/upload/skills_images/icons/' . $item->icon) }}" alt="">
+                                <img class="light" src="{{ asset('upload/skills_images/icons/' . $item->icon) }}" alt="">
                             </div>
                             <h3 class="title"><a href="services-details.html">{{ $item->name }}</a></h3>
                             <p>{{ $item->short_description }}</p>

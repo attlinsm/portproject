@@ -7,7 +7,7 @@
             <div class="col-lg-6">
                 <div class="card">
 
-                    <img class="card-img-top img-fluid" src="{{ (!empty($user->profile_image)) ? url('storage/upload/admin_images/' . $user->profile_image) : url('upload/no_image.jpg') }}" alt="Card image cap">
+                    <img class="card-img-top img-fluid" src="{{ (!empty($user->profile_image)) ? url('upload/admin_images/' . $user->profile_image) : url('upload/no_image.jpg') }}" alt="Card image cap">
 
                     <div class="card-body">
                         <h4 class="card-title">Name: {{ $user->name }} </h4>

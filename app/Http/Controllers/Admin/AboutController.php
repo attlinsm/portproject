@@ -29,7 +29,7 @@ class AboutController extends Controller
             $image = $request->file('about_image');
             $name = Str::uuid();
 
-            Image::make($image)->resize(523, 605)->save(storage_path('app/public/upload/about_image/') . $name);
+            Image::make($image)->resize(523, 605)->save(public_path('upload/about_image/') . $name);
 
             $validated['about_image'] = $name;
 
@@ -38,7 +38,7 @@ class AboutController extends Controller
             if ($data->about_image) {
 
                 $old_image = $data->about_image;
-                unlink(storage_path('app/public/upload/about_image/') . $old_image);
+                unlink(public_path('upload/about_image/') . $old_image);
 
             }
 
@@ -69,7 +69,7 @@ class AboutController extends Controller
 
             $name = Str::uuid();
 
-            Image::make($multi_image)->resize(90, 90)->save(storage_path('app/public/upload/multi_images/') . $name);
+            Image::make($multi_image)->resize(90, 90)->save(public_path('upload/multi_images/') . $name);
 
             $validated['multi_image'] = $name;
 
@@ -102,7 +102,7 @@ class AboutController extends Controller
             $image = $request->file('multi_image');
             $name = Str::uuid();
 
-            Image::make($image)->resize(220, 220)->save(storage_path('app/public/upload/multi_images/') . $name);
+            Image::make($image)->resize(220, 220)->save(public_path('upload/multi_images/') . $name);
 
             $validated['multi_image'] = $name;
 
@@ -118,7 +118,7 @@ class AboutController extends Controller
     {
         $multiImage = MultiImage::query()->findOrFail($id);
         $img = $multiImage->multi_image;
-        unlink(storage_path('app/public/upload/multi_images/') . $img);
+        unlink(public_path('upload/multi_images/') . $img);
 
         MultiImage::query()->findOrFail($id)->delete();
 
