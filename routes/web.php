@@ -245,7 +245,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 |
 */
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::controller(OpenAIController::class)->group(function () {
 
         route::get('/dashboard', 'dashboard')->name('dashboard');
