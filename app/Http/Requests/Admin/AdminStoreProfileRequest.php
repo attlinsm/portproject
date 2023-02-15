@@ -28,7 +28,7 @@ class AdminStoreProfileRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255',],
             'email' => ['required', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
-            'profile_image' => ['nullable', 'image'],
+            'profile_image' => ['nullable', 'image', 'max:1000'],
         ];
     }
 
