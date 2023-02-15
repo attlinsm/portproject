@@ -44,7 +44,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="about__image">
-                        <img src="{{ asset('storage/upload/about_image/' . $aboutPage->about_image) }}" alt="">
+                        <img src="{{ asset('upload/about_image/' . $aboutPage->about_image) }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -161,7 +161,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-9">
                         <div class="blog__post__item">
                             <div class="blog__post__thumb">
-                                <a href="{{ route('blog.details', $item->id) }}"><img src="{{ asset('storage/upload/blog_images/' . $item->image) }}" alt=""></a>
+                                <a href="{{ route('blog.details', $item->id) }}"><img src="{{ asset('upload/blog_images/' . $item->image) }}" alt=""></a>
                                 <div class="blog__post__tags">
                                     <a href="{{ route('blog.category', $item->category_id) }}">{{ $item['Category']['blog_category'] }}</a>
                                 </div>

@@ -22,7 +22,7 @@ $portfolios = \App\Models\Portfolio::query()->latest()->get();
                             @foreach($portfolios as $item)
                                 <div class="portfolio__item">
                                     <div class="portfolio__thumb">
-                                        <img src="{{ asset('storage/upload/portfolio_images/' . $item->portfolio_image) }}" alt="">
+                                        <img src="{{ asset('upload/portfolio_images/' . $item->portfolio_image) }}" alt="">
                                     </div>
                                     <div class="portfolio__overlay__content">
                                         <span>{{ $item->portfolio_name }}</span>

@@ -47,8 +47,8 @@
                                                 {{ $pros }}
                                             @endforeach
                                         </td>
-                                        <td><img src="{{ asset('storage/upload/skills_images/' . $item->image) }}" alt="" style="width: 85px; height: 85px"></td>
-                                        <td><img src="{{ asset('storage/upload/skills_images/icons/' . $item->icon) }}" alt="" style="width: 85px; height: 85px"></td>
+                                        <td><img src="{{ asset('upload/skills_images/' . $item->image) }}" alt="" style="width: 85px; height: 85px"></td>
+                                        <td><img src="{{ asset('upload/skills_images/icons/' . $item->icon) }}" alt="" style="width: 85px; height: 85px"></td>
 
                                         <td>
                                             <a class="btn btn-info sm" href="{{ route('skills.edit', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>

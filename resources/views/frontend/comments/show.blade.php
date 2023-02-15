@@ -2,7 +2,7 @@
     <ul class="comment__list">
         <li class="comment__item {{ $comment->parent_id != null ? 'ml-40' : ''}}">
             <div class="comment__thumb">
-                <img src="{{ asset('storage/upload/admin_images/' . $comment->user->profile_image) }}" alt="">
+                <img src="{{ asset('upload/admin_images/' . $comment->user->profile_image) }}" alt="">
             </div>
             <div class="comment__content">
                 <div class="comment__avatar__info">

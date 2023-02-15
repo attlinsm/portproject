@@ -41,12 +41,12 @@
                 @foreach($blog_post as $item)
                 <div class="standard__blog__post">
                     <div class="standard__blog__thumb">
-                        <a href="{{ route('blog.details', $item->id) }}"><img src="{{ asset('storage/upload/blog_images/blog_details/' .  $item->image_details) }}" alt=""></a>
+                        <a href="{{ route('blog.details', $item->id) }}"><img src="{{ asset('upload/blog_images/blog_details/' .  $item->image_details) }}" alt=""></a>
                         <a href="{{ route('blog.details', $item->id) }}" class="blog__link"><i class="far fa-long-arrow-right"></i></a>
                     </div>
                     <div class="standard__blog__content">
                         <div class="blog__post__avatar">
-                            <div class="thumb"><img src="{{ asset('storage/upload/blog_images/' . $item->image) }}" alt=""></div>
+                            <div class="thumb"><img src="{{ asset('upload/blog_images/' . $item->image) }}" alt=""></div>
                             <span class="post__by">By : <a href="#">Halina Spond</a></span>
                         </div>
                         <h2 class="title"><a href="{{ route('blog.details', $item->id) }}">{{ $item->title }}</a></h2>
@@ -86,7 +86,7 @@
                             @foreach($all_blogs as $item)
                             <li class="rc__post__item">
                                 <div class="rc__post__thumb">
-                                    <a href="{{ route('blog.details', $item->id) }}"><img src="{{ asset('storage/upload/blog_images/' . $item->image) }}" alt=""></a>
+                                    <a href="{{ route('blog.details', $item->id) }}"><img src="{{ asset('upload/blog_images/' . $item->image) }}" alt=""></a>
                                 </div>
                                 <div class="rc__post__content">
                                     <h5 class="title"><a href="{{ route('blog.details', $item->id) }}">{{ $item->title }}</a></h5>

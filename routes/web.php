@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Home\CommentController;
 use App\Http\Controllers\OpenAI\OpenAIController;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\HomeSliderController;
@@ -266,13 +265,6 @@ Route::middleware('auth')->group(function () {
         route::post('/comments', 'store')->name('comments.store');
 
     });
-});
-
-// Some funny stuf
-Route::get('/artisan/storage', function() {
-    $command = 'storage:link';
-    $result = Artisan::call($command);
-    return Artisan::output();
 });
 
 require __DIR__.'/auth.php';

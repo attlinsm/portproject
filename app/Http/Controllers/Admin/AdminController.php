@@ -45,7 +45,7 @@ class AdminController extends Controller
             $file = $request->file('profile_image');
 
             $filename = 'avatar_' . $request->user()->id;
-            $file->move(storage_path('app/public/upload/admin_images'), $filename);
+            $file->move(public_path('upload/admin_images'), $filename);
 
             $validated['profile_image'] = $filename;
         }

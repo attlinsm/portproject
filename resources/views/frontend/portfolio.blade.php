@@ -41,7 +41,7 @@
                 <div class="col-lg-6 col-md-10">
                     <div class="portfolio__inner__thumb">
                         <a href="{{ route('portfolio.details', $item->id) }}">
-                            <img src="{{ asset('storage/upload/portfolio_images/' . $item->portfolio_image) }}" alt="">
+                            <img src="{{ asset('upload/portfolio_images/' . $item->portfolio_image) }}" alt="">
                         </a>
                     </div>
                 </div>
