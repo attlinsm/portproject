@@ -30,7 +30,10 @@
                                     <th>Pros list</th>
                                     <th>Image</th>
                                     <th>Icon</th>
-                                    <th>Action</th>
+
+                                    @if(auth()->user()->role->first()->name === 'Administrator')
+                                        <th>Action</th>
+                                    @endif
                                 </tr>
                                 </thead>
 
@@ -50,10 +53,13 @@
                                         <td><img src="{{ asset('upload/skills_images/' . $item->image) }}" alt="" style="width: 85px; height: 85px"></td>
                                         <td><img src="{{ asset('upload/skills_images/icons/' . $item->icon) }}" alt="" style="width: 85px; height: 85px"></td>
 
+                                        @if(auth()->user()->role->first()->name === 'Administrator')
                                         <td>
-                                            <a class="btn btn-info sm" href="{{ route('skills.edit', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
-                                            <a class="btn btn-danger sm" href="{{ route('skills.delete', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
-                                        </td>
+                                                <a class="btn btn-info sm" href="{{ route('skills.edit', $item->id) }}" title="Edit"><i class="fas fa-edit"></i></a>
+                                                <a class="btn btn-danger sm" href="{{ route('skills.delete', $item->id) }}" title="Delete" id="delete"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                        @endif
+
                                     </tr>
 
                                 @endforeach

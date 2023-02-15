@@ -22,7 +22,7 @@
                         <i class="ri-community-line"></i>
                         <span>Welcome</span>
                     </a>
-                    @if($user->role->first()->name === 'Administrator')
+                    @if(auth()->user()->role->first()->name === 'Administrator')
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a href="{{ route('home.slide') }}">Edit</a></li>
                         </ul>
@@ -36,11 +36,11 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
 
-                        @if($user->role->first()->name === 'Administrator')
+                        @if(auth()->user()->role->first()->name === 'Administrator')
                             <li><a href="{{ route('about.edit') }}">General settings</a></li>
                         @endif
 
-                        @if($user->role->first()->name === 'Administrator')
+                        @if(auth()->user()->role->first()->name === 'Administrator')
                             <li><a href="{{ route('multi.image.add') }}">Add multi image</a></li>
                         @endif
 
@@ -55,7 +55,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
 
-                        @if($user->role->first()->name === 'Administrator')
+                        @if(auth()->user()->role->first()->name === 'Administrator')
                             <li><a href="{{ route('skills.new') }}">Add new</a></li>
                         @endif
 
@@ -71,7 +71,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('portfolio.all') }}">All portfolios</a></li>
 
-                        @if($user->role->first()->name === 'Administrator')
+                        @if(auth()->user()->role->first()->name === 'Administrator')
                             <li><a href="{{ route('portfolio.add') }}">Add portfolio</a></li>
                         @endif
 
@@ -88,7 +88,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('blog.category.all') }}">All categories</a></li>
 
-                        @if($user->role->first()->name === 'Administrator')
+                        @if(auth()->user()->role->first()->name === 'Administrator')
                             <li><a href="{{ route('blog.category.add') }}">Add category</a></li>
                         @endif
 
@@ -103,7 +103,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('blog.all') }}">All blogs</a></li>
 
-                        @if($user->role->first()->name === 'Administrator')
+                        @if(auth()->user()->role->first()->name === 'Administrator')
                             <li><a href="{{ route('blog.add') }}">Add blog</a></li>
                         @endif
 
@@ -119,7 +119,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
 
-                        @if($user->role->first()->name === 'Administrator')
+                        @if(auth()->user()->role->first()->name === 'Administrator')
                             <li><a href="{{ route('footer.setup') }}">Edit</a></li>
                         @endif
 
