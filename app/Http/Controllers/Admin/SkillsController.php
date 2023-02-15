@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Home\StoreSkillsRequest;
-use App\Http\Requests\Home\UpdateSkillsRequest;
+use App\Http\Requests\Admin\StoreSkillsRequest;
+use App\Http\Requests\Admin\UpdateSkillsRequest;
 use App\Models\Skills;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 

@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Home\StoreMessageRequest;
 use App\Models\Contact;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+
 
 class ContactController extends Controller
 {

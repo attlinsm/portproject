@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Home\AdminStoreProfileRequest;
-use App\Http\Requests\Home\AdminUpdatePasswordRequest;
+use App\Http\Requests\Admin\AdminStoreProfileRequest;
+use App\Http\Requests\Admin\AdminUpdatePasswordRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;

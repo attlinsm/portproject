@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Home\StoreBlogCategoryRequest;
-use App\Http\Requests\Home\UpdateBlogCategoryRequest;
+use App\Http\Requests\Admin\StoreBlogCategoryRequest;
+use App\Http\Requests\Admin\UpdateBlogCategoryRequest;
 use App\Models\BlogCategory;
 
 class BlogCategoryController extends Controller
