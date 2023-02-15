@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Home\StoreMultiImageRequest;
-use App\Http\Requests\Home\UpdateAboutRequest;
-use App\Http\Requests\Home\UpdateMultiImageRequest;
+use App\Http\Requests\Admin\StoreMultiImageRequest;
+use App\Http\Requests\Admin\UpdateAboutRequest;
+use App\Http\Requests\Admin\UpdateMultiImageRequest;
 use App\Models\About;
 use App\Models\MultiImage;
 use Illuminate\Support\Str;

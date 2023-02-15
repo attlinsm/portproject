@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Home\StorePortfolioRequest;
-use App\Http\Requests\Home\UpdatePortfolioRequest;
+use App\Http\Requests\Admin\StorePortfolioRequest;
+use App\Http\Requests\Admin\UpdatePortfolioRequest;
 use App\Models\Portfolio;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;

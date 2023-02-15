@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Home\UpdateSliderRequest;
+use App\Http\Requests\Admin\UpdateSliderRequest;
 use App\Models\HomeSlide;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;

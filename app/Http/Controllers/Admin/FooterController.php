@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Home\UpdateFooterRequest;
+use App\Http\Requests\Admin\UpdateFooterRequest;
 use App\Models\Footer;
 
 class FooterController extends Controller
